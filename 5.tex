@@ -1,0 +1,502 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Group Actions} 
+
+    \section{Group Actions}
+    
+    \begin{definition}{(Left) Action}{of a Group on a Set}
+        Let $G$ be a group and let $X$ be a set. A \emph{(left) action} of $G$ on $X$ is a function $\cdot:G\times X\to X$ such that
+        \begin{enumerate}
+            \item $e_G\cdot x=x$ for all $x\in X$; and
+            \item $g\cdot \left( h\cdot x\right) = \left( gh \right) \cdot x$ for every $g,h\in G, x\in X$.
+        \end{enumerate}
+    \end{definition}
+
+    \ex[Examples of Group Actions]
+    \begin{enumerate}
+        \item For any $n\in\N$, $S_n$ acts on $\left\lbrace 1,\ldots,n \right\rbrace$.
+        \item $\gl_n\left( \F \right)$ acts on $\F^n$, where $\F$ is any field and $n\in\N$.
+        \item Let $X$ be any set and let $G$ be any group. Then there always is an action $\cdot$ of $G$ on $X$ by
+            \begin{equation*}
+                g\cdot x = x
+            \end{equation*}
+            for every $x\in X, g\in G$. This is called the \emph{trivial action} of $G$ on $X$.
+        \item Let $X$ be a set. The group $S_X$ under composition $\circ$ acts on $X$ via $f\cdot x = f\left( x \right)$.
+    \end{enumerate}
+
+    \begin{definition}{Invariant}{Subset}
+        Let $G$ be a group acting on a set $X$. A subset $Y\subseteq X$ is \emph{invariant} under the action of $G$ if $g\cdot y\in Y$ for every $g\in G, y\in Y$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$ by $\cdot:G\times X\to X$ and let $Y$ be an invariant subset of $X$. Then the restriction $\cdot|_{\left( G\times Y \right)}:G\times Y\to Y$ is an action on $Y$.
+    \end{prop}
+
+    \begin{prop}{}
+        Let $G$ be a group acting on sets $X,Y$ and for every $g\in G, f\in Y^X$, let $g\cdot_{Y^X} f:X\to Y$ be the function defined by
+        \begin{equation*}
+            x\mapsto g\cdot_Y f\left( g^{-1} \cdot_X x \right) 
+        \end{equation*}
+        for every $x\in X$. Then $\cdot_{Y^X}$ is a left action of $G$ on $Y^X$.
+    \end{prop}
+
+    \np Often we apply Proposition 5.2 with the trivial action $\cdot_Y$ on $Y$, so the action $\cdot_{Y^X}$ is such that
+    \begin{equation*}
+        g\cdot_{Y^X} f\left( x \right) = f\left( g^{-1} \cdot_X x \right) 
+    \end{equation*}
+    for every $x\in X$.
+
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$ with $\cdot: G\times X\to X$. Then $\cdot$ induces an action of $G$ on $2^X$ by
+        \begin{equation*}
+            g\cdot S = \left\lbrace g\cdot s:s\in S \right\rbrace 
+        \end{equation*}
+        for every $S\subseteq X$.
+    \end{prop}
+
+    \np It is worth noting that every group \textit{acts on itself}.
+
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be a group. Then $G$ acts on itself. Specifically, $\cdot:G\times G\to G$ by
+        \begin{equation*}
+            g\cdot h = gh
+        \end{equation*}
+        for every $g,h\in G$ is a left action of $G$ on $G$.
+    \end{prop}
+
+    \noindent The action described in Proposition 5.4 is called the \emph{left regular action} of $G$ on $G$.
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then $G$ acts on $G /H$ by
+        \begin{equation*}
+            g\cdot \left( kH \right) = gkH
+        \end{equation*}
+        for every $g\in G, kH\in G /H$.
+    \end{prop}
+
+    \noindent Observe that Proposition 5.5 generalizes Proposition 5.4, since $G /\left\lbrace e_G \right\rbrace \iso G$.
+
+    \section{Permutation Representations}
+    
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$ and given any $g\in G$, let $l_g:X\to X$ be defined by
+        \begin{equation*}
+            l_g\left( x \right) = g\cdot x
+        \end{equation*}
+        for every $x\in X$. Then
+        \begin{enumerate}
+            \item $l_g\circ l_h = l_{gh}$ for every $g,h\in G$;
+            \item $l_{e_G}$ is the identity function on $X$; and 
+            \item $l_g$ is a bijection.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{cor}{}
+        Every left action of a group $G$ on a set $X$ defines a homomorphism $\varphi:G\to S_X$ such that
+        \begin{equation*}
+            \varphi\left( g \right) \left( x \right) = g\cdot x
+        \end{equation*}
+        for every $g\in G, x\in X$.
+    \end{cor}	
+
+    \begin{definition}{Permutation Representation}{of a Group on a Set}
+        Let $G$ be a group acting on a set $X$. Then any homomorphism $\varphi:G\to S_X$ is called a \emph{permutation representation} of $G$ on $X$.
+    \end{definition}
+
+    \np Corollary 5.6.1 shows that every group acting on a set has a permutation representation in a canonical way. Moreover, the naming \textit{permutation} comes from the fact that, if $X$ is finite, say $\left| X \right| = n\in\N$, then $S_X\iso S_n$, which means any action on $X$ defines a homomorphism to $S_n$.
+
+    \clearpage
+    \begin{theorem}{}
+        Let $G$ be a group and let $X$ be a set.
+        \begin{enumerate}
+            \item If $G$ acts on $X$, then $\varphi:G\to S_X$ by
+                \begin{equation*}
+                    \varphi\left( g \right) \left( x \right) = gx
+                \end{equation*}
+                for every $g\in G, x\in X$ is a homomorphism.
+            \item If $\varphi:G\to S_X$ is a homomorphism, then $gx = \varphi\left( g \right) \left( x \right) $ for every $g,\in G, x\in X$ defines a group action of $G$ on $X$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item See Corollary 5.6.1. \qqqedsym
+            \item Observe that $e_Gx = \varphi\left( e_G \right) \left( x \right) = x$ for every $x\in X$. Moreover, given any $g,h\in G, x\in X$, we have
+                \begin{equation*}
+                    g\left( hx \right) = \varphi\left( g \right) \left( \varphi\left( h \right) \left( x \right)  \right) = \left( \varphi\left( g \right) \circ\varphi\left( h \right)  \right) \left( x \right) = \varphi\left( gh \right) x. \eqedsym
+                \end{equation*}
+        \end{enumerate}
+    \end{proof}
+
+    \np Because of Theorem 5.7, we treat group actions and permutation representations interchangeably.
+
+    \begin{definition}{Kernel}{of a Group Action}
+        Let $G$ be a group acting on a set $X$ and let $\varphi:G\to S_X$ be the corresponding permutation representation.
+        \begin{enumerate}
+            \item The \emph{kernel} of the action is $\ker\left( \varphi \right)$.
+            \item We say the action is \emph{faithful} if $\ker\left( \varphi \right) = \left\lbrace e_G \right\rbrace$, the trivial subgroup.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$. Then the action is faithful if and only if for every $g\in G\setminus \left\lbrace e_G \right\rbrace$, there exists $x\in X$ such that $gx\neq x$.
+    \end{prop}
+
+    \begin{proof}
+        This immediately follows from the definition of the kernel of a group action.
+    \end{proof}
+
+    \ex
+    \begin{enumerate}
+        \item Given any set $X$, $S_X$ acts faithfully on $X$.
+        \item The action of $\gl_n\left( \K \right) $ on $\K^n$ by matrix multiplication is faithful.
+        \item $D_{2n}$ acts faithfully on vertices of the $n$-gon.
+        \item Every trivial action is not faithful.
+    \end{enumerate}
+    We previously saw that every group acts on some set, namely itself. Then, does every group act faithfully on some set?
+
+    \begin{theorem}{Cayley's Theorem}
+        Let $G$ be a group. Then $G$ is isomorphic to a subgroup of $S_G$. In particular, if $\left| G \right| = n$, then $G$ is isomorphic to a subgroup of $S_n$.
+    \end{theorem}	
+
+    \clearpage
+    \begin{lemma_inside}{}
+        Let $G$ be a group. Then the left regular action of $G$ is faithful.
+    \end{lemma_inside}
+
+    \begin{proof}
+        For any $g\in G$ that is not the identity element, $ge_G = g \neq e_G$. Hence by Proposition 5.8 the left regular action is faithful.
+    \end{proof}
+
+    \begin{proof}[Proof of Theorem 5.9]
+        By Lemma 5.9.1, the permutation representation $\varphi:G\to S_G$ corresponding to the left regular action is injective (since $\ker\left( \varphi \right)$ is trivial), implying that $G\iso\varphi\left( G \right) \leq S_G$ by the first isomorphism theorem. Moreover, when $\left| G \right| = n$, then $S_G\iso S_n$, so $G$ is isomorphic to a subgroup of $S_n$.
+    \end{proof}
+
+    \begin{definition}{Left Regular Representation}{of a Group}
+        Let $G$ be a group. Then the permutation representation corresponding to the left regular action of $G$ on $G$ is called the \emph{left regular representation} of $G$.
+    \end{definition}
+
+    \section{Orbit}
+    
+    \begin{definition}{Orbit}{of a Group on a Set}
+        Let $G$ be a group acting on a set $X$.
+        \begin{enumerate}
+            \item Given $x\in X$, the \emph{$G$-orbit} of $x$, denoted as $\mO_x$, is defined as
+                \begin{equation*}
+                    \mO_x = \left\lbrace gx:g\in G \right\rbrace .
+                \end{equation*}
+            \item A subset $\mO\subseteq X$ is an \emph{orbit} of $G$ on $X$ if there exists $x\in X$ such that $\mO=\mO_x$.
+            \item A group action is \emph{transitive} if there exists $x\in X$ such that $\mO_x = X$.
+        \end{enumerate}
+    \end{definition}
+
+    \np The point of the definition of the $G$-orbit of $x$ is to define the \textit{set of points that we can get to under the action of $G$ from $x$}.
+
+    \ex
+    \begin{enumerate}
+        \item Let $G$ be a group and let $H\leq G$ act on $G$ by left multiplication. Then given any $g\in G$,
+            \begin{equation*}
+                \mO_g = Hg.
+            \end{equation*}
+            This action is transitive if and only if $H=G$.
+        \item Let $n\in\N$ and consider the action of $\gl_n\left( \K \right) $ on $\K^n$. Then
+            \begin{equation*}
+                \mO_{\vec{v}} = 
+                \begin{cases} 
+                    \left\lbrace \vec{0} \right\rbrace  & \text{if }\vec{v}=\vec{0} \\
+                    \K^n\setminus \left\lbrace \vec{0} \right\rbrace & \text{if }\vec{v}\neq \vec{0}
+                \end{cases}
+            \end{equation*}
+            for every $\vec{v}\in\K^n$.
+    \end{enumerate}
+
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$. Then $\sim_G$\footnote{We write $x\sim_G y$ if there exists $g\in G$ such that $gx=y$ given any $x,y\in X$.} is an equivalence relation on $X$.
+    \end{prop}
+
+    \clearpage
+    \begin{cor}{}
+        Let $G$ be a group acting on a set $X$. Then orbits of $G$ partition $X$. In particular, the action is transitive if and only if there is one orbit of $G$ on $X$.
+    \end{cor}	
+
+    \begin{cor}{}
+        Let $G$ be a group acting on a set $X$ and let $S\subseteq X$ be a set of representatives\footnote{We say $S\subseteq X$ is a \emph{set of representatives} for $\sim_G$ if every equivalence class of $\sim_G$ has exactly one element of $S$. This exists by the axiom of choice.} for $\sim_G$. Then
+        \begin{equation*}
+            \left| X \right| = \sum^{}_{x\in S} \left| \mO_x \right| .
+        \end{equation*}
+    \end{cor}	
+
+    \np We also desire to know $\left| \mO_x \right|$ given $x\in X$. To do so, we can use the mapping $g\mapsto gx$ for every $g\in G$. One problem, however, with this idea is that we may have distinct $g,h\in G$ such that $gx=hx$.
+
+    \begin{definition}{Stabilizer}{of an Element of a Set}
+        Let $G$ be a group acting on a set $X$ and let $x\in X$. Then the \emph{stabilizer} of $x$, denoted as $G_x$, is
+        \begin{equation*}
+            G_x = \left\lbrace g\in G: gx=x \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$. Then given any $x\in X$, $G_x\leq G$.
+    \end{prop}
+
+    \begin{proof}
+        Since $e_Gx = x$, $e\in G_x$. Moreover, given any $g,h\in G_x$, observe that
+        \begin{equation*}
+            \left( g^{-1} h \right) x = g^{-1} \left( hx \right) = g^{-1} x
+        \end{equation*}
+        but $\left( g^{-1} x \right) gx = e_G$ and $gx = e_G$ so $g^{-1} x = e_G$. Hence $g^{-1} h\in G_x$.
+    \end{proof}
+
+    \begin{theorem}{Orbit-stabilizer Theorem}
+        Let $G$ be a group acting on a set $X$. Then given any $x\in X$, $\varphi:G /G_X\to\mO_x$ by
+        \begin{equation*}
+            \varphi\left( gG_x \right) = gx
+        \end{equation*}
+        for every $g\in G$ is a bijection.
+    \end{theorem}
+
+    \begin{proof}
+        Given any $g,h\in G$ such that $gG_x = hG_x$, $g^{-1} h\in G_x$. So it follows that
+        \begin{equation*}
+            g^{-1} hx = x,
+        \end{equation*}
+        implying $hx = gx$, so $\varphi$ is well-defined. Moreover, if $g,h\in G$ are such that $gx=hx$, then $g^{-1} h\in G_x$ so $gG_x = hG_x$. The surjectivity is clear.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $G$ be a group acting on a set $X$. Then given any $x\in X$, $\left| \mO_x \right| = \left[ G:G_x \right] $.
+    \end{cor}	
+
+    \ex Let $G=S_n, X=\left\lbrace 1,\ldots,n \right\rbrace$. We know that the action of $G$ on $X$ is transitive, so $\mO_i =X$ for any $i\in X$. It follows that
+    \begin{equation*}
+        n = \left| \mO_i \right| = \left[ G:G_i \right] = \frac{\left| G \right| }{\left| G_i \right| } = \frac{n!}{\left| G_i \right| }
+    \end{equation*}
+    for all $i\in X$, implying
+    \begin{equation*}
+        \left| G_i \right| = \left( n-1 \right) !.
+    \end{equation*}
+    In fact,
+    \begin{equation*}
+        G_i = \left\lbrace \pi\in S_n: \pi\left( i \right) =i \right\rbrace \iso S_{n-1}
+    \end{equation*}
+    for every $i\in X$.
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then the left multiplication action of $G$ on $G /H$ is transitive and $G_H = H$.
+    \end{prop}
+
+    \np Observe that, given a group $G$ acting on a set $X$, the kernel of action can be written as
+    \begin{equation*}
+        \left\lbrace g\in G:\forall x\in X\left[ gx=x \right]  \right\rbrace 
+    \end{equation*}
+    whereas $G_x = \left\lbrace g\in G: gx = x \right\rbrace$ for every $x\in X$. Consequently, the kernel of the action is a subgroup of $G_x$ for every $x\in X$. Moreover, we have the following result.
+
+    \begin{prop}{}
+        Let $G$ be a group acting on a set $X$. Then the kernel of the action is $\cap_{x\in X}G_x$, the intersection of stabilizers.
+    \end{prop}
+
+    \begin{theorem}{}
+        Let $G$ be a finite group. Then for every $H\leq G$ such that $\left[ G:H \right] $ is the smallest prime dividing $\left| G \right|$, then $H\normalsub G$.
+    \end{theorem}
+
+    \begin{proof}
+        Let $K\leq G$ be the kernel of action of $G$ on $G /H$. Then by Proposition 5.13, 5.14, $K\leq G_H = H$. Denote
+        \begin{equation*}
+            k = \left[ H:K \right] = \frac{\left| H \right| }{\left| K \right| }, p = \left[ G:H \right] .
+        \end{equation*}
+        Now
+        \begin{equation*}
+            \left[ G:K \right] = \frac{\left| G \right| }{\left| K \right| } = \frac{\left| G \right| }{\left| H \right| }\frac{\left| H \right| }{\left| K \right| }= pk,
+        \end{equation*}
+        By Cayley's theorem, $G /K$ is isomorphic to a subgroup of $S_p$. So
+        \begin{equation*}
+            kp | p!
+        \end{equation*}
+        by Lagrange's theorem, since $\left| G /K \right| = kp, \left| S_p \right| = p!$. It follows that
+        \begin{equation*}
+            k|\left( p-1 \right) !.
+        \end{equation*}
+        But $k|\left| G \right|$. Since $p$ is the smallest prime dividing $\left| G \right|$, it follows that $K=1$. Thus $\left| H \right| = \left| K \right|$ so $H=K$, a normal subgroup of $G$.
+    \end{proof}
+
+    \section{Conjugation}
+    
+    \np Recall that given any group $G$, left multiplication defines a left action of $G$ on $G$. It turns out that there is another natural left action.
+
+    \clearpage
+    \begin{prop}{Conjugation Action}
+        Let $G$ be a group. Then
+        \begin{equation*}
+            \left( g,h \right) \mapsto ghg^{-1} 
+        \end{equation*}
+        for every $g,h\in G$ defines an action of $G$ on $G$.
+    \end{prop}
+
+    \begin{proof}
+        For every $g\in G$, observe that $e_G\cdot k = e_Gke_G = k$. Moreover, for every $g,h,k\in G$,
+        \begin{equation*}
+            g\cdot\left( h\cdot k \right) = g\cdot hkh^{-1} = ghkh^{-1} g^{-1} = \left( gh \right) k\left( gh \right) ^{-1} = \left( gh \right) \cdot k. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{definition}{Conjugation Action}{of a Group on Iteslf}
+        Let $G$ be a group. Then the action $\cdot$ described in Proposition 5.16 is called the \emph{conjugation action} of $G$ on $G$.
+    \end{definition}
+
+    \begin{definition}{Conjugacy Class, Centralizer}{of an Element of a Group}
+        Let $G$ be a group. Given any $g\in G$, 
+        \begin{enumerate}
+            \item the \emph{conjugacy class} of $k$ in $G$, denoted $\conj_G\left( g \right)$, is defined as the orbit of $k$ under the conjugation action; and 
+            \item the \emph{centralizer} of $k$ in $G$, denoted as $C_G\left( g \right)$, is defined as the stabilizer of $k$ under the conjugation action.
+        \end{enumerate}
+    \end{definition}
+
+    \np Observe that, given $k\in G$,
+    \begin{equation*}
+        \conj_G\left( k \right) = \left\lbrace gkg^{-1} :g\in G \right\rbrace 
+    \end{equation*}
+    and that
+    \begin{equation*}
+        C_G\left( k \right) = \left\lbrace g\in G: gkg^{-1} =k \right\rbrace.
+    \end{equation*}
+    That is, the centralizer of any $k\in G$ is the set of elements in $G$ commute with $k$. Furthermore, by the orbit stabilizer theorem,
+    \begin{equation*}
+        \left| \conj_G\left( k \right)  \right| = \left[ G:C_G\left( k \right)  \right] 
+    \end{equation*}
+    for every $k\in G$.
+
+    \np The conjugation action of $G$ on $G$ induces an action of $G$ on $2^G$. Moreover, suppose $g\in G, S\subseteq G$ are given. Then
+    \begin{equation*}
+        g\cdot S = \left\lbrace g\cdot h:h\in S \right\rbrace = \left\lbrace ghg^{-1} :h\in S \right\rbrace = gSg^{-1} .
+    \end{equation*}
+    So the stabilizer of $S$ is $\left\lbrace g\in G: gSg^{-1} = S \right\rbrace = N_G\left( S \right)$, the normalizer of $S$ in $G$.
+
+    \ex An important instance of the conjugation action is the general linear group, acting on the set of matrices by the conjugation action. Recall that, $A,B\in M_{n\times n}(\K)$ ($n\in\N$) are called \emph{similar} if there exists $C\in\gl_n\left( \K \right)$ such that 
+    \begin{equation*}
+        CAC^{-1} = B.
+    \end{equation*}
+    This is the equivalence relation $\sim_{\gl_n\left( K \right) }$. Orbits of conjugation of $\gl_n\left( \K \right)$ on $M_n\left( \K \right)$ are called \emph{similarity classes}. Moreover, $A\in M_{n\times n}(\K)$ is called \emph{diagonalizable} if it is similar to a diagonal matrix (i.e. the similarity class of $A$ contains a diagonal matrix). When $\K=\CC$, by the Jordan normal form theorem, every similarity class has exactly one matrix in Jordan normal form (up to permutation of Jordan blocks). Hence matrices in Jordan normal form give a set of representatives for $\sim_{\gl_n\left( \K \right) }$. 
+
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be a group. Then for any $k\in G$, the following are equivalent:
+        \begin{enumerate}
+            \item $\left| \conj_G\left( k \right)  \right| = 1$;
+            \item $C_G\left( k \right) = G$; and
+            \item $k\in Z\left( G \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        Observe that
+        \begin{equation*}
+            \left| \conj_G\left( k \right)  \right| = 1 \iff \forall g\in G\left[ gkg^{-1} = k \right] \iff C_G\left( k \right) = G \iff k\in Z\left( G \right) . \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{theorem}{Class Equation}
+        Let $G$ be a finite group. Then
+        \begin{equation*}
+            \left| G \right| = \left| Z\left( G \right)  \right| + \sum^{}_{g\in T} \left| \conj_G\left( g \right)  \right| ,
+        \end{equation*}
+        where $T$ is a set of representatives for conjugacy classes not in the center.
+    \end{theorem}
+
+    \begin{proof}
+        Observe that
+        \begin{equation*}
+            \left| G  \right| = \sum^{}_{g\in S} \left| \conj_G\left( g \right)  \right| 
+        \end{equation*}
+        for any set $S\subseteq G$ of representatives of the conjugacy classes by Corollary 5.10.2. But by Proposition 5.17, $g\in Z\left( G \right)$ if and only if $\left| \conj_G\left( g \right)  \right| = 1$, so every element $g\in Z\left( G \right)$ is the representative of the conjugacy class $\left\lbrace g \right\rbrace$. It follows that $Z\left( G \right) \subseteq S$, so by defining $T=S\setminus Z\left( G \right)$,
+        \begin{equation*}
+            \left| G \right| = \sum^{}_{g\in S} \left| \conj_G\left( g \right)  \right| = \sum^{}_{g\in\conj_G\left( g \right) } \left| \conj_G\left( g \right)  \right| + \sum^{}_{g\in T} \left| \conj_G\left( g \right)  \right| = \left| Z\left( G \right)  \right| + \sum^{}_{g\in T} \left| \conj_G\left( g \right)  \right| . \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{theorem}{Cauchy's Theorem}
+        Let $G$ be a finite group. Then for any prime $p\in\N$ dividing $\left| G \right|$, there exists an element of $G$ of order $p$.
+    \end{theorem}
+
+    \begin{proof}
+        Let $m\in\N$ be such that $\left| G \right| = pm$. Note that the result is provided by Corollary 2.12.1 when $G$ is cyclic. We first verify the result for the case which $G$ is abelian.
+        \begin{itemize}
+            \item \textit{Claim 1. The result holds when $G$ is abelian.} 
+
+                \begin{subproof}
+                    We induct on $m$. When $m=1$, $G$ has a prime order so cyclic, so has an element of order $p$. Let $m\in\N, m\geq 2$ and suppose that every group of order $p, 2p, \ldots, \left( m-1 \right)p$ has an element of order $p$. Let $a\in G\setminus \left\lbrace e_G \right\rbrace$, where we may assume that $\left| a \right| < \left| G \right|$ (otherwise we are done). If $p|\left| a \right|$, then by the inductive hypothesis we have $b\in \left< a \right> $ with $\left| b \right| = p$. In case $p$ does not divide the order of $a$, we use the fact that every subgroup of an abelian group is normal. So denote
+                    \begin{equation*}
+                        N = \left< a \right> \normalsub G. 
+                    \end{equation*}
+                    Then
+                    \begin{equation*}
+                        \left| G /N \right| = \frac{\left| G \right| }{\left| n \right| } < \left| G \right| .
+                    \end{equation*}
+                    Since $p$ divides $\left| G \right|$ but not $\left| N \right|$, $p$ divides $\left| G /N \right|$. Therefore by induction $G /N$ has element $gN$ of order $p$. Let $n=\left| g \right|$. Since $g^n = e_G$, $q\left( g \right) ^n = gN = e_G$ where $q:G\to G /N$ is the quotient map. This means $p|n$. Now if $\left< g \right> = G$, then we are done. Otherwise, $\left| \left< g \right>   \right| < \left| G \right|$ but $p$ divides $\left| \left< g \right>   \right|$, so $\left< g \right>$ has an element of order $p$ by the inductive hypothesis. 
+                \end{subproof}
+        \end{itemize} 
+        We proceed inductively on $\left| G \right|$. If $\left| G \right| = p$ then we are done. Now suppose that the result holds for every group of order $p, 2p, \ldots, \left( m-1 \right) p$, where $m\in\N, m\geq 2$. Let $T$ be a set of representatives for the conjugacy classes not in $Z\left( G \right)$. Then by the class equation
+        \begin{equation*}
+            \left| G \right| = \left| Z\left( G \right)  \right| + \left| \conj_G\left( g \right)  \right| .
+        \end{equation*}
+        If $p$ does not divide $\left| \conj_G\left( g \right) \right|$ for some $g\in G$, then $p|C_G\left( g \right)$ since $\left| \conj_G\left( g \right)  \right| = \frac{\left| G \right| }{\left| C_G\left( g \right)  \right| }$. Since $g\notin Z\left( G \right)$ and $\left| \conj_G\left( g \right)  \right| > 1$, $\left| C_G\left( g \right)  \right| < \left| G \right|$. Hence by induction $C_G\left( g \right)$ contains an element of order $p$. On the other hand, if $p$ divides $\left| \conj_G\left( g \right)  \right|$ for every $g\in T$, then $p$ divides $\left| Z\left( G \right)  \right|$. But $Z\left( G \right)$ is abelian, so has an element of order $p$ by Claim 1.
+    \end{proof}
+
+    \begin{definition}{$p$-group}{}
+        Let $p\in\N$ be prime. A group $G$ is called a \emph{$p$-group} if $\left| G \right| = p^k$ for some $k\in\N$.
+    \end{definition}
+
+    \begin{theorem}{}
+        For every $p$-group $G$, $Z\left( G \right) \neq \left\lbrace e_G \right\rbrace$.
+    \end{theorem}
+
+    \begin{proof}
+        Let $T$ be a set of representatives for the conjugacy classes not in $Z\left( G \right)$. Then by the class equation
+        \begin{equation*}
+            \left| G \right| = \left| Z\left( G \right)  \right| + \sum^{}_{g\in T} \left[ G:C_G\left( g \right)  \right] .
+        \end{equation*}
+        But $\left[ G:C_G\left( g \right)  \right] $ divides $\left| G \right|$, and for any $g\in T$, since $g\notin Z\left( G \right)$, $\left[ G:C_G\left( g \right)  \right] > 1$, implying that $p$ divides $\left[ G:C_G\left( g \right)  \right]$ for every $g\in T$. Thus $p$ divides $\left| Z\left( G \right)  \right|$ also, implying that $Z\left( G \right)$ is nontrivial.
+    \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

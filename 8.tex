@@ -1,0 +1,466 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Ideals and Quotient Rings}
+
+    \section{Ideals}
+
+    \begin{definition}{Ideal}{of a Ring}
+        Let $R$ be a ring. $I\subseteq R$ is called an \emph{ideal} of $R$ if
+        \begin{enumerate}
+            \item $I$ is a subgroup of the additive group of $R$; and
+            \item for all $m\in I, r\in R$, $rm,mr\in I$.
+        \end{enumerate}
+    \end{definition}
+    
+    \begin{prop}{}
+        Let $R,S$ be rings and let $\varphi:R\to S$ be a homomorphism. Then $\ker\left( \varphi \right)$ is an ideal.
+    \end{prop}
+
+    \begin{proof}
+        Let $r\in R, m\in\ker\left( \varphi \right)$. Then observe that
+        \begin{equation*}
+            \varphi\left( rm \right) = \varphi\left( r \right) \varphi\left( m \right) = \varphi\left( r \right) 0_S = 0 = 0_S\varphi\left( r \right) = \varphi\left( m \right) \varphi\left( r \right) = \varphi\left( mr \right) . \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{prop}{}
+        For any $m\in\Z$, $m\Z$ is an ideal of $\Z$.
+    \end{prop}
+
+    \begin{proof}
+        We know that $m\Z$ is a subgroup of the additive group of $\Z$. Moreover, given any $r\in\Z, s\in m\Z$, $s=mk$ for some $k\in\Z$ so $rs = sr = rmk\in m\Z$. Thus $m\Z$ is an ideal.
+    \end{proof}
+
+    \np Given any ring $R$, $\left\lbrace 0_R \right\rbrace$ is an ideal of $R$, called the \emph{trivial ideal}, and often denoted by $\left( 0 \right)$.
+    
+    \begin{prop}{Ideal Test}
+        Let $R$ be a ring and let $I\subseteq R$. Then $I$ is an ideal of $R$ if and only if
+        \begin{enumerate}
+            \item $I\neq\emptyset$; and
+            \item for all $r\in R, f,g\in I$, $rf+g,fr+g\in I$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        The forward direction is clear. For the backward direction, given any $f,g\in I$,
+        \begin{equation*}
+            \left( -1 \right) g + f = f-g \in I
+        \end{equation*}
+        by (b), so $I$ is a subgroup of the additive group of $R$. Moreover, given any $m\in I, r\in R$,
+        \begin{equation*}
+            rm = rm + 0 \in I
+        \end{equation*}
+        and
+        \begin{equation*}
+            mr = mr + 0 \in I
+        \end{equation*}
+        by (b). Thus $I$ is an ideal of $R$.
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $R$ be a ring and let $I$ be an ideal of $R$. If $1_R\in I$, then $I=R$.
+    \end{prop}
+
+    \begin{proof}
+        For every $r\in R$, since $1_R\in I$ and $I$ is an ideal of $R$, $r = 1_Rr \in I$.
+    \end{proof}
+    
+    \clearpage
+    \begin{cor}{}
+        Let $\K$ be a field. Then the only ideals in $\K$ are $\left( 0 \right) , \K$.
+    \end{cor}	
+
+    \begin{proof}
+        Clearly $\left( 0 \right)$ is an ideal of $\K$. Let $I$ be a nontrivial ideal of $\K$. Then there is nonzero $x\in I$, so $xx^{-1} \in I$. But $xx^{-1} = 1_{\K}$, so $I=\K$.
+    \end{proof}
+    
+    \begin{cor}{}
+        Let $R$ be a nontrivial ring and let $\K$ be a field. Let $\varphi:\K\to R$ be a ring homomorphism. Then $\varphi$ is injective.
+    \end{cor}	
+
+    \begin{proof}
+        $\ker\left( \varphi \right)$ is an ideal of $\K$, so $\ker\left( \varphi \right) = \left( 0 \right)$ or $\ker\left( \varphi \right) = \K$. But assuming $\ker\left( \varphi \right) = \K$ implies $0_R = \varphi\left( 1_{\K} \right) = 1_R$, so $R$ is trivial, contradicting the assumption. Hence $\ker\left( \varphi \right) = \left( 0 \right)$. But $\varphi$ is also a group homomorphism, so $\varphi$ is injective.
+    \end{proof}
+    
+    \section{Quotient Rings}
+    
+    \begin{theorem}{}
+        Let $R$ be a ring and let $I$ be an ideal of $R$. Define $+,\cdot:R /I\times R /I\to R /I$ by
+        \begin{equation*}
+            \left[ x \right] + \left[ y \right] = \left[ x+y \right] 
+        \end{equation*}
+        and
+        \begin{equation*}
+            \left[ x \right] \left[ y \right] = \left[ xy \right] 
+        \end{equation*}
+        for all $\left[ x \right] , \left[ y \right] \in R$. 
+        \begin{enumerate}
+            \item $\left( R /I, +,\cdot\right)$ is a ring. 
+            \item The quotient map $q:R\to R /I$ by
+                \begin{equation*}
+                    q\left( x \right) = \left[ x \right] 
+                \end{equation*}
+                is a surjective ring homomorphism with $\ker\left( q \right) = I$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item We know $R /I$ is an abelian group under addition from group theory, and also that $\cdot$ is well-defined. So we show few things:
+                \begin{itemize}
+                    \item \textit{associativity of $\cdot$}: Let $x,y,z\in R$. Then
+                        \begin{equation*}
+                            \left[ x \right] \left( \left[ y \right] \left[ z \right]  \right) = \left[ x \right] \left[ yz \right] = \left[ xyz \right] = \left[ xy \right] \left[ z \right] = \left( \left[ x \right] \left[ y \right]  \right) \left[ z \right] . 
+                        \end{equation*}
+
+                    \item \textit{identity for $\cdot$}: Observe that
+                        \begin{equation*}
+                            \left[ 1 \right] \left[ x \right] = \left[ 1x \right] = \left[ x \right] = \left[ x1 \right] = \left[ x \right] \left[ q \right] 
+                        \end{equation*}
+                        for all $x\in R$, so $\left[ 1 \right]$ is an identity for $\cdot$.
+
+                    \item \textit{distributivity of $\cdot$ over $+$}: Let $x,y,z\in R$. Then
+                        \begin{equation*}
+                            \left[ x \right] \left( \left[ y \right] +\left[ z \right]  \right) = \left[ x \right] \left[ y+z \right] = \left[ x\left( yz \right)  \right] = \left[ xy+xz \right] = \left[ xy \right] + \left[ xz \right] = \left[ x \right] \left[ y \right] + \left[ x \right] \left[ z \right] .
+                        \end{equation*}
+                        Similar argument holds for right distributivity. \qqqedsym
+                \end{itemize} 
+
+            \item We know that $q$ is a group homomorphism. Moreover,
+                \begin{equation*}
+                    q\left( xy \right) = \left[ xy \right] = \left[ x \right] \left[ y \right] = q\left( x \right) q\left( y \right) 
+                \end{equation*}
+                for all $x,y\in R$ and
+                \begin{equation*}
+                    q\left( 1 \right) = \left[ 1 \right] 
+                \end{equation*}
+                so $q$ is a ring homomorphism. \qqedsym
+        \end{enumerate}
+    \end{proof}
+    
+    \begin{definition}{Quotient}{of a Ring by an Ideal}
+        Let $R$ be a ring and let $I$ be an ideal of $R$. Then the ring $R /I$ defined in Theorem 8.5 is called the \emph{quotient} of $R$ by $I$.\footnote{Also calld simply a \emph{quotient ring} for convenience.}
+    \end{definition}
+    
+    \begin{cor}{}
+        Every ideal is the kernel of some homomorphism.
+    \end{cor}	
+
+    \section{Ideals Generated by a Subset}
+    
+    \begin{prop}{}
+        Let $R$ be a ring and let $\mF$ be a collection of ideals in $R$. Then
+        \begin{equation*}
+            \bigcap^{}_{I\in\mF} I
+        \end{equation*}
+        is an ideal of $R$.
+    \end{prop}
+
+    \begin{definition}{Ideal}{Generated by a Subset}
+        Let $R$ be a ring and let $X\subseteq R$. The \emph{ideal} generated by $X$, denoted as $\left( X \right)$, is
+        \begin{equation*}
+            \left( X \right) = \bigcap^{}_{I\in\mF} I,
+        \end{equation*}
+        where $\mF = \left\lbrace I\text{ is an ideal of }R:I\supseteq X \right\rbrace $.
+    \end{definition}
+
+    \np Let $X$ be a set.
+    \begin{enumerate}
+        \item Sometimes $\left< X \right>$ is used instead of $\left( X \right)$.
+        \item When the elements of $X$ are known, say $X = \left\lbrace x_1,x_2,\ldots \right\rbrace$, then we write
+            \begin{equation*}
+                \left( x_1,x_2,\ldots \right) 
+            \end{equation*}
+            instead of $\left( \left\lbrace x_1,x_2,\ldots \right\rbrace  \right)$. This also explains the \textit{notation} $\left( 0 \right)$ for the trivial group.
+    \end{enumerate}
+    
+    \clearpage
+    \begin{prop}{}
+        Let $R$ be a ring and let $X\subseteq R$. Then
+        \begin{equation*}
+            \left( X \right) = \left\lbrace \sum^{k}_{i=1} s_ix_it_i: k\in\N\cup\left\lbrace 0 \right\rbrace , \forall i\in\left\lbrace 1,\ldots,k \right\rbrace \left[ s_i,t_i\in R, x_i\in X \right]  \right\rbrace .
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Denote
+        \begin{equation*}
+            I = \left\lbrace \sum^{k}_{i=1} s_ix_it_i: k\in\N\cup\left\lbrace 0 \right\rbrace , \forall i\in\left\lbrace 1,\ldots,k \right\rbrace \left[ s_i,t_i\in R, x_i\in X \right]  \right\rbrace
+        \end{equation*}
+        for convenience. Consider the following claims.
+        \begin{itemize}
+            \item \textit{Claim 1. $I$ is an ideal.}
+
+                \begin{subproof}
+                    Since the empty sum is $0_R$, $0_R\in I$. Moreover, given any $r\in R, x,y\in I$, we may write
+                    \begin{equation*}
+                        x = \sum^{k}_{i=1} s_ix_it_i, y = \sum^{l}_{j=1} s_j'y_jt_j' 
+                    \end{equation*}
+                    for some $k,l\in\N\cup\left\lbrace 0 \right\rbrace, s_1,\ldots,s_k,t_1,\ldots,t_k,s_1',\ldots,s_l',t_1',\ldots,t_l'\in R, x_1,\ldots,x_k,y_1,\ldots,y_l\in X$. So it follows that
+                    \begin{equation*}
+                        rx + y = \sum^{k}_{i=1} \left( rs_i \right) x_it_i + \sum^{l}_{j=1} s_j'y_jt_j' \in I.
+                    \end{equation*}
+                    Similarly $xr+y\in I$. Thus $I$ is an ideal. \qqqedsym
+                \end{subproof}
+
+            \item \textit{Claim 2. $\left( X \right) \subseteq I$.}
+
+                \begin{subproof}
+                    For every $x\in X$, observe that
+                    \begin{equation*}
+                        x = 1x1 = \sum^{1}_{1} s_1x_1t_1
+                    \end{equation*}
+                    with $s_1=t_1=1, x_1=x$, so $x\in I$. \qqqedsym
+                \end{subproof}
+
+            \item \textit{Claim 3. $I\subseteq \left( X \right)$.}
+
+                \begin{subproof}
+                    Let $k\in\N\cup\left\lbrace 0 \right\rbrace$ and let $s_i,t_i\in R, x_i\in X$ for all $i\in\left\lbrace 1,\ldots,k \right\rbrace$. Since $X\subseteq \left( X \right)$, $x_i\in \left( X \right)$, which means $s_ix_it_i\in \left( X \right)$ for all $i\in\left\lbrace 1,\ldots,k \right\rbrace$. So $\sum^{k}_{i=1} s_ix_it_i\in \left( X \right)$.
+                \end{subproof}
+        \end{itemize} 
+        Combining Claim 1, 2, 3 gives the desired result.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $R$ be a commutative ring and let $X\subseteq R$. Then
+        \begin{equation*}
+            \left( X \right) = \left\lbrace \sum^{k}_{i=1} r_ix_i: k\in\N\cup\left\lbrace 0 \right\rbrace , \forall i\in\left\lbrace 1,\ldots,k \right\rbrace \left[ r_i\in R, x_i\in X \right]  \right\rbrace .
+        \end{equation*}
+    \end{cor}	
+
+    \np Let $R$ be a ring and let $I,J\subseteq R$. We write $I+J$ to denote
+    \begin{equation*}
+        I+J = \left\lbrace x+y:x\in I, y\in J \right\rbrace .
+    \end{equation*}
+
+    \clearpage
+    \begin{cor}{}
+        Let $R$ be a ring and let $I,J$ be ideals of $R$. Then $I+J = \left( I\cup J \right)$.
+    \end{cor}	
+    
+    \begin{proof}
+        Clearly $I+J\subseteq\left( I\cup J \right)$. For the reverse direction, let $k\in\N\cup\left\lbrace 0 \right\rbrace, s_1,\ldots,s_k,t_1,\ldots,t_k\in R, x_1,\ldots,x_k\in I\cup J$. Let
+        \begin{equation*}
+            S = \left\lbrace i\in\left\lbrace 1,\ldots,k \right\rbrace : x_i\in I \right\rbrace .
+        \end{equation*}
+        Then observe that
+        \begin{equation*}
+            \sum^{k}_{i=1} s_ix_it_i = \underbrace{\sum^{}_{i\in S}s_ix_it_i}_{\in I} + \underbrace{\sum^{}_{i\in \left\lbrace 1,\ldots,k \right\rbrace \setminus S} s_ix_it_i}_{\in J} \in I+J. \eqedsym
+        \end{equation*}
+    \end{proof}
+    
+    \begin{cor}{}
+        Let $R$ be a ring and let $X\subseteq R$. Then $R /\left( X \right)=\left( 0 \right)$ if and only if there exist $k\in\N\cup\left\lbrace 0 \right\rbrace , s_1,\ldots,s_k,t_1,\ldots,t_k\in R, x_1,\ldots,x_k\in X$ such that
+        \begin{equation*}
+            1 = \sum^{k}_{i=1} s_ix_it_i.
+        \end{equation*}
+    \end{cor}	
+
+    \begin{definition}{Principal}{Ideal}
+        Let $R$ be a ring and let $I$ be an ideal of $R$. If there exists $x\in R$ such that $I=\left( x \right)$, then we say $I$ is \emph{principal}.
+    \end{definition}
+
+    \section{Isomorphism Theorems for Rings}
+
+    \begin{theorem}{Universal Property of Quotient Rings}
+        Let $R,S$ be rings and let $\varphi:R\to S$ be a ring homomorphism. Let $I$ be an ideal of $R$ and let $q:R\to R /I$ be the quotient homomorphism. Then there is a ring homomorphism $\psi: R /I \to S$ such that $\psi\circ q=\varphi$ if and only if $I\subseteq\ker\left( \varphi \right)$. Moreover, if $\psi$ exists, then is unique.
+    \end{theorem}
+
+    \begin{lemma_inside}{}
+        Let $R,S,T$ be rings and let $\varphi_1:R\to T$ be a ring homomorphism. If $\psi_1$ is surjective, then for every group homomorphism $\varphi_2:T\to S$ such that $\psi_2\circ\psi_1$ is a ring homomorphism, $\psi_2$ is a ring homomorphism.
+    \end{lemma_inside}
+    
+    \begin{proof}
+        Suppose that $\varphi_1$ is surjective and let $\varphi_2:T\to S$ be a group homomorphism such that $\varphi=\psi_2\circ\psi_1$ is a ring homomorphism. Let $x,y\in T$. Then by the surjectivity of $\psi_1$, there exists $a,b\in R$ such that $\psi_1\left( a \right) = x, \psi_1\left( b \right) = y$. So
+        \begin{equation*}
+            \psi_2\left( xy \right) = \psi_2\left( \psi_1\left( a \right) \psi_1\left( b \right)  \right) = \psi_2\left( \psi_1\left( ab \right)  \right) = \varphi\left( ab \right) = \varphi\left( a \right) \varphi\left( b \right) = \psi_2\left( \psi_1\left( a \right)  \right) \psi_2\left( \psi_1\left( b \right)  \right) = \psi_2\left( x \right) \psi_2\left( y \right) .
+        \end{equation*}
+        Moreover,
+        \begin{equation*}
+            \psi_2\left( 1_T \right) = \psi_2\left( \psi_1\left( 1_R \right)  \right) = \varphi\left( 1_R \right) = 1_S.
+        \end{equation*}
+        Thus $\psi_2$ is a ring homomorphism.
+    \end{proof}
+    
+    \begin{proof}[Proof of Theorem 8.8]
+        \begin{itemize}
+            \item ($\implies$) For the existence part, let $\psi$ be the group homomorphism provided by the universal property of quotient groups (Theorem 4.2). Then by applying Lemma 8.8.1 with $\psi_1=q, \psi_2=\psi, T= R /I$ shows that $\psi$ is a ring homomorphism. The uniqueness of $\psi$ follows from the uniqueness part of the universal property of quotient groups and the fact that any ring homomorphism is a group homomorphism. \qqqedsym
+
+            \item ($\impliedby$) This immediately follows from the universal property of quotient groups. \qqedsym
+        \end{itemize} 
+    \end{proof}
+
+    \clearpage
+    \begin{theorem}{First Isomorphism Theorem for Rings}
+        Let $R, S$ be rings and let $\varphi:R\to S$ be a ring homomorphism. Then there exists a ring isomorphism $\psi:R /\ker\left( \varphi \right) \to \varphi\left( R \right)$ such that $\varphi = \psi\circ q$, where $q:R\to R /I$ is the quotient homomorphism.
+    \end{theorem}
+    
+    \begin{proof}
+        By Theorem 8.8, there eixsts a ring homomorphism $\psi: R /\ker\left( \varphi \right) \to \varphi\left( R \right)$ such that $\psi\circ q= \varphi$. But this $\psi$ is the isomorphism provided by the first isomorphism theorem by the universal property of quotient groups, so $\psi$ is bijective. Thus $\psi$ is a ring isomorphism such that $\varphi=\psi\circ q$.
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $R$ be a commutative ring. Then for every $c\in R$,
+        \begin{equation*}
+            R\left[ x \right] / \left( x-c \right) R\left[ x \right] \iso R.
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Let $c\in R$. Recall that
+        \begin{equation*}
+            \left( x-c \right)R\left[ x \right] = \ker\left( \ev_c \right).
+        \end{equation*}
+        But for every $r\in R$, $\ev_c\left( r \right) = r$, so $\ev_c\left( R\left[ x \right]  \right) \iso R$. Thus by the first isomorphism theorem
+        \begin{equation*}
+            R\left[ x \right] / \left( x-c \right) R\left[ x \right] \iso \ev_c\left( R\left[ x \right]  \right) \iso R. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{prop}{}
+        Let $R,S$ be rings and let $\varphi:R\to S$ be a ring homomorphism.
+        \begin{enumerate}
+            \item If $J$ is an ideal of $S$, then $\varphi^{-1} \left( J \right)$ is an ideal of $R$.
+
+            \item If $I$ is an ideal of $R$ and $\varphi$ is surjective, then $\varphi\left( I \right)$ is an ideal of $S$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{theorem}{Correspondence Theorem for Rings}
+        Let $R,S$ be rings and let $\varphi:R\to S$ be a surjective ring homomorphism. Then there is a bijection between subgroups of $\left( R,+ \right)$ containing $\ker\left( \varphi \right)$ and subgroups of $\left( S,+ \right)$. Moreover, for every subgroup $K\leq \left( R,+ \right)$ containing $\ker\left( \varphi \right)$, $K$ is an ideal if and only if $\varphi\left( K \right)$ is an ideal.
+    \end{theorem}
+
+    \begin{proof}
+        The bijection part is provided by the correspondence theorem for groups. The remaining part can be proven by using Proposition 8.11.
+    \end{proof}
+    
+    \np Here is a special case of an application of correspondence theorem for rings. Let $R$ be a ring and let $I$ be an ideal of $R$. Then by applying the correspondence theorem on $q:R\to R /I$, the quotient homomorphism, if $K\leq \left( R,+ \right)$ contain $I$, then $K$ is an ideal of $R$ if and only if $K /I$ is an ideal of $R /I$.
+
+    \ex Let $R$ be a commutative ring, where we desire to find the ideals of $R\left[ x \right]$ containing $\left( x \right)$. Observe that
+    \begin{equation*}
+        \left( x \right) = \ker\left( \ev_0 \right) ,
+    \end{equation*}
+    where $\ev_0 : R\left[ x \right] \to R$ is a surjective homomorphism. So ideals of $R\left[ x \right]$ containing $\left( x \right)$ correspond to ideals of $R$, such that
+    \begin{equation*}
+        \ev_0^{-1} \left( I \right) = \left\lbrace f\in R\left[ x \right] :f\left( 0 \right) \in I \right\rbrace = \left\lbrace \sum^{n}_{i=0} a_ix^i:n\in\N\cup\left\lbrace 0 \right\rbrace , a_0\in I, \forall i\in\left\lbrace 0,\ldots,n \right\rbrace \left[ a_i\in R \right]  \right\rbrace 
+    \end{equation*}
+    corresponds to an ideal $I$ of $R$.
+
+    \clearpage
+    \begin{theorem}{Second Isomorphism Theorem for Rings}
+        Let $R$ be a ring and let $S$ be a subring of $R$. Let $I$ be an ideal of $R$.
+        \begin{enumerate}
+            \item $S+I$ is a subring of $R$ and $S\cap I$ is an ideal of $S$.
+            \item Let $i_S:S\to S+I$ be the inclusion map and let $q_1:S\to S /S\cap I, q_2\to S+I\to S+ I /I$ be the quotient maps. Then there is a ring isomorphism $\psi:S /S\cap I\to S+ I /I$ such that $\psi\circ q_1 = q_2\circ i_S$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Exercise. \qqqedsym
+
+            \item By the second isomorphism theorem for groups, there exists a group isomorphism $\psi:S /S\cap I\to S + I /I$ such that $\psi\circ q_1 = q_2\circ i_S$. It follows from Lemma 8.8.1 that $\psi$ is a ring isomorphism. \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \ex Let $R$ be a commutative ring and let $J$ be an ideal of $R$. Let
+    \begin{equation*}
+        I = \left\lbrace f\in R\left[ x \right] : f\left( 0 \right) \in J \right\rbrace = \ev_0^{-1} \left( J \right) .
+    \end{equation*}
+    Then
+    \begin{enumerate}
+        \item $R$ is (isomorphic to) a subring of $R\left[ x \right]$;
+        \item $R+I=R\left[ x \right]$; and
+        \item $R\cap I=J$;
+    \end{enumerate}
+    so $R /J\iso R\left[ x \right] / I$ by the second ismorphism theorem.
+    
+    \begin{theorem}{Third Isomorphism Theorem for Rings}
+        Let $R$ be a ring and let $K,I$ be ideals of $R$ such that $I\subseteq K$. Let
+        \begin{equation*}
+            q_1:R\to R /I, q_2:R /I\to \left( R /I \right) / \left( K /I \right) , q_3: R\to R /K
+        \end{equation*}
+        be the quotient homomorphisms. Then there is a ring isomorphism $\psi:R /K\to \left( R /I \right) / \left( K /I \right)$ such that
+        \begin{equation*}
+            \psi\circ q_3 = q_2\circ q_1.
+        \end{equation*}
+    \end{theorem}
+    
+    \ex Let $m,n\in\Z$. Then $\left( \Z /mn\Z \right) / \left( m\Z / mn\Z \right) \iso \Z /m\Z$ as rings.
+
+    \section{A Construction of Complex Numbers}
+    
+    \np We know that, given a ring $R$ and $X\subseteq R$, we can construct a new ring by $R /\left( X \right)$. We can use this technique to construct the field of complex numbers. The starting point is to use $R=\R$, and add an element $x$ such that $x^{2} = -1$. So let us look at
+    \begin{equation*}
+        \R\left[ x \right] / \left( x^{2} + 1 \right) ,
+    \end{equation*}
+    since $x^{2} = -1$ if and only if $x^{2} +1 = 0$. If we look at $\left[ x \right]\in R\left[ x \right] / \left( x^{2} +1 \right)$, then
+    \begin{equation*}
+        \left[ x \right] ^{2} + \left[ 1 \right] = \left[ x^{2} +1 \right] = \left[ 0 \right] .
+    \end{equation*}
+    Hence it is natural to expect the following result.
+
+    \clearpage
+    \begin{prop}{}
+        $\R\left[ x \right] / \left( x^{2} +1 \right) \iso \CC$.
+    \end{prop}
+
+    \noindent Before proving Proposition 8.15, let us recall the following defining properties of $\CC$.
+    \begin{enumerate}
+        \item $\CC = \left\lbrace a+bi: a,b\in\R \right\rbrace$.
+        \item $\left( a+bi \right) + \left( c+di \right) = \left( a+b \right) + \left( c+d \right) i$.
+        \item $\left( a+bi  \right) \left( c+di \right) = \left( ac-bd \right) + \left( ad+bc \right) i$.
+    \end{enumerate}
+    We first show that $\R\left[ x \right] / \left( x^{2} +1 \right)$ satisfies (a).
+
+    \begin{lemma_inside}{}
+        Every element of $\R\left[ x \right] / \left( x^{2} +1 \right)$ can be written uniquely in the form $a+b\left[ x \right]$ for some $a,b\in\R$.
+    \end{lemma_inside}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+\end{document}

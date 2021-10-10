@@ -1,0 +1,708 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Fields of Fractions}
+
+    \section{Fields of Fractions}
+
+    \begin{theorem}{}
+        Let $R$ be a ring. Then $R$ is an integral domain if and only if it is a subring of a field, up to isomorphism.
+    \end{theorem}
+    
+    \np To prove Theorem 10.1, observe that the reverse direction is already provided by Proposition 9.10. For the forward direction, we would want to construct a field containing $R$, given an integral domain $R$. We first try this with $R=\Z$.
+
+    \begin{prop}{}
+        Let $\K$ be a field containing $\Z$ as a subring. Then $\K$ contains $\Q$ as a subfield.\footnote{Given a field $\K$ and a subset $S\subseteq\K$, we say $S$ is a \emph{subfield} of $\K$ if $S$ is a field with respect to the operations of $\K$.}
+    \end{prop}
+
+    \begin{proof}
+        Since $\K$ contains $\Z$ as a subring, $\varphi:\Z\to\K$ by
+        \begin{equation*}
+            \varphi\left( a \right) = a
+        \end{equation*}
+        for all $a\in\Z$ is an injective homomorphism.\footnote{We call this $\varphi$ a \emph{subgroup inclusion map}.} Define $\varphi:\Q\to\K$ by
+        \begin{equation*}
+            \psi\left( \frac{a}{b} \right) = \varphi\left( a \right) \varphi\left( b \right) ^{-1} 
+        \end{equation*}
+        for all $a,b\in\Z, b\neq 0$. We now have the following claims.
+        \begin{itemize}
+            \item \textit{Claim 1. $\psi$ is well-defined.}
+
+                \begin{subproof}
+                    Suppose $\frac{a}{b}=\frac{c}{d}$ for some $a,b,c,d\in\Z, b,d\neq 0$. This means $ad=bc$. So
+                    \begin{equation*}
+                        \varphi\left( a \right) \varphi\left( d \right) = \varphi\left( ad \right) = \varphi\left( bc \right) = \varphi\left( b \right) \varphi\left( c \right) ,
+                    \end{equation*}
+                    so
+                    \begin{equation*}
+                        \varphi\left( a \right) \varphi\left( b \right) ^{-1} = \varphi\left( c \right) \varphi\left( d \right) .
+                    \end{equation*}
+                    Thus $\psi$ is welll-defined.
+                \end{subproof}
+
+            \item \textit{Claim 2. $\psi$ is a homomorphism.}
+
+                \begin{subproof}
+                    Let $a,b,c,d\in\Z, b,d\neq 0$. Then observe that
+                    \begin{equation*}
+                        \psi\left( \frac{a}{b} \right) \psi\left( \frac{c}{d} \right) = \varphi\left( a \right) \varphi\left( b \right) ^{-1} \varphi\left( c \right) \varphi\left( d \right) ^{-1} = \varphi\left( ac \right) \varphi\left( bd \right) ^{-1} = \psi\left( \frac{ac}{bd} \right) . \eqqedsym
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 3. $\psi$ is injective.}
+
+                \begin{subproof}
+                    Since $\K$ is a field, $\K$ is a nontrivial ring. So by Corollary 8.4.2, $\psi$ is injective. \qqedsym
+                \end{subproof}
+        \end{itemize} 
+    \end{proof}
+
+    \noindent By Proposition 10.2, we may think $\Q$ as the \textit{smallest field containing $\Z$}.
+
+    \begin{definition}{Field of Fractions}{of an Integral Domain}
+        Let $R$ be an integral domain. Then the \emph{field of fractions} $Q$ of $R$ is the set
+        \begin{equation*}
+            Q = \left\lbrace \frac{a}{b}:a,b\in R, b\neq 0_R \right\rbrace 
+        \end{equation*}
+        such that $\frac{a}{b}=\frac{c}{d}$ if and only if $ad=bc$ for all $a,b,c,d\in R, b,d\neq 0_R$,\footnote{Formally speaking, we have \textit{equivalence classes} instead of fractions, such that $\frac{a}{b},\frac{c}{d}$ are in the same equivalence class if $ad=bc$.} together with the operations $+,\cdot$ by
+        \begin{equation*}
+            \frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \frac{a}{b}\frac{c}{d}=\frac{ac}{bd}.
+        \end{equation*}
+    \end{definition}
+
+    \np The reason why we would use an integral domain over any ring in defining field of fractions is that, given a ring $R$, if $y,z\in R$ are nonzero and such that $yz=0$, then
+    \begin{equation*}
+        \frac{0}{y}\frac{0}{z}= \frac{0}{0}.
+    \end{equation*}
+    But $0a=0b$ for all $a,b\in R, b\neq 0$, so
+    \begin{equation*}
+        \frac{a}{b} = \frac{0}{0}.
+    \end{equation*}
+    Hence our field of fractions end up with a single element. However, by disallowing zero divisors from entering the denominator, it turns out we can construct something similar for any commutative ring, not necessarily an integral domain.
+
+    \np[Localization]Let $R$ be a commutative ring, where we want to construct a field-of-fraction-like structure. But as seen in (10.2), we cannot put zero divisors in the denominator. Therefore, if we write $S\subseteq R$ to denote the set of elements that can be placed in the denominator, then $0\neq S$ and moreover $S$ does not have any zero divisor. Furthermore, given any fractions $\frac{a}{b},\frac{c}{d}$ for some suitable $a,c\in R, b,d\in S$, we would want our operation to be
+    \begin{equation*}
+        \frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd}, \frac{a}{b}\frac{c}{d} = \frac{ac}{bd}.
+    \end{equation*}
+    For this operation to be well-defined, at least we have to ensure $bd\in S$ whenever $b,d\in S$.
+
+    \begin{definition}{Multiplicatively Closed}{Set}
+        Let $R$ be a ring. We say $S\subseteq R$ is \emph{multiplicatively closed} if $1\in S$ and for every $b,d\in S$, $bd,db\in S$.\footnote{We require both $bd,db$ to be in $S$ since we defined $R$ to be any ring.}
+    \end{definition}
+
+    \begin{theorem}{Localization of Commutative Rings}
+        Let $R$ be a commutative ring and let $S\subseteq R$ be a multiplicatively closed subset of $R$ such that $0\neq S$ and no zero divisor is in $S$. Then there exist a commutative ring $Q$ and an injective homomorphism $\varphi:R\to Q$ such that
+        \begin{enumerate}
+            \item $\varphi\left( a \right) \in Q^\times$ for all $a\in S$;
+            \item every element of $Q$ is of the form $\varphi\left( a \right) \varphi\left( b \right) ^{-1}$ for some $a\in R, b\in S$; and
+            \item if there exists a ring $T$ and a homomorphism $\psi:R\to T$ such that $\psi\left( x \right) \in T^\times$ for all $x\in S$, then there is a homomorphism $\tilde{\psi}:Q\to R$ such that $\tilde{\psi} \circ\varphi = \psi$. 
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        Let
+        \begin{equation*}
+            Q_0 = \left\lbrace \left( a,b \right) : a\in R, b\in S \right\rbrace 
+        \end{equation*}
+        and define a relation $\sim$ on $Q_0$ by $\left( a,b \right) \sim \left( c,d \right)$ if $ad=bc$ for all $\left( a,b \right) , \left( c,d \right) \in Q_0$.
+        \begin{itemize}
+            \item \textit{Claim 1. $\sim$ is an equivalence relation.}
+
+                \begin{subproof}
+                    Fix $\left( a,b \right) , \left( c,d \right) , \left( e,f \right)$. 
+                    \begin{itemize}
+                        \item \textit{reflexivity}: By commutativity of $R$, $ab=ba$, so $\left( a,b \right) \sim \left( a,b \right)$.
+                        \item \textit{symmetry}: Suppose $\left( a,b \right) \sim \left( c,d \right)$. Then $ad=bc$, so by commutativity $cb=da$. Thus $\left( c,d \right) \sim \left( a,b \right)$.
+                        \item \textit{transitivity}: Suppose $\left( a,b \right) \sim \left( c,d \right)$ and $\left( c,d \right) \sim \left( e,f \right)$. Then $ad=bc, cf=de$, so
+                            \begin{equation*}
+                                afd = bcf = bed.
+                            \end{equation*}
+                            Since $d\in S$, $d$ is nonzero and not a zero divisor, so
+                            \begin{equation*}
+                                af = be
+                            \end{equation*}
+                            by the cancellation law. Thus $\left( a,b \right) \sim \left( e,f \right)$.\qqqedsym
+                    \end{itemize} 
+                \end{subproof}
+        \end{itemize} 
+        Since $\sim$ is an equivalence relation, we may define the collection of equivalence classes of $\sim$: let
+        \begin{equation*}
+            Q = Q_0 /\sim.
+        \end{equation*}
+        For convenience, write $\frac{a}{b}$ to denote the equivalence class of $\left( a,b \right)$, $\left[ \left( a,b \right)  \right]$, for every $a\in R, b\in S$. We desire to put a ring structure on $Q$, so let us define the operations: let $+,\cdot:Q\times Q\to Q$ be defined by
+        \begin{equation*}
+            \frac{a}{b} + \frac{c}{d} = \frac{ad+bc}{bd}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \frac{a}{b}\frac{c}{d} = \frac{ac}{bd}
+        \end{equation*}
+        for all $\frac{a}{b},\frac{c}{d}\in Q$.
+        \begin{itemize}
+            \item \textit{Claim 2. $+$ is well-defined.}
+
+                \begin{subproof}
+                    Let $\frac{a}{b},\frac{c}{d}\in Q$. We first note that, since $S$ is multiplicatively closed, $bd\in S$, so $\frac{ad+bc}{bd}$ is a well-defined element of $Q$. Now suppose that $\frac{a}{b} = \frac{a'}{b'}$ for some $a'\in R, b'\in S$. Then
+                    \begin{equation*}
+                        ab' = ba',
+                    \end{equation*}
+                    which means
+                    \begin{equation*}
+                        \left( ad+bc \right) \left( b'd' \right) = ba'dd'+bb'dc' = \left( a'd'+b'c' \right) \left( bd \right) ,
+                    \end{equation*}
+                    so
+                    \begin{equation*}
+                        \frac{ad+bc}{bd} = \frac{a'd'+b'c'}{b'd'},
+                    \end{equation*}
+                    as desired.
+                \end{subproof}
+
+            \item \textit{Claim 3. $\cdot$ is well-defined.}
+
+                \begin{subproof}
+                    This can be proven similarly to Claim 2.
+                \end{subproof}
+
+            \item \textit{Claim 4. Let $\frac{a}{b}\in Q$. Then $\frac{a}{b}=\frac{0}{1}$ if and only if $a=0$.}
+
+                \begin{subproof}
+                    Observe that
+                    \begin{equation*}
+                        \frac{a}{b} = \frac{0}{1} \iff 1a = b0 \iff a = 0. \eqqedsym
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 5. $\left( Q,+ \right)$ is an abelian group, with $0_Q = \frac{0}{1}$ and $-\frac{a}{b} = \frac{-a}{b}$ for all $\frac{a}{b}\in Q$.}
+
+                \begin{subproof}
+                    Let $\frac{a}{b},\frac{c}{d},\frac{e}{f}\in Q$.
+                    \begin{itemize}
+                        \item \textit{associativity of $+$}: Observe that
+                            \begin{equation*}
+                                \left( \frac{a}{b}+\frac{c}{d} \right) + \frac{e}{f} = \frac{ad+bc}{bd}+\frac{e}{f} = \frac{adf+bcf+ebd}{bdf} = \cdots = \frac{a}{b}+\left( \frac{c}{d}+\frac{e}{f} \right) 
+                            \end{equation*}
+                            since the addition on $R$ is associative.
+                        \item \textit{identity of $+$}: Observe that
+                            \begin{equation*}
+                                \frac{a}{b}+\frac{0}{1} = \frac{a1+b0}{b1} = \frac{a}{b}.
+                            \end{equation*}
+                        \item \textit{additive inverse}: Observe that
+                            \begin{equation*}
+                                \frac{a}{b} + \frac{-a}{b} = \frac{ab-ba}{b^{2}} = \frac{0}{b^{2} } = \frac{0}{1}
+                            \end{equation*}
+                            by Claim 4.
+                        \item \textit{commutativity of $+$}: Observe that
+                            \begin{equation*}
+                                \frac{a}{b}+\frac{c}{d} = \frac{ad+bc}{bd} = \frac{c}{d} + \frac{a}{b}
+                            \end{equation*}
+                            since the addition on $R$ is commutative. \qqqedsym
+                    \end{itemize} 
+                \end{subproof}
+
+            \item \textit{Claim 6. $\left( Q,+,\cdot \right)$ is a commutative ring, with $1_Q = \frac{1}{1}$.}
+
+                \begin{subproof}
+                    Let $\frac{a}{b},\frac{c}{d},\frac{e}{f}\in Q$.
+                    \begin{itemize}
+                        \item \textit{associativity of $\cdot$}: Observe that
+                            \begin{equation*}
+                                \left( \frac{a}{b}\frac{c}{d} \right) \frac{e}{f} = \frac{ace}{bdf} = \frac{a}{b}\left( \frac{c}{d}\frac{e}{f} \right) 
+                            \end{equation*}
+                            since the multiplication on $R$ is associative.
+                        \item \textit{identity of $\cdot$}: Observe that
+                            \begin{equation*}
+                                \frac{a}{b}\frac{1}{1} = \frac{a1}{b1} = \frac{a}{b}.
+                            \end{equation*}
+                        \item \textit{commutativity of $\cdot$}: Observe that
+                            \begin{equation*}
+                                \frac{a}{b}\frac{c}{d} = \frac{ab}{cd} = \frac{ba}{dc} = \frac{c}{d}\frac{a}{b}
+                            \end{equation*}
+                            since the multiplication on $R$ is commutative.
+                        \item \textit{distributivity of $\cdot$ over $+$}: Observe that
+                            \begin{equation*}
+                                \frac{a}{b}\left( \frac{c}{d}+\frac{e}{f} \right) = \frac{a}{b}\frac{cf+de}{df} = \frac{acf+ade}{bdf} = \frac{acfb+adeb}{b^{2} df} = \frac{ac}{bd}+\frac{ae}{df}.
+                            \end{equation*}
+                            The right distributivity follows from the commutativity of $\cdot$. \qqqedsym
+                    \end{itemize} 
+                \end{subproof}
+        \end{itemize} 
+        Define $\varphi:R\to Q$ by
+        \begin{equation*}
+            \varphi\left( a \right) = \frac{a}{1}
+        \end{equation*}
+        for all $a\in R$.
+        \begin{itemize}
+            \item \textit{Claim 7. $\varphi$ is a homomorphism.}
+
+                \begin{subproof}
+                    Observe that, given any $a,b\in R$,
+                    \begin{equation*}
+                        \varphi\left( 1 \right) = \frac{1}{1} = 1_Q
+                    \end{equation*}
+                    and
+                    \begin{equation*}
+                        \varphi\left( a+b \right) = \frac{a+b}{1} = \frac{a}{1}+\frac{b}{1} = \varphi\left( a \right) + \varphi\left( b \right) 
+                    \end{equation*}
+                    and
+                    \begin{equation*}
+                        \varphi\left( ab \right) = \frac{ab}{1} = \frac{a}{1}\frac{b}{1} = \varphi\left( a \right) \varphi\left( b \right) . \eqqedsym
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 8. $\varphi$ is injective.}
+
+                \begin{subproof}
+                    Let $a,b\in R$ and observe that
+                    \begin{equation*}
+                        \varphi\left( a \right) = \varphi\left( b \right) \iff \frac{a}{1} = \frac{b}{1} \iff a1 = 1b \iff a = b. \eqqedsym
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 9. For all $a\in S$, $\varphi\left( a \right) \in S^\times$.}
+
+                \begin{subproof}
+                    Let $a\in S$. Then
+                    \begin{equation*}
+                        \varphi\left( a \right) \frac{1}{a} = \frac{a}{1}\frac{1}{a} = \frac{a}{a} = \frac{1}{1} = 1_Q. \eqqedsym
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 10. Every element of $Q$ is of the form $\varphi\left( a \right) \varphi\left( b \right) ^{-1} $ for some $a\in R, b\in S$.}
+
+                \begin{subproof}
+                    Given any $\frac{a}{b}\in Q$, $a\in R, b\in S$ and $\frac{a}{b} = \frac{a}{1}\frac{1}{b} = \varphi\left( a \right) ]\varphi\left( b \right) ^{-1} $.
+                \end{subproof}
+        \end{itemize} 
+        This completes the proof upto part (b). (c) is left as an exercise. \qqedsym
+    \end{proof}
+
+    \begin{cor}{}
+        Let $R$ be a commutative ring and let $S\subseteq R$ be such that $S$ is multiplicatively closed and does not have $0$ or any zero divisor. If $Q_1,Q_2$ are commutative rings and $\varphi_1:R\to Q_1, \varphi_2:R\to Q_2$ are injective homomorphisms satisfying the conditions (a), (b), (c) of Theorem 10.3, then there is an isomorphism $\alpha:Q_1\to Q_2$ such that $\alpha\circ\varphi_1=\varphi_2$.
+    \end{cor}	
+
+    \begin{proof}
+        By (c) of Theorem 10.3, there are $\alpha:Q_1\to Q_2, \beta:Q_2\to Q_1$ such that
+        \begin{equation*}
+            \alpha\circ\varphi_1=\varphi_2, \beta\circ\varphi_2=\varphi_1.
+        \end{equation*}
+        But given any $x\in Q_1$,
+        \begin{equation*}
+            x = \varphi_1\left( a \right) \varphi_1\left( b \right) ^{-1} 
+        \end{equation*}
+        for some $a\in R, b\in S$ by (a) of Theorem 10.3. Hence
+        \begin{equation*}
+            \beta\left( \alpha\left( x \right)  \right) = \varphi\left( a \right) \varphi\left( b \right) ^{-1} = x,
+        \end{equation*}
+        which means $\beta$ is a left inverse to $\alpha$. But by symmetry $\alpha$ is a left inverse to $\beta$, so $\alpha,\beta$ are bijections. Thus $\alpha$ is the isomorphism satisfying the condition.
+    \end{proof}
+
+    \begin{definition}{Localization}{of a Ring at a Multiplicatively Closed Subset}
+        Let $R$ be a ring and let $Q$ be the ring defined in Theorem 10.3. We say $Q$ is the \emph{localization} of $R$ at $S$ (or with respect to $S$), denoted as $S^{-1} R$.
+    \end{definition}
+
+    \np Precisely speaking, Corollary 10.3.1 only guarantees that $S^{-1} R$ is defined \textit{up to isomorphism}, given a commutative ring $R$ and a multiplicatively closed subset $Ss\subseteq R$ without $0$ and any zero divisor. Usually we take the definition given in Theorem 10.3 for convenience, however.
+
+    \np We can finally prove that the field of fractions of an integral domain is indeed a field.
+
+    \begin{prop}{}
+        Let $R$ be an integral domain. Then $\left( R\setminus \left\lbrace 0 \right\rbrace  \right) ^{-1} R$ is a field.
+    \end{prop}
+
+    \begin{proof}
+        Clearly $R\setminus \left\lbrace 0 \right\rbrace$ is multiplicatively closed and does not have $0$ or any zero divisor. Moreover, $R$ is a subring of $S^{-1} R$, so $S^{-1} R$ is nontrivial. Given any $\frac{a}{b}\in S^{-1} R$, $\frac{a}{b} = \frac{0}{1}$ if and only if $a=0$, so if $\frac{a}{b}\neq 0$, then $\frac{a}{b}$ is invertible, with $\frac{a}{b}\frac{b}{a} = \frac{1}{1}$.
+    \end{proof}
+
+    \noindent We can compactly define the field of fractions of an integral domain $R$ as $\left( R\setminus \left\lbrace 0 \right\rbrace  \right) ^{-1} R$.
+
+    \begin{prop}{}
+        $\left( \Z\setminus \left\lbrace 0 \right\rbrace  \right) ^{-1} \Z = \Q$.
+    \end{prop}
+
+    \begin{proof}
+        This is clear from the constructions of $\left( \Z\setminus \left\lbrace 0 \right\rbrace  \right) \Z$ and $\Q$.
+    \end{proof}
+
+    \begin{definition}{Field of Rational Functions}{over an Integral Domain}
+        Let $R$ be a domain. The field of fractions of $R\left[ x \right]$, denoted as $R\left( x \right)$, is called the \emph{field of rational functions} over $R$.
+    \end{definition}
+    
+    \noindent By construction $R\left( x \right) = \left\lbrace \frac{f}{g}: f,g\in R\left[ x \right] , g\neq 0 \right\rbrace $.
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $Q$ be the field of fractions of $R$. Then $Q\left( x \right) \iso R\left( x \right)$. 
+    \end{prop}
+
+    \begin{proof}
+        Since $R\left[ x \right]$ is a subring of $Q\left[ x \right]$ and $Q\left[ x \right]$ is a subring of $Q\left( x \right)$, there exists an injective homomorphism $\varphi:R\left[ x \right] \to Q\left( x \right)$. But $Q\left( x \right)$ is a field, so every nonzero element of $R\left[ x \right]$ is sent to a unit of $Q\left( x \right)$ by $\varphi$. So by part (c) of Theorem 10.3, there exists a homomorphism $\psi:R\left( x \right) \to Q\left( x \right)$ such that
+        \begin{equation*}
+            \psi\left( \frac{f}{g} \right) = \frac{f}{g}
+        \end{equation*}
+        for all $\frac{f}{g}\in R\left( x \right)$. Since $R\left( x \right)$ is also a field, $\psi$ is injective. But given any $\frac{a}{b}\in Q$, $\frac{a}{b}\in R\left( x \right)$, and by using this fact it can be easily verified that $\psi$ is surjective. Thus $Q\left( x \right)\iso R\left( x \right)$.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $R$ be a commutative ring and let $I\subseteq R$ be an ideal. Then $R\setminus I$ is multiplicatively closed if and only if $I$ is prime.
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a commutative ring and let $P\subseteq R$ be a prime ideal. Then $R\setminus P$ does not have $0$ or any zero divisor.
+    \end{prop}
+
+    \begin{definition}{Localization}{of a Commutative Ring at a Prime Ideal}
+        Let $P$ be a prime ideal of an integral domain $R$. We define the \emph{localization} of $R$ at $P$, denoted as $R_P$, to be the ring
+        \begin{equation*}
+            R_P = \left( R\setminus P \right) ^{-1} R.
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $\K$ be a field and let $c\in\K$. Then the localization $\K\left[ x \right] _{\left( x-c \right) }\iso R\left( c \right)$.\footnote{$R\left( c \right)$ is the set of rationoal functions over $\K$ with $c$ in the domain.}
+    \end{prop}
+    
+    \begin{prop}{}
+        Let $R$ be a domain and let $I\subseteq R$ be an ideal. If $I$ is prime, then $R_I$ has a unique maximal ideal.
+    \end{prop}
+
+    \begin{definition}{Local}{Commutative Ring}
+        Let $R$ be a commutative ring. If $R$ has a unique maximal ideal, then we say $R$ is \emph{local}.
+    \end{definition}
+    
+    \section{Product Ideals}
+
+    \begin{definition}{Product Ideal}{of Ideals}
+        Let $R$ be a ring and let $I,J\subseteq R$ be ideals. Then the \emph{product ideal} of $I,J$, denoted as $IJ$, is the ideal
+        \begin{equation*}
+            IJ = \left( \left\lbrace ab:a\in I, b\in J \right\rbrace  \right) .
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{Properties of Product Ideals}
+        Let $R$ be a ring and let $I,J\subseteq R$ be ideals.
+        \begin{enumerate}
+            \item $IJ = \left\lbrace \sum^{k}_{i=1} a_ib_i: k\in\N\cup\left\lbrace 0 \right\rbrace , a_1,\ldots,a_k\in I, b_1,\ldots,b_k\in J \right\rbrace$.
+            \item If $R$ is commutative, and $S,T\subseteq R$ are some generators of $I,J$, respectively (i.e. $I=\left( S \right) , J=\left( T \right)$), then
+                \begin{equation*}
+                    IJ = \left( \left\lbrace a,b:a\in S, b\in T \right\rbrace  \right) .
+                \end{equation*}
+        \end{enumerate}
+    \end{prop}
+
+    \np Note that another way of saying (a) of Proposition 10.11 is that $IJ$ is the subgroup of the additive group of $R$ generated by products of elements of $I,J$.
+    
+    \clearpage
+    \begin{proof}[Proof of Proposition 10.11]
+        \begin{enumerate}
+            \item Let
+                \begin{equation*}
+                    K = \left\lbrace \sum^{k}_{i=1} a_ib_i:k\in\N\cup\left\lbrace 0 \right\rbrace , a_1,\ldots,a_k\in I, b_1,\ldots,b_k\in J \right\rbrace .
+                \end{equation*}
+                Then from the definition of $K$, it is clear that $K\neq\emptyset$, $-x\in K$ whenever $x\in K$ and that $K$ is closed under addition. Hence $K$ is a subgroup of the additive group of $R$. Moreover, given any $r,s\in R$ and $x\in K$, we may write
+                \begin{equation*}
+                    x = \sum^{k}_{i=1} a_ib_i
+                \end{equation*}
+                for some $k\in\N\cup\left\lbrace 0 \right\rbrace, a_1,\ldots,a_k\in I, b_1,\ldots,b_k\in J$, so
+                \begin{equation*}
+                    rxs = r\left( \sum^{k}_{i=1} a_ib_i \right) s = \sum^{k}_{i=1} ra_ib_is = \sum^{k}_{i=1} \left( ra_i \right) \left( b_is \right).
+                \end{equation*}
+                But $ra_i\in I, b_is\in J$ for all $i\in\left\lbrace 1,\ldots,k \right\rbrace$ since $I,J$ are ideals. Hence $K$ is an ideal. Clearly a generating set for $IJ$ is contained in $K$:
+                \begin{equation*}
+                    \left\lbrace ab: a\in I, b\in J \right\rbrace \subseteq \underbrace{\left\lbrace \sum^{k}_{i=1} a_ib_i:k\in\N\cup\left\lbrace 0 \right\rbrace , a_1,\ldots,a_k\in I, b_1,\ldots,b_k\in J \right\rbrace }_{=K}.
+                \end{equation*}
+                This means $K\supseteq IJ$. Conversely, since $IJ$ is closed under addition and every element of $K$ is a sum of generators of $IJ$, $K\subseteq IJ$. Thus $K=IJ$.
+            \item Let
+                \begin{equation*}
+                    K = \left( \left\lbrace ab: a\in S, b\in T \right\rbrace  \right) .
+                \end{equation*}
+                It is clear from the definition that $K\subseteq IJ$, since a generating set for $K$ is a subset of a generating set for $IJ$. Conversely, suppose $a\in I, b\in J$. Then
+                \begin{equation*}
+                    a = \sum^{k}_{i=1} a_is_i, b = \sum^{l}_{j=1} b_jt_j
+                \end{equation*}
+                for some $k,l\in\N\cup\left\lbrace 0 \right\rbrace , a_1,\ldots,a_k,b_1,\ldots,bl\in R, s_1,\ldots,s_k\in S, t_1,\ldots,t_l\in T$. Hence
+                \begin{equation*}
+                    ab = \left( \sum^{k}_{i=1} a_is_i \right) \left( \sum^{l}_{j=1} b_jt_j \right) = \sum^{k}_{i=1} \sum^{l}_{j=1} a_is_ib_jt_j = \sum^{k}_{i=1} \sum^{l}_{j=1} \left( a_ib_j \right) \left( s_it_j \right) 
+                \end{equation*}
+                since $R$ is commutative. Hence $ab\in K$, so a generating set for $IJ$ is contained in $K$, which means $K\supseteq IJ$. Thus $K=IJ$, as required. \qqedsym
+        \end{enumerate}
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $R$ be a ring and let $I,J\subseteq R$ be ideals. Then
+        \begin{equation*}
+            IJ\subseteq I\cap J.
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Given any $a\in I, b\in J$, $ab\in I\cap J$ since $I,J$ are ideals, so $I\cap J$ contains a generating set for $IJ$. But $I\cap J$ is an intersection of ideals so an ideal, and in particular closed under operations. Thus $IJ\subseteq I\cap J$.
+    \end{proof}
+
+    \section{Generalized Chinese Remainder Theorem}
+
+    \np[Chinese Remainder Theorem]From group theory, given coprime $m,n\in\N\cup\left\lbrace 0 \right\rbrace$, we know that
+    \begin{equation*}
+        \Z /mn\Z\iso \Z /m\Z\times\Z /n\Z.
+    \end{equation*}
+    In particular, the canonical (group) isomorphism is defined as follows. Let $\varphi:\Z/ mn\Z\to n\Z /mn\Z\times m\Z /mn\Z$ be defined by
+    \begin{equation*}
+        x\mapsto \left( nx,mx \right) 
+    \end{equation*}
+    for all $x\in \Z /mn\Z$ and let $\psi:n\Z /mn\Z\times m\Z /mn\Z\to \Z /m\Z\times \Z /n\Z$ be defined by
+    \begin{equation*}
+        \left( nx,mx \right) \mapsto \left( x,x \right) 
+    \end{equation*}
+    for all $\left( nx,mx \right) \in n\Z /mn\Z\times m\Z /mn\Z$. Then the composition $\psi\circ\varphi$ is the canonical (group) isomorphism. In particular, it implies the following result.
+
+    \begin{theorem}{Chinese Remainder Theorem}
+        Let $n,m\in\N\cup\left\lbrace 0 \right\rbrace$ be coprime. Then for every $a\in\left\lbrace 0,\ldots,m-1 \right\rbrace , b\in\left\lbrace 0,\ldots,n-1 \right\rbrace$, there exists unique $x\in\left\lbrace 0,\ldots,mn-1 \right\rbrace$ such that
+        \begin{equation*}
+            \begin{cases} 
+                x\equiv a\mod m \\
+                x\equiv b\mod n
+            \end{cases}.
+        \end{equation*}
+    \end{theorem}
+
+    \noindent Observe that $\Z /mn\Z$ and $\Z /m\Z\times \Z /n\Z$ are rings, so we may ask if $\psi\circ\varphi$ is a ring isomorphism as well. More generally, we can also ask if there is any connection to ring theory from the Chinese remainder theorem. First, observe that one of the hypothesis is that $m,n$ are coprime. But it is well-known result that
+    \begin{equation*}
+        m,n\text{ are coprime}\iff\gcd\left( m,n \right) = 1\iff\lcm\left( m,n \right) =mn,
+    \end{equation*}
+    where $\lcm\left( m,n \right) $ denotes the \textit{least common multiple} of $m,n$, the smallest nonnegative integer $k\in\N\cup\left\lbrace 0 \right\rbrace$ such that $k=xm=yn$ for some $x,y\in\Z$. But $k=xm$ if and only if $k\in\left( m \right)$ and $k=yn$ if and only if $k\in\left( n \right)$. This means, $k=\lcm\left( m,n \right)$ if and only if
+    \begin{equation*}
+        \left( m \right) \cap \left( n \right) = \left( k \right) .
+    \end{equation*}
+    In particular, $m,n$ are coprime if and only if
+    \begin{equation*}
+        \left( m \right) \cap \left( n \right) = \left( mn \right) .
+    \end{equation*}
+    But $\left( m \right) \left( n \right) = \left( mn \right)$ so
+    \begin{equation*}
+        \left( m \right) \cap \left( n \right) = \left( m \right)\left( n \right) 
+    \end{equation*}
+    if and only if $m,n$ are coprime. Hence we can restate the group theory version of the Chinese remainder theorem as follows: \textit{given $n,m\in\N\cup\left\lbrace 0 \right\rbrace$, if $\left( m \right) \left( n \right) = \left( m \right) \cap \left( n \right)$, then $\Z /mn\Z\iso\Z /m\Z\times\Z /n\Z$.} We however want a statement for general rings. To do so, we first record the following results.
+
+    \begin{prop}{}
+        Let $R,S,T$ be rings and let $\varphi:R\to S, \psi:R\to T$ be homomorphisms. Then $\zeta:R\to S\times T$ by
+        \begin{equation*}
+            \zeta\left( r \right) = \left( \varphi\left( r \right) ,\psi\left( r \right)  \right) 
+        \end{equation*}
+        for all $r \in R$ is a homomorphism.
+    \end{prop}
+
+    \begin{definition}{Product}{of Homomorphisms}
+        Let $R,S,T$ be rings and let $\varphi:R\to S, \psi:R\to T$ be homomorphisms. Then the \emph{product} of $\varphi,\psi$, denoted as $\varphi\times\psi$, is defined by
+        \begin{equation*}
+            \left(\varphi\times\psi\right) \left( r \right) = \left( \varphi\left( r \right) , \psi\left( r \right)  \right) 
+        \end{equation*}
+        for all $r\in R$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a ring and let $I,J\subseteq R$ be ideals. Let $\varphi=q_1\times q_2$, where $q_1:R\to R /I, q_2:R\to R /J$ are the quotient maps.
+        \begin{enumerate}
+            \item $\ker\left( \varphi \right) = I\cap J$.
+            \item There exists a homomorphism $\psi:R /IJ\to R /I\times R /J$ such that
+                \begin{equation*}
+                    \psi\left( \left[ x \right]  \right) = \left( q_1\left( x \right) ,q_2\left( x \right)  \right) 
+                \end{equation*}
+                for all $\left[ x \right] \in R /IJ$ and that $\ker\left( \psi \right) = I\cap J /IJ$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Let $x\in R$. Then observe that
+                \begin{equation*}
+                    x\in\ker\left( \varphi \right) \iff \left( q_1\left( x \right) , q_2\left( x \right)  \right) = \left( 0,0 \right) \iff x\in\ker\left( q_1 \right) \cap \ker\left( q_2 \right) \iff x\in I\cap J. 
+                \end{equation*}
+            \item Since $IJ\subseteq I\cap J=\ker\left( \varphi \right)$, there exists $\psi:R /IJ\to R /I\times R /J$ such that
+                \begin{equation*}
+                    \psi\left( \left[ x \right]  \right) = \varphi\left( x \right) 
+                \end{equation*}
+                for all $x\in R$ by the universal property of quotients. But by the correspondence theorem
+                \begin{equation*}
+                    \ker\left( \psi \right) = I\cap J /IJ. \eqedsym
+                \end{equation*}
+        \end{enumerate}
+    \end{proof}
+
+    \noindent We want some sufficient condition for the homomorphism $\psi$ in Proposition 10.15 to be an isomorphism. We immediately observe that the condition $I\cap J = IJ$ is necessary, since $\ker\left( \psi \right)$ has to be trivial in order for $\psi$ to be injective, and $\ker\left( \psi \right) = I\cap J /IJ$. However, this condition is not sufficient, as the following example shows.
+
+    \ex Let $R=\Z\left[ x \right] , I = \left( 2 \right) , J = \left( x \right)$. 
+    \begin{itemize}
+        \item \textit{Claim 1. $\left( 2 \right) \cap \left( x \right) = \left( 2x \right)$.}
+
+            \begin{subproof}
+                Clearly $\left( 2x \right) \subseteq \left( 2 \right)\cap\left( x \right)$. Conversely, given any $f\in \left( 2 \right) \cap \left( x \right)$, every coefficient of $f$ is even and $f$ does not have a constant term, so
+                \begin{equation*}
+                    f = \sum^{k}_{i=1} 2a_ix^i
+                \end{equation*}
+                for some $a_1,\ldots,a_k\in\Z$. But this means
+                \begin{equation*}
+                    f = 2x \sum^{k}_{i=1} a_ix^{i-1} = 2x\sum^{k-1}_{i=0} a_{i-1}x^i
+                \end{equation*}
+                so $f\in \left( 2x \right)$. Thus $\left( 2x \right) = \left( 2 \right) \cap \left( x \right)$, as desired.
+            \end{subproof}
+    \end{itemize} 
+    Since $\left( 2 \right) \left( x \right) = \left( 2x \right)$, it immediately follows that $I\cap J=IJ$. So define $\psi:\Z\left[ x \right] /\left( 2x \right) \to \Z\left[ x \right] /\left( 2 \right) \times \Z\left[ x \right] /\left( x \right) $ by
+    \begin{equation*}
+        \psi\left( \left[ p \right]  \right) = \left( \left[ p \right] , \left[ p \right]  \right) 
+    \end{equation*}
+    for all $\left[ p \right] \in \Z\left[ x \right] /\left( 2x \right)$.
+    \begin{itemize}
+        \item \textit{Claim 2. $\psi$ is not surjective.}
+
+            \begin{subproof}
+                Suppose there exists $p\in\Z\left[ x \right]$ such that
+                \begin{equation*}
+                    \psi\left( \left[ p \right]  \right) = \left( 0, 1 \right) 
+                \end{equation*}
+                for the sake of contradiction. Since $\left[ p \right] = 0$ in $\Z\left[ x \right] /\left( 2 \right)$, every coefficient of $p$ is even. But $p = 1$ in $\Z\left[ x \right] /\left( x \right)$, so the constant term of $p$ is $1$. Hence we face a desired contradiction.
+            \end{subproof}
+    \end{itemize} 
+
+    \np Because $I\cap J = IJ$ is not sufficient, we need to change our approach. For this time, we are going to get our motivation from the famous \textit{Bezout's lemma}: given $m,n\in\Z$, $m,n$ are coprime if and only if there exists $x,y\in\Z$ such that
+    \begin{equation*}
+        xm + yn = 1.
+    \end{equation*}
+    In fact, many well-known proofs of the Chinese remainder theorem utilize this fact. 
+
+    \begin{prop}{}
+        Let $n,m\in\Z$. Then $\gcd\left( m,n \right) = 1$ if and only if $\left( m \right) + \left( n \right) = \Z$.
+    \end{prop}
+    
+    \begin{proof}
+        We know that $\left( m \right) + \left( n \right)$ is an ideal, so
+        \begin{equation*}
+            \left( m \right) + \left( n \right) = \Z \iff 1\in \left( m \right) + \left( n \right) \iff \exists x,y\in\Z\left[ xm+yn=1 \right] . \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{definition}{Comaximal (Coprime)}{Ideals}
+        Let $R$ be a ring and let $I,J\subseteq R$ be ideals. We say $I,J$ are \emph{comaximal} (or \emph{coprime}) if $I+J=R$.
+    \end{definition}
+
+    \noindent It is immediate from the definition that
+    \begin{equation*}
+        I,J\text{ are comaximal}\iff 1\in I+J.
+    \end{equation*}
+
+    \begin{theorem}{Generalized Chinese Remainder Theorem I}
+        Let $R$ be a commutative ring and let $I,J\subseteq R$ be ideals. If $I,J$ are comaximal, then the map $\psi:R /IJ\to R /I\times R /J$ in Proposition 10.15 is an isomorphism, where
+        \begin{equation*}
+            \psi\left( \left[ r \right]  \right) = \left( \left[ r \right] , \left[ r \right]  \right) 
+        \end{equation*}
+        for all $\left[ r \right] \in R /IJ$.
+    \end{theorem}
+
+    \begin{proof}
+        Since $I,J$ are maximal, fix $a\in I, b\in J$ such that $a+b=1$.
+        \begin{itemize}
+            \item \textit{Claim 1. $\psi$ is surjective.}
+
+                \begin{subproof}
+                    Given $r\in R$,
+                    \begin{equation*}
+                        ra + rb = r\underbrace{\left( a+b \right)}_{=1} = r
+                    \end{equation*}
+                    so
+                    \begin{equation*}
+                        r - rb = ra\in I, r-ra = rb\in J.
+                    \end{equation*}
+                    Hence $\left[ r \right] = \left[ rb \right]$ in $R /I$ and $\left[ r \right] = \left[ ra \right] $ in $R /J$. But $ra\in I, rb\in J$, so $\left[ rb \right] = 0$ in $R /J$ and $\left[ ra \right] = 0$ in $R /I$. Hence, for all $\left( \left[ r_1 \right] , \left[ r_2 \right]  \right) \in R /I\times R /J$, we have
+                    \begin{equation*}
+                        \psi\left( \left[ r_1b+r_2a \right]  \right) = \left( \left[ r_1 \right] , \left[ r_2 \right]  \right) .\eqqedsym
+                    \end{equation*}
+                \end{subproof}
+
+            \item \textit{Claim 2. $\psi$ is injective.}
+
+                \begin{subproof}
+                    It suffices to show that $I\cap J = IJ$. Let $x\in I\cap J$. Then $x = x\left( a+b \right) = xa+xb \in IJ$ since $R$ is commutative. This means $I\cap J\subseteq IJ$. But $IJ\subseteq I\cap J$ clearly, so $I\cap J = IJ$. \qqedsym
+                \end{subproof}
+        \end{itemize} 
+    \end{proof}
+
+    \np[Continuing the Decomposition]Let $n\in\N$ and let
+    \begin{equation*}
+        n = \prod^{k}_{i=1} p_i^{a_i}
+    \end{equation*}
+    be the prime factorization of $n$, where $k\in\N, p_1,\ldots,p_k\in\N$ are distinct primes, and $a_1,\ldots,a_k\in\N$. Then by induction
+    \begin{equation*}
+        \Z /n\Z \iso \Z /p_1^{a_1}\Z\times \Z /p_2^{a_2}\cdots p_k^{a_k}\Z \iso\cdots\iso \prod^{k}_{i=1} \Z /p_i^{a_i}\Z,
+    \end{equation*}
+    since $p_i^{a_i}$ is coprime to $p_{i+1}^{a_{i+1}}\cdots p_k^{a_k}$ for all $i\in\left\lbrace 1,\ldots,k-1 \right\rbrace$. This is by the fact that, given $a,b,c\in\Z$, $a$ is coprime to both $b,c$, then $a$ is coprime to $bc$. We can generalize this for comaximal ideals.
+
+    \begin{prop}{}
+        Let $R$ be a ring and let $I,J,K\subseteq R$ be ideals. If $I,J$ and $I,K$ are comaximal, then $I,JK$ are comaximal.
+    \end{prop}
+
+    \begin{proof}
+        Since $I,J$ are comaximal, there exist $a\in I, b\in J$ such that $a+b = 1$. Similarly, there exist $a'\in I, c\in K$ such that $a'+c=1$. So it follows that
+        \begin{equation*}
+            b = b\left( a'+c \right) = ba' + bc,
+        \end{equation*}
+        which means
+        \begin{equation*}
+            1 = a+b = a + ba' + bc = \underbrace{\left( a+ba' \right)}_{\in I} + \underbrace{bc}_{JK} \in I+JK. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \noindent This allows us to generalize the Chinese remainder theorem even further.
+    
+    \begin{theorem}{Generalized Chinese Remainder Theorem II}
+        Let $R$ be a commutative ring and let $I_1,\ldots,I_k\subseteq R$ be ideals, where $k\in\N, k\geq 2$, such that $I_i,I_j$ are comaximal for all distinct $i,j\in \left\lbrace 1,\ldots,k \right\rbrace$. Then $\psi:R /I_1\cdots I_k\to \prod^{k}_{i=1} R /I_i$ defined by
+            \begin{equation*}
+                \psi\left( \left[ r \right]  \right) = \left( \left[ r \right] ,\ldots,\left[ r \right]  \right) 
+            \end{equation*}
+            for all $\left[ r \right] \in R / I_1\cdots I_k$ is an isomorphism.
+    \end{theorem}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+\end{document}

@@ -1,0 +1,318 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Maximal and Prime Ideals} 
+
+    \section{Maximal Ideals}
+
+    \begin{definition}{Maximal}{Ideal}
+        Let $R$ be a ring and let $I$ be an ideal $I$ of $R$. We say $I$ is \emph{maximal} if the only ideals of $R$ containing $I$ are $I, R$.
+    \end{definition}
+
+    \np That is, $I$ is maximal if and only if $I$ is a proper ideal of $R$ maximal under $\subseteq$.
+
+    \begin{prop}{}
+        Let $R$ be a ring and let $I$ be an ideal of $R$. If $R /I$ is a field, then $I$ is maximal.
+    \end{prop}
+
+    \begin{proof}
+        This follows immediately from the correspondence theorem.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $R$ be a commutative ring. Then $R$ is a field if and only if $R$ is nontrivial and the only ideals in $R$ are $\left( 0 \right) , R$.
+    \end{prop}
+
+    \begin{proof}
+        The forward direction is clear. For the backward direction, let $x\in R$ be nonzero. Then $\left( x \right) = R$. This means $1\in \left( x \right) = xR$ (where the equality holds since $R$ is commutative), so there exists $y\in R$ such that $xy=1$. Thus every nonzero element of $R$ is a unit, as required.
+    \end{proof}
+
+    \begin{theorem}{}
+        Let $R$ be a commutative ring and let $I$ be an ideal of $R$. Then $R /I$ is a field if and only if $I$ is maximal.
+    \end{theorem}
+
+    \ex
+    \begin{enumerate}
+        \item Given any field $\K$, $\K\left[ x \right] /\left( x-c \right) \iso \K$ for all $c\in\K$, so $\left( x-c \right)$ is a maximal ideal of $\K\left[ x \right]$.
+        \item $\R\left[ x \right] / \left( x^{2} +1 \right) \iso \CC$, so $\left( x^{2} +1 \right)$ is a maximal ideal of $\R\left[ x \right]$.
+    \end{enumerate}
+
+    \np Given a ring $R$, the ideals of $R$ are partially ordered under $\subseteq$. Although $R$ is the maximum element with respect to $\subseteq$, we are more interested in the collection of \textit{proper} ideals orderd under $\subseteq$.
+
+    \begin{definition}{Chain}{of a Poset}
+        Let $\left( X,\po \right)$ be a poset. We say $S\subseteq X$ is a \emph{chain} of $X$ if for every $s,t\in S$, $s\po t$ or $t\po s$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a ring and let $\mF$ be a chain of ideals of $R$. Then $\cup\mF$ is an ideal of $R$.
+    \end{prop}
+
+    \begin{cor}{}
+        Let $R$ be a ring and let $\mF$ be a chain of proper ideals of $R$. Then there exists a proper ideal of $R$ which is an upper bound for $\mF$.
+    \end{cor}	
+
+    \begin{proof}
+        Since $\mF$ is a chain of proper ideals, $1\notin I$ for all $I\in\mF$, so $1\not\in \cup\mF$. Hence $\cup\mF$ is a proper ideal and an upper bound for $\mF$.
+    \end{proof}
+
+    \clearpage
+    \begin{prop}{}
+        Let $R$ be a commutative ring and let $J$ be a proper ideal of $R$. Then there exists a maximal ideal $K$ of $R$ containing $J$.
+    \end{prop}
+
+    \begin{proof}
+        Let $\mI$ be the collection of proper ideals of $R$ containing $J$, ordered under $\subseteq$. By Corollary 9.4.1, every chain in $\mI$ has an upper bound in $\mI$. Thus by Zorn's lemma, $\mI$ has a maximal element.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $R$ be a nontrivial commutative ring. Then there exists a field $\K$ such that there is a homomorphism from $R$ to $\K$.
+    \end{cor}	
+
+    \begin{proof}
+        By Proposition 9.5 $R$ has a maximal ideal, say $I$. Then $R /I$ is a field by Theorem 9.3, so we have the quotient homomorphism $q:R\to R /I$.
+    \end{proof}
+
+    \section{Integral Domains}
+
+    \begin{definition}{Zero Divisor}{of a Ring}
+        Let $R$ be a ring. A nonzero element $x\in R$ is called a \emph{zero divisor} of $R$ if there exists nonzero $y\in R$ such that $xy=0$ or $yx=0$.\footnote{Often times, if $xy=0$ but $yx\neq 0$, then we say $x$ is a \emph{left zero divisor} and vice versa.}
+    \end{definition}
+    
+    \ex[Examples of Zero Divisors] 
+    \begin{enumerate}
+        \item Suppose that $n\in\N$ is not prime. Then $n=ab$ for some $a,b\in\left\lbrace 2,\ldots,n-1 \right\rbrace$, so $\left[ a \right] , \left[ b \right] \neq 0_{\Z n /\Z}$. But
+            \begin{equation*}
+                \left[ a \right] \left[ b \right] = \left[ ab \right] = 0_{\Z /n\Z},
+            \end{equation*}
+            so $\left[ a \right] , \left[ b \right]$ are zero divisors of $\Z /n\Z$.
+        \item Let $R,S$ be nontrivial rings and let $a\in R, b\in S$ be nonzero. Then $\left( a,0 \right) , \left( 0,b \right)$ are nonzero in $R\times S$, but
+            \begin{equation*}
+                \left( a,0 \right) \left( 0,b \right) = \left( 0,0 \right) = 0_{R\times S},
+            \end{equation*}
+            so $\left( a,0 \right) , \left( 0,b \right)$ are zero divisors.
+        \item Let $R$ be a ring. Then $\left[ x \right]$ is a zero divisor in $R\left[ x \right] / \left( x^{2} \right)$, since
+            \begin{equation*}
+                \left[ x \right] ^{2} = \left[ x^{2}  \right] = 0_{R\left[ x \right] /\left( x^{2}  \right) }.
+            \end{equation*}
+        \item Let $R$ be a ring. Then
+            \begin{equation*}
+                \left[ x \right] \left[ y \right] = \left[ xy \right] = 0_{R\left[ x,y \right] / \left( xy \right) }
+            \end{equation*}
+            so $\left[ x \right] ,\left[ y \right]$ are zero divisors in $R\left[ x,y \right] / \left( xy \right)$.
+        \item Let $n\in\N$. Then for every $A\in M_{n\times n}(\K)$, $A$ is a zero divisor if and only if $\rank\left( A \right) < n$. 
+        \item Let $G$ be a group and let $g\in G$ with $\left| g \right| = 2$ (this guarantees $g\neq e_G$). Then
+            \begin{equation*}
+                \left( e_G+g \right) \left( e-g \right) = e_G-g^{2} = e_G-e_G = 0_{\Z G},
+            \end{equation*}
+            so $e_G+g, e_G-g$ are zero divisor in $\Z G$.
+    \end{enumerate}
+    We also have the following open problem about zero divisors.
+
+    \clearpage
+    \begin{statement}{Kaplansky Zero Divisor Conjecture}
+        Let $G$ be a group. If every nonidentity element of $G$ has infinite order, then $\K G$ has no zero divisors for every field $\K$.
+    \end{statement}
+
+    \begin{prop}{}
+        Let $R$ be a ring and let $u\in R$ be a unit. Then $u$ is not a zero divisor.
+    \end{prop}
+
+    \begin{proof}
+        Suppose $v\in R$ is such that $uv=0$. Then
+        \begin{equation*}
+            v = u^{-1} u v =0.
+        \end{equation*}
+        Similarly, if $vu=0$, then $v=vuu^{-1} =0$. Thus $u$ is not a zero divisor.
+    \end{proof}
+
+    \begin{cor}{}
+        Every field does not have a zero divisor.
+    \end{cor}	
+
+    \begin{proof}
+        It follows immediately from the fact that every element of a field is a unit.
+    \end{proof}
+
+    \np Although units are not zero divisors, an element of a ring can be non-zero-divisor without being a unit.
+    \begin{enumerate}
+        \item $\Z$ does not have any zero divisor, but $\Z^{\times}=\left\lbrace -1,1 \right\rbrace$.
+        \item By the degree formula, $fg = 0$ if and only if $f=0$ or $g=0$ for every $f,g\in\K\left[ x \right]$, where $\K$ is a field. But $\K\left[x\right]^\times =\K$.
+    \end{enumerate}
+
+    \begin{prop}{Cancellation Property}
+        Let $R$ be a ring and let $x\in R$ be a nonzero element which is not a zero divisor. Then for every $a,b\in R$, if $xa=xb$ or $ax=bx$, then $a=b$.
+    \end{prop}
+
+    \begin{proof}
+        Observe that $xa=xb$ implies $x\left( a-b \right) = 0$. But $x$ is not a zero divisor, so $a-b=0$, hence $a=b$. The case $ax=bx$ can be verified similarly.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $R$ be a finite ring and let $x\in R$ be nonzero. If $x$ is not a zero divisor, then $x$ is a unit.
+    \end{cor}	
+
+    \begin{proof}
+        Observe that $xa\neq xb$ and $ax\neq bx$ for every distinct $a,b\in R$, so $xR = R = Rx$, since $R$ is finite. Hence there exists $y,z\in R$ such that $xy=zx=1_R$. But $x$ has both left and right inverses if and only if invertible, since multiplication on $R$ is associative. Thus $x$ is a unit.
+    \end{proof}
+
+    \begin{definition}{Integral Domain}{}
+        An \emph{integral domain} is a nontrivial, commutative ring with no zero divisor.
+    \end{definition}
+
+    \np From Corollary 9.8.1, the following result is immediate.
+
+    \begin{cor}{}
+        Every finite integral domain is a field.
+    \end{cor}	
+
+    \np One of the reasons why we are interested in integral domains is that they work well as \textit{coefficient rings for polynomials}.
+    
+    \clearpage
+    \begin{prop}{}
+        Let $R$ be an integral domain.
+        \begin{enumerate}
+            \item For every $f,g\in R\left[ x \right]$, $\deg\left( fg \right) = \deg\left( f \right) + \deg\left( g \right) $.
+            \item $R\left[ x \right]$ is an integral domain.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item We may assume $f,g\in R\left[ x \right]$ are nonzero. Let $f_n, g_m$ be the leading coefficients of $f,g$, respectively, where $n=\deg\left( f \right) , m=\deg\left( g \right)$. Then observe that
+                \begin{equation*}
+                    fg = f_ng_mx^{n+m} + \cdots.
+                \end{equation*}
+                But $R$ is an integral domain, so $f_ng_m\neq 0$. Thus $\deg\left( fg \right) = n+m = \deg\left( f \right) + \deg\left( g \right)$. \qqqedsym
+            \item Suppose that $f,g\in R\left[ x \right]$ are nonzero. Then $\deg\left( fg \right) + \deg\left( f \right) + \deg\left( g \right) \geq 0$ by (a), so $fg\neq 0$. \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \begin{prop}{}
+        Let $\K$ be a field. Then every subring of $\K$ is an integral domain.
+    \end{prop}
+
+    \begin{proof}
+        Since $\K$ is a field, $\K$ is commutative and $1_{\K}\neq 0_{\K}$. So $R$ is commutative and $1_R\neq 0_R$. Moreover, given any nonzero $x\in R$, suppose $xy=0_R$ for some $y\in R$. Then
+        \begin{equation*}
+            y = x^{-1} xy = 0_{\K}
+        \end{equation*}
+        in $\K$, so it follows that $y=0_R$ in $R$. Thus $R$ has no zero divisors.
+    \end{proof}
+
+    \begin{prop}{}
+        For every $\alpha\in\CC$ such that $\alpha^{2} \in\Z$,
+        \begin{equation*}
+            \left\lbrace a+b\alpha:a,b\in \Z \right\rbrace 
+        \end{equation*}
+        is a subring of $\CC$.\footnote{We write $\Z\left[ \alpha \right] = \left\lbrace a+b\alpha:a,b\in\Z \right\rbrace$.}
+    \end{prop}
+
+    \np Proposition 9.11 leads to interesting integral domains such as the domain of Gaussian integers: $\Z\left[ i \right]$.
+
+    \section{Prime Ideals}
+
+    \np A motivation for prime ideals is to construct \textit{interesting} integral domains of the form
+    \begin{equation*}
+        R\left[ x \right] / \left( p \right) 
+    \end{equation*}
+    where $R$ is a commutative ring and $p\in R\left[ x \right]$. To do so, we have to answer the following question.
+    \begin{eqbox}[]
+        \begin{equation*}
+            \text{Let $R$ be a commutative ring and let $I$ be an ideal of $R$. When is $R /I$ an integral domain?}
+        \end{equation*}
+    \end{eqbox} 
+    To answer this, suppose that $R /I$ is an integral domain. Then for any $a,b\in R$, if $\left[ a \right] \left[ b \right] = 0_{R /I}$, then one of $\left[ a \right] , \left[ b \right]$ is zero in $R /I$, which is equivalent to saying that $a\in I$ or $b\in I$. But, for any $r\in R$,
+    \begin{equation*}
+        \left[ r \right] = 0_{R /I} \iff r\in I,
+    \end{equation*}
+    so
+    \begin{equation*}
+        \left[ a \right]\left[ b \right] = \left[ ab \right]  = 0_{R /I} \iff ab\in I.
+    \end{equation*}
+    This gives the following \textit{necessary} condition for $I$: $I$ is proper and such that for every $a,b\in R$, if $ab\in I$, then $a\in I$ or $b\in I$.
+
+    \begin{definition}{Prime}{Ideal}
+        Let $R$ be a commutative ring and let $I$ be an ideal of $R$. We say $I$ is \emph{prime} if $I$ is proper and for every $a,b\in R$, if $ab\in I$, then $a\in I$ or $b\in I$.
+    \end{definition}
+
+    \noindent In fact, $I$ being prime is also \textit{sufficient} to conclude that $R /I$ is an integral domain.
+
+    \begin{theorem}{}
+        Let $R$ be a commutative ring and let $I$ be an ideal of $R$. Then $R /I$ is an integral domain if and only if $I$ is prime.
+    \end{theorem}
+
+    \begin{proof}
+        Since $R$ is commutative, by the surjectivity of quotient homomorphism $q:R\to R /I$, $R /I$ is commutative. Moreover, $R /I$ is nontrivial if and only if $I$ is proper. Lastly 
+        \begin{equation}
+            R /I \text{ has no zero divisors} \iff \forall a,b\in R\left[ \left[ a \right] \left[ b \right] = 0_{R /I}\implies \left[ a \right] = 0_{R /I}\lor \left[ b \right] = 0_{R /I} \right] .
+        \end{equation}
+        But for any $r\in R$, $\left[ r \right] = 0_{R /I}$ if and only if $r\in I$, so it follows that [9.1] is equivalent to
+        \begin{equation*}
+            R /I\text{ has no zero divisors} \iff \forall a,b\in R \left[ ab\in I\implies a\in I\lor b\in I \right] .
+        \end{equation*}
+        Thus $R /I$ is nontrivial and has no zero divisors if and only if $I$ is prime, and the commutativity of $R /I$ is guaranteed by the commutativity of $R$.
+    \end{proof}
+
+    \begin{cor}{}
+        Maximal ideals are prime.
+    \end{cor}	
+
+    \begin{proof}
+        Given any commutative ring $R$ and a maximal ideal $I$ of $R$, $R /I$ is a field, hence an integral domain. Thus $I$ is prime.
+    \end{proof}
+
+    \ex Let $\K$ be a field. Then $\K\left[ x,y \right] / \left( y-x^{2}  \right)\iso\K\left[ x \right]$, where $\K\left[ x \right]$ is an integral domain but not a field. Thus $\left( y-x^{2}  \right)$ is a prime ideal which is not maximal.
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $f,g\in R\left[ x \right]$ have degree at least 1. Then $fgR\left[ x \right]$is not prime. 
+    \end{prop}
+
+    \begin{proof}
+        For any nonzero $h\in R\left[ x \right]$, $\deg\left( fgh \right) \geq \deg\left( fg \right) = \deg\left( f \right) + \deg\left( g \right) > \max\left\lbrace \deg\left( f \right) ,\deg\left( g \right)  \right\rbrace$. So $fg\in fgR\left[ x \right]$, but $f,g\notin fgR\left[ x \right]$.
+    \end{proof}
+
+    \np The intuition for Proposition 9.13 is that, given an integral domain $R$, if $h\in R\left[ x \right]$ factors into a product of lower degree polynomials, then the principal ideal $hR\left[ x \right]$ is not prime.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

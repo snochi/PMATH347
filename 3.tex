@@ -1,0 +1,537 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Cosets and Product Groups}
+
+    \section{Cosets and Lagrange's Theorem}
+
+    \np Let $G$ be a group and let $S\subseteq G$. Given any $g\in G$, we write $gS$ to denote
+    \begin{equation*}
+        gS = \left\lbrace gh:h\in S \right\rbrace 
+    \end{equation*}
+    and $Sg$ to denote
+    \begin{equation*}
+        Sg = \left\lbrace hg: h\in S \right\rbrace .
+    \end{equation*}
+    In terms of additive notation, we write $g+S$ instead of $gS$ and $S+g$ instead of $Sg$.
+
+    \begin{definition}{Left Coset, Right Coset}{of a Subgroup}
+        Let $G$ be a group and let $H\leq G$. Given any $g\in G$, $gH$ is called a \emph{left coset} of $H$ in $G$ and $Hg$ is called a \emph{right coset} of $H$ in $G$. If $gH=Hg$, we call $gH$ a \emph{coset} of $H$ in $G$.\footnote{For abliean groups, left cosets are always right cosets and vice versa.}
+    \end{definition}
+
+    \noindent When $H\leq G$, we write $G / H$ to denote
+    \begin{equation}
+        G / H = \left\lbrace gH:g\in G \right\rbrace 
+    \end{equation}
+    the \textit{collection of left cosets} of $H$ in $G$, and $H\setminus G$ to denote
+    \begin{equation*}
+        H\setminus G = \left\lbrace Hg: g\in G \right\rbrace ,
+    \end{equation*}
+    the \textit{collection of right cosets} of $H$ in $G$.
+
+    \np[$\Z /n\Z$]So far we are writing $\Z /n\Z$ to denote the group whose elements are the equivalence classes under modulo $n$. It is worth pointing out that using the notation in [3.1] agrees with our previous usage of $\Z /n\Z$. That is, by using the notation in [3.1],
+    \begin{equation*}
+        \Z n\Z = \left\lbrace a+n\Z:a\in\Z \right\rbrace = \left\lbrace a+n\Z:0\leq a<n \right\rbrace = \left\lbrace \left[ a \right] : 0\leq a<n \right\rbrace ,
+    \end{equation*}
+    so we again get the equivalence classes as the elements of $\Z /n\Z$. This motivates us the following question: \textit{given a group $G$, for which $H\leq G$ is $G / H$ a group?} We have to wait until the next chapter to answer this question.
+
+    \begin{prop}{}
+        Let $G,K$ be groups and let $\varphi:G\to K$ be a homomorphism. Let $H=\ker\left( \varphi \right)$ and let $x_0\in G, b\in K$ be such that $\varphi\left( x_0 \right) = b$. Then
+        \begin{equation*}
+            \varphi^{-1} \left( \left\lbrace b \right\rbrace  \right) = x_0H = Hx_0,
+        \end{equation*}
+        which is the solution set of the equation $\varphi\left( x \right) = b$.\footnote{We are taking $x$ here to be a formal indeterminate.}
+    \end{prop}
+
+    \begin{proof}
+        We verify the result for the left cost $x_0H$; essentially same argument works for $Hx_0$. Suppose $\varphi\left( x \right) = b$ for some $x\in G$. Then 
+        \begin{equation*}
+            \varphi\left( x_0^{-1} x_1 \right) = \varphi\left( x_0 \right)^{-1}  \varphi\left( x_1 \right) = b^{-1} b = e_K.
+        \end{equation*}
+        So $x_0^{-1} x\in H$, which implies $x= x_0\left( x_0^{-1} x \right) \in x_0H$. Conversely, if $x=x_0h$ for some $h\in H$, then $\varphi\left( x \right) = \varphi\left( x_0 \right) \varphi\left( h \right) = be_K = b$, so every element of $x_0H$ is a solution. Thus $\varphi^{-1} \left( \left\lbrace b \right\rbrace  \right) = x_0H$.
+    \end{proof}
+
+    \clearpage
+    \begin{prop}{}
+        Let $G,K$ be groups and let $\varphi:G\to K$ be a homomorphism. Then there exists a bijection between $G /\ker\left( \varphi \right)$ and $\varphi\left( G \right)$.
+    \end{prop}
+
+    \begin{proof}
+        Suppose that $g\ker\left( \varphi \right) \in G /\ker\left( \varphi \right)$ is given. Then by Proposition 3.1, $g\ker\left( \varphi \right)$ is the set of solutions to $\varphi\left( x \right) = b$, where $b = \varphi\left( g \right)$. Therefore, $\varphi\left( g\cdot\ker\left( \varphi \right)  \right) = \left\lbrace b \right\rbrace$, so $g\ker\left( \varphi \right)$ corresponds to $b$. Conversely, given any $b\in \varphi\left( G \right)$, $b$ corresponds to $\varphi^{-1} \left( b \right)$. 
+    \end{proof}
+    
+    \begin{definition}{Index}{of a Subgroup}
+        Let $G$ be a group and let $H\leq G$. The \emph{index} of $H$ in $G$, denoted as $\left[ G:H \right]$, is
+        \begin{equation*}
+            \left[ G:H \right] = 
+            \begin{cases} 
+                \left| G /H \right|  & \text{if }G /H \text{ is finite} \\
+                \infty & \text{otherwise}
+            \end{cases}.
+        \end{equation*}
+    \end{definition}
+
+    \np First, let us consider the following question: \textit{why do we use left cosets, not right cosets, for defining index?} It turns out to be a matter of choice (i.e. it does not matter if we used $H\setminus G$ instead of $G /H$ in Def'n 3.2), as the following proposition shows.
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then $\varphi:G /H\to H\setminus G$ defined by
+        \begin{equation*}
+            \varphi\left( S \right) = S^{-1} 
+        \end{equation*}
+        for every $S\in G /H$ is a bijection.
+    \end{prop}
+    
+    \begin{theorem}{Lagrange's Theorem}
+        Let $G$ be a group. For any $H\leq G$,
+        \begin{equation*}
+            \left| G \right| = \left[ G:H \right] \left| H \right| .
+        \end{equation*}
+    \end{theorem}
+
+    \np We are going to discuss a proof of Lagrange's theorem shortly. Before that, let us look at some of the consequences of Lagrange's theorem. 
+
+    \begin{cor}{}
+        If $x\in G$, then $\left| x \right| $ divides $\left| G \right|$.
+    \end{cor}	
+
+    \begin{proof}
+        Observe that $\left| x \right| = \left| \left< x \right>   \right|$, which divides $\left| G \right|$.
+    \end{proof}
+
+    \begin{cor}{}
+        If $\left| G \right|$ is prime, then $G$ is cyclic.
+    \end{cor}	
+
+    \begin{proof}
+        Let $x\in G\setminus \left\lbrace e_G \right\rbrace$. Then $\left| x \right| \neq 1$, and $\left| x \right| $ divides $\left| G \right|$, so $\left| x \right| = \left| G \right|$ since $\left| G \right|$ is prime. Since $\left| \left< x \right>   \right| = \left| x \right| = \left| G \right|$, $G=\left< x \right>$. 
+    \end{proof}
+
+    \begin{cor}{}
+        Let $K$ be a group and let $\varphi:G\to K$ be a homomorphism. Then $\left| \varphi\left( G \right)  \right| = \left[ G:\ker\left( \varphi \right)  \right]$ and hence divides $\left| G \right|$.
+    \end{cor}	
+
+    \begin{proof}
+        This is a direct consequence of Proposition 3.2, Theorem 3.4.
+    \end{proof}
+
+    \clearpage
+    \begin{cor}{}
+        Let $K$ be a group such that $G,K$ have coprime order. Then the only homomorphism from $G$ to $K$ is the trivial homomorphism.\footnote{A homomorphism is called \emph{trivial} if its image is the trivial subgroup.}
+    \end{cor}	
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Let $g,k\in G$. Then the following are equivalent.
+        \begin{enumerate}
+            \item $g^{-1} k\in H$.
+            \item $k\in gH$.
+            \item $gH=kH$.
+            \item $gH\cap kH\neq\emptyset$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{itemize}
+            \item (a)$\implies$(b) If $g^{-1} k=h$ for some $h\in H$, then $k=gh\in gH$. \qqqedsym
+            \item (b)$\implies$(c) Suppose $k=gh$ for some $h\in H$. Then given any $h'\in H$, $kh'=g\left( hh' \right) \in gH$, since $hh'\in H$. So $kH\subseteq gH$. Also, $g=kh^{-1} \in kH$, so $gH\subseteq kH$. \qqqedsym
+            \item (c)$\implies$(d) This is clear since $H\neq\emptyset$ so $gH\neq\emptyset$. \qqqedsym
+            \item (d)$\implies$(a) Let $x\in gH\cap kH$. Then $x=gh_1=kh_2$ for some $h_1,h_2\in H$, so $g^{-1} k = h_1h_2^{-1} \in H$. \qqedsym
+        \end{itemize} 
+    \end{proof}
+    
+    \begin{cor}{}
+        $G /H$ is a partition of $G$.
+    \end{cor}	
+
+    \begin{proof}
+        Given any $g\in gH$, $g\in gH$. Consequently,
+        \begin{equation*}
+            \bigcup G /H = G. 
+        \end{equation*}
+        Now let $S,T\in G /H$, where we may assume $S\neq T$ without loss of generality. If $S\cap T\neq\emptyset$, then $S=T$ by (c), (d) of Proposition 3.5. So $S\cap T=\emptyset$. Thus $G /H$ is a partition of $G$.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $S\subseteq G$. Given any $g\in G$, $\varphi:S\to gS$ by
+        \begin{equation*}
+            \varphi\left( s \right) = gs
+        \end{equation*}
+        for every $s\in S$ is a bijection.
+    \end{prop}
+
+    \begin{proof}
+        Observe that $\psi:gS\to S$ by
+        \begin{equation*}
+            \psi\left( h \right) = g^{-1} h
+        \end{equation*}
+        for every $h\in gS$ is the inverse of $\varphi$.
+    \end{proof}
+
+    \begin{proof}[Proof of Lagrange's Theorem]
+        If $\left| H \right| = \infty$ or $\left[ G:H \right] =\infty$, then $\left| G \right| = \infty$, so assume $\left| H \right| , \left[ G:H \right]$ are finite. By Proposition 3.6,
+        \begin{equation*}
+            \left| gH \right| = \left| H \right| 
+        \end{equation*}
+        for every $g\in G$. Since $G /H$ is a partition of $G$ by Corollary 3.5.1, $G$ is a disjoint union of $\left[ G:H \right]$ subsets, all of size $\left| H \right|$. Thus
+        \begin{equation*}
+            \left| G \right| = \left[ G:H \right] \left| H \right| ,
+        \end{equation*}
+        as desired.
+    \end{proof}
+
+    \section{Normal Subgroups}
+
+    \np By symmetry, we have the following proposition from Proposition 3.5.
+    
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then given any $g,k\in G$, the following are equivalent.
+        \begin{enumerate}
+            \item $kg^{-1} \in H$.
+            \item $k\in Hg$.
+            \item $Hg=Hk$.
+            \item $Hg\cap Hk\neq\emptyset$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. If $Hg=hH$ for some $g,h\in G$, then $gH=Hg$.
+    \end{prop}
+
+    \begin{proof}
+        Observe that
+        \begin{equation*}
+            g\in Hg = hH,
+        \end{equation*}
+        so $gH=hH$.
+    \end{proof}
+
+    \begin{definition}{Normal}{Subgroup}
+        Let $G$ be a group. A subgroup $N\subseteq G$ is called \emph{normal}, denoted as $N\trianglelefteq G$, if $gN=Ng$ for every $g\in G$. 
+    \end{definition}
+
+    \begin{definition}{Conjugate}{}
+        Let $G$ be a group and let $g,h\in G$. Then the \emph{conjugate} of $h$ by $g$ is $ghg^{-1} $.
+    \end{definition}
+
+    \begin{prop}{Characterizations of Normal Subgroups}
+        Let $G$ be a group and let $N\leq G$. Then the following are equivalent.
+        \begin{enumerate}
+            \item $N\trianglelefteq G$.
+            \item $gNg^{-1} = N$ for all $g\in G$.
+            \item $gNg^{-1} \subseteq N$ for all $g\in G$.
+            \item $G /N = N\setminus G$.
+            \item $G /N \subseteq N\setminus G$.
+            \item $N\setminus G\subseteq G /N$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{itemize}
+            \item (1)$\iff$(2) Clearly (1) holds if and only if (2) holds. \qqqedsym
+            \item (2)$\iff$(3) The forward direction is clear. To see the reverse direction, observe that if (c) is true, then given any $g\in G$,
+                    \begin{equation*}
+                        N = g^{-1} \left( gNg^{-1}  \right) g \subseteq g^{-1} Ng. \eqqedsym
+                    \end{equation*}
+            \item (1)$\iff$(4) Clearly (1) holds if and only if (4) holds. \qqqedsym
+            \item (4)$\implies$(5), (6) Clearly (4) implies (5), (6). \qqqedsym
+            \item (5)$\implies$(1) Suppose $G /N\subseteq N\setminus G$. Then for any $g\in G$, $gN=Hh$ for some $h\in G$, so $gN=Ng$ by Proposition 3.8. \qqqedsym
+            \item (6)$\implies$(1) This can be proved similarly to (5)$\implies$(1).
+        \end{itemize} 
+    \end{proof}
+
+    \np Here are some remarks about normal subgroups.
+    \begin{enumerate}
+        \item Let $G$ be a group. If $G$ is abelian, then every subgroup of $G$ is normal.
+        \item Let $G,K$ be groups and let $\varphi:G\to K$ be a homomorphism. Then $\ker\left( \varphi \right)$ is normal.\footnote{Note that this is a direct consequence of Proposition 3.1.} We utilize (b) of Proposition 3.9 to prove this.
+
+            \begin{subproof}
+                Given any $x\in\ker\left( \varphi \right) $ and $g\in G$, we have
+                \begin{equation*}
+                    \varphi\left( gxg^{-1}  \right) =\varphi\left( g \right) \varphi\left( x \right) \varphi\left( g \right) ^{-1} = \varphi\left( g \right) \varphi\left( g \right) ^{-1} = e_K,
+                \end{equation*}
+                so $gxg^{-1} \in\ker\left( \varphi \right)$. Thus $g\left( \ker\left( \varphi \right)  \right) g^{-1} \subseteq \ker\left( \varphi \right)$ for all $g\in G$, so $N\trianglelefteq G$ by Proposition 3.9.
+            \end{subproof}
+        \item $\trianglelefteq$ is not transitive. For instance, $H=\left< r,s^{2}  \right> \trianglelefteq D_8$, and since $H$ is abelian, $\left< r \right> \trianglelefteq H$. But $\left< r \right> $ is not a normal subgroup of $D_8$. 
+    \end{enumerate}
+
+    \begin{definition}{Normalizer}{of a Subset}
+        Let $G$ be a group and let $S\subseteq G$. Then the \emph{normalizer} of $S$ in $G$, denoted as $N_G\left( S \right)$, is defined as
+        \begin{equation*}
+            N_G\left( S \right) = \left\lbrace g\in G:gSg^{-1} = S \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $S\subseteq G$. Then
+        \begin{equation*}
+            N_G\left( S \right) \leq G.
+        \end{equation*}
+    \end{prop}
+
+    \begin{proof}
+        Since $e_GSe_G=S$, so $e_G\in N_G\left( S \right)$. Given any $g,h\in N_G\left( S \right)$,
+        \begin{equation*}
+            ghS\left( gh \right) ^{-1} = g\left( hSh^{-1}  \right) g^{-1} = gSg^{-1} = S,
+        \end{equation*}
+        so $gh\in N_G\left( S \right)$. Moreover,
+        \begin{equation*}
+            g^{-1} Sg = g^{-1} \left( gSg^{-1}  \right) g = e_GSe_G = S,
+        \end{equation*}
+        so $g^{-1} \in N_G\left( S \right)$.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then $H\trianglelefteq G$ if and only if $N_G\left( H \right) = G$.
+    \end{prop}
+
+    \clearpage
+    \begin{cor}{}
+        If $G = \left< S \right>$, then given any $H\leq G$, $H\trianglelefteq G$ if and only if $gHg^{-1} = H$ for every $g\in S$. 
+    \end{cor}	
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then for any $g\in G$ of finite order, if $gHg^{-1} \subseteq H$, $g\in N_G\left( H \right)$.
+    \end{prop}
+
+    \begin{proof}
+        By induction $g^jHg^{-j}\subseteq H$ for every $j\in\N\cup\left\lbrace 0 \right\rbrace$. Denote $n=\left| g \right|$, so that $g^{-1} Hg = g^{n-1}Hg^{-\left( n-1 \right) }\subseteq H$. This means $H\subseteq gHg^{-1}$, so $gHg^{-1} = H$. Thus $g\in N_G\left( S \right) $.
+    \end{proof}
+
+    \begin{cor}{}
+        Suppose $G$ is finite and let $S\subseteq G$ be such that $G=\left< S \right>$. Let $H\leq G$. If $gHg^{-1} \subseteq H$ for all $g\in S$, then $H\trianglelefteq G$. 
+    \end{cor}	
+
+    \begin{definition}{Center}{of a Group}
+        Let $G$ be a group. The \emph{center} of $G$, denoted as $Z\left( G \right)$, is defined as
+        \begin{equation*}
+            Z\left( G \right) = \left\lbrace g\in G: \forall h\in G\left[ gh=hg \right]  \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $G$ be a group. Then
+        \begin{equation*}
+            Z\left( G \right) \trianglelefteq G.
+        \end{equation*}
+    \end{prop}
+
+    \section{Product Groups}
+    
+    \begin{prop}{}
+        Let $\left( G_1,\cdot_1 \right) , \left( G_2,\cdot_2 \right)$ be groups. Then $G_1\times G_2$ is a group under operation $\cdot$ defined as $\left( g_1,g_2 \right) \cdot \left( h_1,h_2 \right) = \left( g_1\cdot_1 h_1, g_2\cdot_2 h_2 \right)$ for every $\left( g_1,g_2 \right) , \left( h_1,h_2 \right) \in G_1\times G_2$.
+    \end{prop}
+
+    \begin{definition}{Product}{of Groups}
+        Let $G_1,G_2$ be groups. Then the group $G_1\times G_2$ with the operation described in Proposition 3.14 is called the \emph{product} of $G_1,G_2$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $H,K$ be groups and let $G = H\times K$. Let
+        \begin{equation*}
+            \tilde{H} = \left\lbrace \left( h,e_K \right) : h\in G \right\rbrace , \tilde{K} = \left\lbrace \left( e_H,k \right) :k\in K \right\rbrace . 
+        \end{equation*}
+        \begin{enumerate}
+            \item $\tilde{H} , \tilde{K} \leq G$.
+            \item $\varphi:H\to\tilde{H}, \psi:K\to\tilde{K} $ defined by
+                \begin{equation*}
+                    \varphi\left( h \right) = \left( h,e \right) , \psi\left( k \right) = \left( e,k \right) 
+                \end{equation*}
+                for every $h\in H, k\in K$ are isomorphisms.
+        \end{enumerate}
+    \end{prop}
+
+    \np What Proposition 3.15 means we can think $H,K$ as subgroups of $H\times K$.
+    
+    \clearpage
+    \begin{prop}{}
+        Consider the setting of Proposition 3.16. For every $h\in\tilde{H} , k\in\tilde{K}$, $hk=kh$.
+    \end{prop}
+
+    \begin{cor}{}
+        If $\varphi:H\times K\to G$ is a homomorphism, then
+        \begin{equation*}
+            \varphi\left( h \right) \varphi\left( k \right) = \varphi\left( k \right) \varphi\left( h \right) 
+        \end{equation*}
+        for all $h\in\tilde{H} ,k\in\tilde{K}$.
+    \end{cor}	
+    
+    \begin{prop}{}
+        Let $G,H,K$ be groups and let $\alpha:H\to G, \beta:K\to G$ be homomorphisms. If
+        \begin{equation*}
+            \alpha\left( h \right) \beta\left( k \right) = \beta\left( k \right) \alpha\left( h \right) 
+        \end{equation*}
+        for all $h\in H, k\in K$, then $\gamma:H\times K\to G$ defined by
+        \begin{equation*}
+            \gamma\left( \left( h,k \right)  \right) = \alpha\left( h \right) \beta\left( k \right) 
+        \end{equation*}
+        is a homomorphism.
+    \end{prop}
+
+    \begin{proof}
+        Observe that, for all $h_1,h_2\in H, k_1,k_2\in K$,
+        \begin{flalign*}
+            && \gamma\left( \left( h_1,k_1 \right) \left( h_2,k_2 \right)  \right) & = \gamma\left( \left( h_1h_2,k_1k_2 \right)  \right) = \alpha\left( h_1h_2 \right) \beta\left( k_1k_2 \right) && \\
+            && & \alpha\left( h_1 \right) \alpha\left( h_2 \right) \beta\left( k_1 \right) \beta\left( k_2 \right) = \alpha\left( h_1 \right) \beta\left( k_1 \right) \alpha\left( k_2 \right) \beta\left( k_2 \right) = \gamma\left( h_1,k_1 \right) \gamma\left( h_2,k_2 \right) . && \fqedsym 
+        \end{flalign*} 
+    \end{proof}
+
+    \begin{cor}{}
+        Let $H,H',K,K'$ be groups and let $\alpha:H\to H', \beta:K\to K'$ be homomorphisms. Then $\gamma:H\times K\to H'\times K'$ by
+        \begin{equation*}
+            \gamma\left( \left( h,k \right)  \right) = \left( \alpha\left( h \right) ,\beta\left( k \right)  \right) 
+        \end{equation*}
+        for all $\left( h,k \right) \in H\times K$ is a homomorphism.\footnote{We denote $\gamma$ by $\alpha\times\beta$.} Moreover, if $\alpha,\beta$ are isomorphisms, then $\gamma$ is an isomorphism.
+    \end{cor}	
+
+    \begin{cor}{}
+        Let $G$ be a group and let $H$ be a trivial group. Then $\varphi:G\to G\times H$ by
+        \begin{equation*}
+            \varphi\left( g \right) = \left( g,e_H \right) 
+        \end{equation*}
+        for all $g\in G$ is an isomorphism.
+    \end{cor}
+
+    \begin{prop}{}
+        Let $p\in\N$ be prime. If $G$ is a group of order $p^{2}$, then one of the following holds.
+        \begin{enumerate}
+            \item $G$ is cyclic.
+            \item $G\iso \left( \Z /p\Z \right) \times \left( \Z /p\Z \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be a group and let $S,T\subseteq G$. Then $G=ST$ if and only if for every $g\in G$ there exist $h\in S, k\in T$ such that $g=hk$.\footnote{$ST$ denotes $\left\lbrace hk:h\in S, k\in T \right\rbrace$.}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $G$ be a group such that $G=HK$ for some $H,K\subseteq G$. Then for every $g\in G$ there exist unique $h\in H,k\in K$ such that $g=hk$ if and only if $H\cap K = \left\lbrace e_G \right\rbrace$, the trivial subgroup.
+    \end{prop}
+    
+    \begin{proof}
+        The forward direction is clear. For the reverse direction, assume that $H\cap K = \left\lbrace e_G \right\rbrace$. Let $h,h'\in H, k,k'\in k$ be such that
+        \begin{equation*}
+            hk = h'k'.
+        \end{equation*}
+        Then observe that $\left( h' \right) ^{-1} h = k'k^{-1} \in H\cap K$. So $\left( h' \right) ^{-1} h = k'k^{-1} = e_G$, which means $h=h', k=k'$.
+    \end{proof}
+    
+    \begin{definition}{Internal Direct Product}{of Subgroups}
+        Let $G$ be a group. We say $G$ is the \emph{internal direct product} of $H,K\leq G$ if
+        \begin{enumerate}
+            \item $HK=G$;
+            \item $H\cap K=\left\lbrace e_G \right\rbrace$; and
+            \item $hk=kh$ for every $h\in H, k\in K$.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{theorem}{}
+        Let $G$ be a group such that $G$ is the internal direct product of $H,K\leq G$. Then $\varphi:H\times K\to G$ by
+        \begin{equation*}
+            \varphi\left( \left( h,k \right)  \right) = hk
+        \end{equation*}
+        for every $\left( h,k \right) \in G$ is an isomorphism.
+    \end{theorem}
+
+    \begin{proof}
+        Let $\varphi_H:H\to G, \varphi_K:K\to G$ by
+        \begin{equation*}
+            \varphi_H\left( h \right) = h, \varphi_K\left( k \right) = k
+        \end{equation*}
+        for every $h\in H, k\in K$ are homomorphisms. Since $G$ is the internal direct product of $H,K$, we have
+        \begin{equation*}
+            \varphi_H\left( h \right) \varphi_K\left( k \right) = \varphi_K\left( k \right) \varphi_H\left( h \right) 
+        \end{equation*}
+        for every $h\in H, k\in K$. So by Proposition 3.17, $\varphi$ is a homomorphism. Moreover, every $g\in G$ can be uniquely written as $g=hk$ for some $h\in H, k\in K$ by Proposition 3.20, so $\varphi$ is a bijection.
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $G$ be a group such that $G$ is the internal direct product of $H,K\leq G$. Then $H,K\trianglelefteq G$.
+    \end{prop}
+
+    \begin{proof}
+        Let $g\in G$, so write $g=hk$ for some $h\in H, k\in K$. Then
+        \begin{equation*}
+            kHk^{-1} = \left\lbrace khk^{-1} :h\in H \right\rbrace = \left\lbrace kk^{-1} h:h\in H \right\rbrace = H,
+        \end{equation*}
+        so 
+        \begin{equation*}
+            gHg^{-1} = hkHk^{-1} h^{-1} = hHh^{-1} \subseteq H,
+        \end{equation*}
+        meaning $H\trianglelefteq G$. Similar proof holds for $K$.
+    \end{proof}
+    
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be a group and let $H,K\leq G$. Then $G$ is the internal direct product of $H,K$ if and only if
+        \begin{enumerate}
+            \item $G=HK$;
+            \item $H\cap K=\left\lbrace e_G \right\rbrace$; and
+            \item $H,K\trianglelefteq G$.\footnote{Note that (c) is the only condition different from Def'n 3.8.}
+        \end{enumerate}
+    \end{prop}
+
+    \begin{definition}{Commutator}{}
+        Let $G$ be a group and let $g,h\in G$. Then the \emph{commutator} of $g,h$, denoted as $\left[ g,h \right] $, is defined as
+        \begin{equation*}
+            \left[ g,h \right] = ghg^{-1} h^{-1} .
+        \end{equation*}
+    \end{definition}
+
+    \begin{lemma_inside}{}
+        Let $G$ be a group and let $g,h\in G$. Then $\left[ g,h \right] = e_G$ if and only if $gh=hg$.
+    \end{lemma_inside}
+    
+    \begin{proof}[Proof of Proposition 3.23]
+        The forward direction is clear. To show the reverse direction, let $h\in H, k\in K$. Then
+        \begin{equation*}
+            \left[ h,k \right] = \left( hkh^{-1}  \right) k^{-1} \in K
+        \end{equation*}
+        since $K\trianglelefteq G$. Similarly
+        \begin{equation*}
+            \left[ h,k \right] = h\left( kh^{-1} k^{-1}  \right) \in H
+        \end{equation*}
+        since $H\trianglelefteq G$. So $\left[ h,k \right] \in H\cap K = \left\lbrace e_G \right\rbrace$, implying $\left[ h,k \right] = e$. Thus by Lemma 3.23.1, $hk=kh$ for all $h\in H, k\in K$, as desired.
+    \end{proof}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+\end{document}

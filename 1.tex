@@ -1,0 +1,268 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Introduction to Groups}
+
+    \section{Groups}
+
+    \begin{definition}{Group}{}
+        A \emph{group} is an ordered pair $\left( G,\cdot \right)$ where
+        \begin{enumerate}
+            \item $G$ is a set; and
+            \item $\cdot$ is an associative, unital binary operation on $G$ such that every $g\in G$ is invertible.
+        \end{enumerate}
+        $G$ is \emph{abelian} (or \emph{commutative}) if $\cdot$ is abelian. A group is \emph{finite} if $G$ is finite, and \emph{infinite} if $G$ is infinite. $\left| G \right|$ is called the \emph{order} of $G$.
+    \end{definition}
+
+    \np[Notations]Let $\left( G,\cdot \right)$ be a group.
+    \begin{enumerate}
+        \item Usually we refer to $\left( G,\cdot \right)$ simply as $G$, where $\cdot$ is understood. 
+        \item Given any $g,h\in G$, we write $gh$ to denote $g\cdot h$. 
+        \item The identity of $G$ is denoted by $e_G$. 
+        \item For every $g\in G$, we write $g^{-1} $ to denote the inverse of $g$. The function defined by $g\mapsto g^{-1} $ for every $g\in G$ is a unary operation on $G$. Moreover, this function is \textit{bijective}.
+
+            \begin{proof}
+                Let $\varphi:G\to G$ be defined by
+                \begin{equation*}
+                    \varphi\left( g \right) = g^{-1} 
+                \end{equation*}
+                for every $g\in G$. Then observe that
+                \begin{equation*}
+                    \varphi\circ\varphi = \id_G,
+                \end{equation*}
+                the identity function on $G$, since $\left( g^{-1}  \right) ^{-1}  = g$. 
+            \end{proof}
+            In fact, the above proof shows that $\varphi$ is \textit{idempotent} also.
+        \item Given any $g\in G$, we write $g^n$ to denote
+            \begin{equation*}
+                \underbrace{gg\cdots g}_{n\text{ times}}
+            \end{equation*}
+            and $g^{-n}$ to denote $\left( g^n \right) ^{-1} $.
+    \end{enumerate}
+
+    \begin{definition}{General Linear Group}{}
+        Let $\K$ be a field. Given $n\in\N$, we write $\gl_n\left( \K \right)$ to denote the set of invertible $n\times n$ matrices with entries in $\K$. $\gl_n\left( \K \right)$ under the usual matrix multiplication is called a \emph{general linear group}.
+    \end{definition}
+    
+    \begin{prop}{}
+        Let $n\in\N,n\geq 2$ and let $\K$ be a field. Then $\gl_n\left( \K \right)$ is a group under the usual matrix multiplication.
+    \end{prop}
+
+    \begin{proof}
+        To see that $\gl_n\left( \K \right)$ is a group, it suffices to observe that $AB$ is invertible whenever $A,B\in\gl_n\left( \K \right)$ are invertible, matrix multiplication is associative, and the identity matrix $I_n\in\gl_n\left( \K \right)$ exists and is invertible.
+    \end{proof}
+
+    \np[Additive Notation]For groups like $\left( \Z,+ \right)$, it is confising to write $mn$ instead of $m+n$, since $mn$ already has another meaining in $\Z$. For abelian groups $G$, we often use \textit{additive notation}, opposed to the \textit{multiplicative notation} introduced in (1.1). In additive notation, given $g,h\in G$,
+    \begin{enumerate}
+        \item we write the group operation as $g+h$;
+        \item the identity of $G$ is denoted as $0_G$;
+        \item the inverse of $g$ is denoted by $-g$; and
+        \item we write $ng$ to denote
+            \begin{equation*}
+                \underbrace{g+g+\cdots+g}_{n\text{ times}}
+            \end{equation*}
+            where $n\in\N$, and write $-ng$ to denote the inverse of $ng$.
+    \end{enumerate}
+    
+    \begin{definition}{Multiplication Table}{of a Group}
+        Let $G$ be a group. The \emph{multiplication table}\footnote{Although multiplication table is defined for any groups, it makes the most sense for finite (in particular small) groups.} of $G$ is a table with rows and columns indexed by the elements of $G$. The cell for row $g$ and column $h$ contains the product $gh$.
+    \end{definition}
+
+    \ex[Multiplication Table of $\Z/2\Z$]The multiplication table for $\Z /2\Z$ is
+    
+    \begin{center}
+        \begin{tabularx}{2cm}{c|cc}
+            & 0 & 1 \\
+            \hline
+            0 & 0 & 1 \\
+            1 & 1 & 0
+        \end{tabularx}.
+    \end{center}
+
+    \begin{definition}{Order}{of an Element of a Group}
+        Let $G$ be a group and let $g\in G$. Then the \emph{order} of $g$, denoted as $\left| g \right|$, is defined by
+        \begin{equation*}
+            \left| g \right| = \min\left\lbrace k\in\N: g^k=e_G \right\rbrace 
+        \end{equation*}
+        in case the set is nonempty. Otherwise, $\left| g \right| = \infty$.
+    \end{definition}
+
+    \np[Properties of Order]Let $g\in G$.
+    \begin{enumerate}
+        \item $\left| g \right| =1$ if and only if $g=e_G$.
+        \item If $g^n=e_G$, then $g^{n-1}g = gg^{n-1} = g^n = 1$, so $g^{n-1} = g^{-1} $. Thus, if $\left| g \right|$ is finite, then $g^{-1} = g^{\left| g \right| -1}$.
+    \end{enumerate}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $g\in G$. Then $g^n = e$ if and only if $g^{-n} = e$. 
+    \end{prop}
+
+    \begin{proof}
+        We have $g^{-n}=\left( g^n \right) ^{-1} $. Since $\varphi:G\to G$ by $\varphi\left( h \right) = h^{-1} $ for all $h\in G$ is bijective,
+        \begin{equation*}
+            g^n = e \iff \left( g^n \right) ^{-1} = e^{-1} = e. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{cor}{}
+        $\left| g \right| = \left| g^{-1} \right|$.
+    \end{cor}	
+
+    \clearpage
+    \section{Dihedral Groups}
+
+    \begin{definition}{$n$-gon}{}
+        Let $n\in\N,n\geq 3$. A regular polygon with $n$ vertices, denoted as $P_n$, is called an \emph{$n$-gon}.
+    \end{definition}
+
+    \np Fix $n\in\N, n\geq 3$ throughout this section. When we discuss about $P_n$, we imagine the complex plane, where we take
+    \begin{equation*}
+        V = \left\lbrace v_i = e^{\frac{2\pi ik}{n}}:k\in\left\lbrace 0,\ldots,n-1 \right\rbrace  \right\rbrace 
+    \end{equation*}
+    to be the set of the vertices, where we draw the edges by drawing the line segment from $v_{k-1}$ to $v_k$ for all $k\in\left\lbrace 1,\ldots,n \right\rbrace$, where we define $v_n = v_0$.
+
+    \begin{definition}{Diheral Group}{}
+        A \emph{symmetry} of $P_n$ is $T\in\gl_2\left( \R \right)$ such that $T\left( P_n \right) = P_n$. The set of symmetries of $P_n$, denoted as $D_{2n}$, is called a \emph{dihedral group}.
+    \end{definition}
+
+    \begin{prop}{}
+        $D_{2n}$ is a group under composition.
+    \end{prop}
+
+    \noindent The proof of Proposition 1.3 will be presented once we introduce subgroups.
+
+    \begin{prop}{}
+        \begin{enumerate}
+            \item If $T\in D_{2n}$, then $T\left( v_0 \right) , T\left( v_1 \right)$ are adjacent.\footnote{Vertices of $P_n$ are called \emph{adjacent} if connected by a line segment.}
+            \item If $S,T\in D_{2n}$ and $S\left( v_i \right) = T\left( v_i \right)$ for every $i\in\left\lbrace 0,1 \right\rbrace$, then $S=T$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item It suffices to note that linear transformations map a line segment to a line segment. \qqqedsym
+            \item Observe that $v_0,v_1$ are linearly independent. \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \begin{cor}{}
+        $\left| D_{2n} \right| \leq 2n$.
+    \end{cor}	
+
+    \begin{proof}
+        Let
+        \begin{equation*}
+            A = \left\lbrace \left( v_i,v_j \right) : i,j\in\left\lbrace 0,\ldots,4 \right\rbrace , \left| i-j \right| = 1 \right\rbrace ,
+        \end{equation*}
+        the set of adjacent pairs, so $\left| A \right| = 2n$. Proposition 1.4 provides an injection from $D_{2n}$ to $A$ so $\left| D_{2n} \right| \leq \left| A \right| = 2n$.
+    \end{proof}
+
+    \np At the end of this section, we will prove that $\left| D_{2n} \right| = 2n$, that the injection provided by Proposition 1.4 is actually a bijection. Before this, let us discuss special elements of $D_{2n}$.
+    \begin{enumerate}
+        \item Let $s\in D_{2n}$ be the \textit{rotation} by $\frac{2\pi}{n}$, so $\left| s \right| = n$.
+        \item Let $r\in D_{2n}$ be the \textit{reflection} through the $x$-axis, so $\left| r \right| = 2$.
+    \end{enumerate}
+    Now observe that, given any $j\in\left\lbrace 0,\ldots,n-1 \right\rbrace , k\in\left\lbrace 0,1 \right\rbrace$,
+    \begin{equation*}
+        s^j\left( v_0 \right) = v_i, s^j\left( v_1 \right) = v_{i+1}
+    \end{equation*}
+    and
+    \begin{equation*}
+        s^jr\left( v_0 \right) = v_i, s^jr\left( v_1 \right) = v_{i-1}.
+    \end{equation*}
+    Thus, we conclude the following.
+
+    \begin{prop}{}
+        $D_{2n} = \left\lbrace s^jr^k: j\in\left\lbrace 0,\ldots,n-1 \right\rbrace , k\in\left\lbrace 0,1 \right\rbrace  \right\rbrace $.
+    \end{prop}
+
+    \begin{cor}{}
+        $\left| D_{2n} \right| = 2n$.
+    \end{cor}	
+
+    \noindent It is also immediate that $rs = s^{-1} r$. 
+
+    \section{Permutatation Groups}
+
+    \np Let $X$ be a set and let $\mF\left( X,X \right)$ be the set of functions from $X$ to $X$. We write $S_X$ to denote
+    \begin{equation*}
+        S_X = \left\lbrace f\in\mF\left( X,X \right) : f\text{ is bijective} \right\rbrace .
+    \end{equation*}
+
+    \begin{prop}{}
+        Let $X$ be a set. Then $S_X$ is a group under the function composition.
+    \end{prop}
+
+    \begin{definition}{Symmetric Group}{}
+        Let $n\in\N$. A \emph{symmetric group} $S_n$ is the group $S_X$ with $X=\left\lbrace 1,\ldots,n \right\rbrace$. Elements of $S_n$ are called \emph{permutations}.
+    \end{definition}
+
+    \np[Permutations]Fix $n\in\N$ throughout. There are different ways to represent permutations. Suppose that $\sigma\in S_n$ is given.
+    \begin{enumerate}
+        \item \textit{two-line notation}: 
+            \begin{equation*}
+                \sigma = 
+                \begin{pmatrix}
+                	1 & 2 & 3 & 4 & 5 & 6 \\
+                	6 & 5 & 1 & 4 & 2 & 3 \\
+                \end{pmatrix}.
+            \end{equation*}
+        \item \textit{one-line notation}: $\sigma=651423$.
+        \item \textit{cycle notation}: $\sigma = \left( 163 \right) \left( 25 \right) \left( 4 \right) = \left( 163 \right) \left( 25 \right)$. Note that we typically omit cycles of length 1. \footnote{Since identity is empty in cycle notation, we write $e$.}
+    \end{enumerate}
+
+    \begin{definition}{Fixed Point, Support Set}{of a Permutation}
+        Let $\sigma\in S_n$ be a permutation.
+        \begin{enumerate}
+            \item A \emph{fixed point} of $\sigma$ is $j\in \left\lbrace 1,\ldots,n \right\rbrace$ such that $\sigma\left( j \right) = j$.
+            \item The \emph{support set} of $\sigma$, denoted as $\supp\left( \sigma \right)$, is defined as
+                \begin{equation*}
+                    \supp\left( \sigma \right) = \left\lbrace 1\leq j\leq n: \sigma\left( j \right) \neq j \right\rbrace ,
+                \end{equation*}
+                the set of points that are not fixed. If $\tau\in S_n$ is such that $\supp\left( \sigma \right) \cap \supp\left( \tau \right) = \emptyset$, then $\tau,\sigma$ are called \emph{disjoint}.
+        \end{enumerate}
+    \end{definition}
+    
+    \noindent The numbers in $\supp\left( \sigma \right)$ are exactly the numbers that appear in the cycle notation of $\sigma$. Moreover, if $j\in\supp\left( \sigma \right)$, then $\sigma\left( j \right) \in\supp\left( \sigma \right)$.
+    
+    \begin{prop}{}
+        If $\sigma,\tau\in S_n$ are disjoint, then $\sigma,\tau$ commute.
+    \end{prop}
+
+    \begin{proof}
+        Let $j\in\left\lbrace 1,\ldots,n \right\rbrace$. We have three cases.
+        \begin{enumerate}
+            \item If $j\in\supp\left( \sigma \right)$, then $\sigma\left( j \right) \in \supp\left( \sigma \right)$, so $j,\sigma\left( j \right) \notin \supp\left( \tau \right)$ since $\sigma,\tau$ are disjoint. It follows that 
+                \begin{equation*}
+                    \sigma\left( \tau\left( j \right) \right) = \sigma\left( j \right) = \tau\left( \sigma\left( j \right)  \right) . \eqqedsym
+                \end{equation*}
+            \item If $j\in \supp\left( \tau \right)$, then we can repeat the argument in (a) to conclude that
+                \begin{equation*}
+                    \tau\left( \sigma\left( j \right) \right) = \tau\left( j \right) = \sigma\left( \tau\left( j \right)  \right) . \eqqedsym
+                \end{equation*}
+            \item If $j\notin\supp\left( \sigma \right)\cup\supp\left( \sigma \right)$, then
+                \begin{equation*}
+                    \sigma\left( \tau\left( j \right)  \right) = j = \tau\left( \sigma\left( j \right)  \right) . \eqedsym
+                \end{equation*}
+        \end{enumerate}
+    \end{proof}
+
+    \begin{definition}{$k$-cycle}{of a Symmetric Group}
+        Given $k\in\N$, a \emph{$k$-cycle} of $S_n$ is an element of $S_n$ with cycle notation $\left( a_1\cdots a_k \right)$.
+    \end{definition}
+
+    \noindent In fact, given any $\sigma\in S_n$ and the cycle notation
+    \begin{equation*}
+        c_1\cdots c_l
+    \end{equation*}
+    of $\sigma$, where $c_1,\ldots,c_l$ are the cycles of $\sigma$, the notation can be read as follows: multiply $c_1,\ldots,c_l$ as product in $S_n$. This means
+    \begin{equation*}
+        \sigma^{-1} = \left( c_1\cdots c_l \right) ^{-1} = c_l^{-1} \cdots c_1^{-1} = c_1^{-1} \cdots c_l^{-1} ,
+    \end{equation*}
+    since $c_j,c_k$ are disjoint for all $j,k\in \left\lbrace 1,\ldots,l \right\rbrace, j\neq k$.
+
+\end{document}

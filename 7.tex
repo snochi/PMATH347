@@ -1,0 +1,380 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Rings} 
+
+    \section{Rings}
+
+    \np[Motivation]Observe that many algebraic structures, such as
+    \begin{equation*}
+        \Z, \Q, \R, \CC, M_{n\times n}(\K) , \Z /n\Z, \R^{\R}, \R\left[ x \right] , \ldots,
+    \end{equation*}
+    have two operations: addition and multiplication. \textit{Ring} is an abstract structure designed to capture what all these examples have in common.
+
+    \begin{definition}{Ring}{}
+        A \emph{ring} is a tuple $\left( R,+,\cdot \right)$ such that
+        \begin{enumerate}
+            \item $\left( R,+ \right)$ is an abelian group; and
+            \item $\cdot$ is an associative binary operation on $R$ such that
+                \begin{itemize}
+                    \item \textit{left distributive property}: $a\cdot\left( b+c \right) = a\cdot b + a\cdot c$; and
+                    \item \textit{right distributive property}: $\left( a+b \right) \cdot c = a\cdot c+b\cdot c$
+                \end{itemize} 
+                for every $a,b,c\in R$.
+        \end{enumerate}
+        The operation $+$ is called \emph{addition} and $\cdot$ is called \emph{multiplication}.
+    \end{definition}
+
+    \noindent Here are some remarks.
+    \begin{enumerate}
+        \item Similar to groups, we refer to a ring $\left( R,+,\cdot \right)$ by simply writing $R$. Moreover, $a\cdot b$ is often written as $ab$ for all $a,b\in R$.
+        \item We always use \textit{additive notation} for the group $\left( R,+ \right)$.
+        \item We denote the identity of $\left( R,+ \right)$ by $0_R$ or $0$ and inverse of any $a\in R$ with respect to $+$ by $-a$.
+    \end{enumerate}
+    
+    \begin{definition}{Commutative}{Ring}
+        Let $R$ be a ring. If
+        \begin{equation*}
+            ab=ba
+        \end{equation*}
+        for every $a,b\in R$, then we say $R$ is a \emph{commutative} ring.
+    \end{definition}
+
+    \begin{prop}{Basic Properties of Rings}
+        Let $R$ be a ring. Then for every $a,b\in R$,
+        \begin{enumerate}
+            \item $0a = a 0 = 0$;
+            \item $\left( -a \right) b = a\left( -b \right) = -\left( ab \right)$; and
+            \item $\left( -a \right) \left( -b \right) = ab$.
+        \end{enumerate}
+    \end{prop}
+    
+    \begin{proof}
+        Let $a,b\in R$.
+        \begin{enumerate}
+            \item Observe that
+                \begin{equation*}
+                    0a = \left( 0+0 \right) a = 0a+0a
+                \end{equation*}
+                implying that $0a = 0$. $a0 =0$ can be shown similarly. \qqqedsym
+            \item Observe that
+                \begin{equation*}
+                    0 = 0b = \left( a+\left( -a \right)  \right) b = ab + \left( -a \right) b
+                \end{equation*}
+                so $-\left( ab \right) = \left( -a \right) b$. Similarly $a\left( -b \right) = -\left( ab \right)$ can be shown. \qqqedsym
+            \item Observe  that
+                \begin{equation*}
+                    \left( -a \right) \left( -b \right) = -\left( a\left( -b \right)  \right) = -\left( -\left( ab \right)  \right) = ab. \eqedsym
+                \end{equation*}
+        \end{enumerate}
+    \end{proof}
+
+    \begin{definition}{Unital}{Ring}
+        Let $R$ be a ring. If $R$ has a multiplicative inverse, then we say $R$ is \emph{unital}.
+    \end{definition}
+
+    \np From now, we are going to say a \textit{ring} to mean a \textit{unital ring} for convenience. We are going to write $1$ to denote the multiplicative identity.
+
+    \begin{prop}{}
+        Let $R$ be a ring. Then
+        \begin{equation*}
+            -a = \left( -1 \right) a
+        \end{equation*}
+        for all $a\in R$.
+    \end{prop}
+
+    \begin{proof}
+        Observe that, for any $a\in R$,
+        \begin{equation*}
+            0 = 0a = \left( 1+\left( -1 \right)  \right) a = 1a + \left( -1 \right) a = a+\left( -1 \right) a. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \np The smallest possible ring is $R=\left\lbrace 0 \right\rbrace$, with multiplication $00=0$. $R$ is called the \emph{trivial ring}. The trivial ring is often an annoyance in ring theory, since there is a special property that holds only for the trivial ring.
+
+    \begin{prop}{}
+        Let $R$ be a ring. Then $1=0$ if and only if $R$ is trivial.
+    \end{prop}
+
+    \begin{proof}
+        Clearly the multiplicative identity of $\left\lbrace 0 \right\rbrace$ is $0$ so $1=0$. Conversely, if $1=0$, then
+        \begin{equation*}
+            a = 1a = 0a = 0
+        \end{equation*}
+        for all $a\in R$ so $R$ is trivial.
+    \end{proof}
+    
+    \section{Fields}
+    
+    \begin{definition}{Unit}{of a Ring}
+        Let $R$ be a ring. $a\in R$ is called a \emph{unit} if $a$ has a multiplicative inverse. Moreover, we denote the set of units in $R$ by $R^\times$.
+    \end{definition}
+
+    \np Let $R$ be a ring. Then given any $a\in R^\times$, $a$ has a unique inverse, which is denoted by $a^{-1}$. Moreover, we know that $R^\times$ is a group, so called the \emph{group of units} of $R$.
+
+    \begin{definition}{Field}{}
+        Let $R$ be a ring.
+        \begin{enumerate}
+            \item If $R$ is nontrivial with $R^\times = R\setminus \left\lbrace 0 \right\rbrace$, then we say $R$ is a \emph{division} ring.
+            \item If $R$ is a commutative division ring, then we say $R$ is a \emph{field}.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $n\in\N$. Then $\left[ x \right] \in \Z /n\Z$ is a unit if and only if $\gcd\left( x,n \right) = 1$.
+    \end{prop}
+
+    \begin{proof}
+        If $\gcd\left( x,n \right) = 1$, then $ax+bn = 1$ for some $a,b\in\Z$ by Bezout's lemma. Since $n|ax-1$, $\left[ ax \right] = 1$ in $\Z /n\Z$. Conversely, if $\left[ ax \right] = 1$, then $ax-1 = bn$ for some $b\in \Z$, implying $\gcd\left( x,n \right) =1 $.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $n\in\N$. Then $\Z /n\Z$ is a field if and only if $n$ is prime.
+    \end{cor}	
+
+    \begin{theorem}{Weddeerburn's Little Theorem}
+        Every finite division ring is a field.
+    \end{theorem}
+
+    \section{Subrings}
+
+    \begin{definition}{Subring}{of a Ring}
+        Let $R$ be a ring. A subset $S\subseteq R$ is called a \emph{subring} of $R$ if
+        \begin{enumerate}
+            \item $S$ is a subgroup of $\left( R,+ \right)$;
+            \item \textit{closure under multiplication}: for every $a,b\in S$, $ab\in S$; and
+            \item $1\in S$.
+        \end{enumerate}
+    \end{definition}
+
+    \np An important remark: $\left\lbrace 0 \right\rbrace$, the trivial ring, is not a subring of any ring.
+
+    \begin{prop}{}
+        Let $R$ be a ring and let $S\subseteq R$ be a subring. Then $S$ is a ring.
+    \end{prop}
+
+    \np Let $R$ be a ring and suppose that $a\in R, n\in\Z$ are given. Since $R$ is a group under addition,
+    \begin{equation*}
+        nx = \underbrace{x+\cdots+x}_{n\text{ terms}}
+    \end{equation*}
+    is well-defined. This means we can think of $n$ as the element $n1\in R$, in the sense that for every $x\in R$ we can talk about $xn, nx, x+n$.
+    
+    \begin{prop}{}
+        Let $R$ be a ring. Then for every $x\in R, n,m\in\Z$,
+        \begin{enumerate}
+            \item $n1x = xn1 = nx$; and
+            \item $n\left( mx \right) = \left( nm \right) x$.
+        \end{enumerate}
+    \end{prop}
+
+    \clearpage
+    \begin{prop}{Prime Subrings}
+        Let $R$ be a ring. Then the set
+        \begin{equation*}
+            R_0 = \left\lbrace n1:n\in\Z \right\rbrace 
+        \end{equation*}
+        is a subring of $R$, and is contained in every subring of $R$. Furthermore,
+        \begin{equation*}
+            R_0 \iso \Z /k\Z
+        \end{equation*}
+        as a group, where $k=\min\left\lbrace m\in\N: m1=0 \right\rbrace\cup\left\lbrace 0 \right\rbrace$.\footnote{By convention, we write $\Z /0\Z$ to mean $\Z$.}
+    \end{prop}
+
+    \begin{definition}{Prime Subring, Characteristic}{of a Ring}
+        Consider the setting of Proposition 7.8.
+        \begin{enumerate}
+            \item We call $R_0$ the \emph{prime subring} of $R$.
+            \item We call $k$ the \emph{characteristic} of $R$, denoted as $\char\left( R \right)$.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{definition}{Center}{of a Ring}
+        Let $R$ be a ring. Then the \emph{center} of $R$, denoted as $Z\left( R \right)$, is
+        \begin{equation*}
+            Z\left( R \right) = \left\lbrace x\in R: \forall y\in R\left[ xy=yx \right]  \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a ring. Then $Z\left( R \right)$ is a subring of $R$.
+    \end{prop}
+
+    \begin{cor}{}
+        Let $R$ be a ring. If $R$ is nontrivial, then $Z\left( R \right)$ is nontrivial.
+    \end{cor}	
+
+    \section{Ring Homomorphisms}
+
+    \begin{definition}{Homomorphism}{}
+        Let $R,S$ be rings. A function $\varphi:R\to S$ is called a \emph{homomorphism} if
+        \begin{enumerate}
+            \item $\varphi$ is a group homomorphism of the additive groups;
+            \item $\varphi\left( ab \right) =\varphi\left( a \right) \varphi\left( b \right)$ for all $a,b\in R$; and
+            \item $\varphi\left( 1_R \right) = \varphi\left( 1_S \right)$.
+        \end{enumerate}
+        If (a), (b) are satisfied but not (c), we say $\varphi$ is \emph{non-unital}.
+    \end{definition}
+
+    \begin{definition}{Isomorphism}{}
+        Let $R,S$ be rings. A homomorphism $\varphi:R\to S$ is called an \emph{isomorphism} if bijective.
+    \end{definition}
+
+    \ex Let $R$ be a ring and let $n=\char\left( R \right)$. Then $\varphi:\Z /n\Z\to R_0$ by
+    \begin{equation*}
+        \varphi\left( \left[ x \right]  \right) = x1
+    \end{equation*}
+    is a ring isomorphism.
+
+    \clearpage
+    \begin{prop}{Properties of Ring Homomorphisms}
+        Let $R,S$ be rings and let $\varphi:R\to S$ be a homomorphism.
+        \begin{enumerate}
+            \item For every $a\in R, n\in\N\cup\left\lbrace 0 \right\rbrace$, $\varphi\left( a^n \right) = \varphi\left( a \right) ^n$.
+            \item For every $u\in R^\times$, $\varphi\left( u \right) \in S^\times$, and $\varphi\left( u^n \right) =\varphi\left( u \right) ^n$ for all $n\in\Z$.
+            \item If $\varphi$ is bijective, then $\varphi^{-1}$ is a homomorphism.
+        \end{enumerate}
+    \end{prop}
+    
+    \begin{prop}{}
+        Let $R,S$ be groups with $S\neq\left\lbrace 0 \right\rbrace$ and let $\varphi:R\to S$ be a homomorphism.
+        \begin{enumerate}
+            \item $\varphi\left( R \right)$ is a subring of $S$.
+            \item $\ker\left( \varphi \right)$ is a non-unital subring of $R$.
+        \end{enumerate}
+    \end{prop}
+
+    \section{Polynomial Rings}
+    
+    \begin{definition}{Polynomial Ring}{over a Ring}
+        Let $R$ be a ring. We define the \emph{polynomial ring} over $R$, denoted as $R\left[ x \right]$, as
+        \begin{equation*}
+            R\left[ x \right] = \left\lbrace \left( a_{i} \right)^{\infty}_{i=0} \subseteq R: \exists n\geq 0 \forall i> n \left[ a_i = 0 \right] \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \np We define operations $+, \cdot$ on $R\left[ x \right]$ by
+    \begin{equation*}
+        \left( a_{i} \right)^{\infty}_{i=0} + \left( b_{i} \right)^{\infty}_{i=0} = \left( a_{i}+b_{i} \right)^{\infty}_{i=0} 
+    \end{equation*}
+    and
+    \begin{equation*}
+        \left( a_{i} \right)^{\infty}_{i=0} \left( b_{i} \right)^{\infty}_{i=0} = \left( \sum^{k}_{i=0} a_ib_{k-i} \right)^{\infty}_{k=0} 
+    \end{equation*}
+    for all $\left( a_{i} \right)^{\infty}_{i=0} , \left( b_{i} \right)^{\infty}_{i=0} \in R\left[ x \right]$. We often write
+    \begin{equation*}
+        \sum^{n}_{i=0} a_ix^i = \left( a_{i} \right)^{\infty}_{i=0} 
+    \end{equation*}
+    by convention, where $n\in\N\cup\left\lbrace 0 \right\rbrace$ is such that $a_i=0$ for all $i>n$.
+
+    \begin{prop}{Polynomial Ring Is a Ring}
+        Let $R$ be a ring. Then $\left( R\left[ x \right] , +, \cdot \right)$ is a ring.
+    \end{prop}
+
+    \begin{definition}{Degree}{of a Polynomial}
+        Let $R$ be a ring and let $p\in R\left[ x \right]$. The \emph{degree} of $p$, denoted as $\deg\left( p \right)$, is defined as
+        \begin{equation*}
+            \deg\left( p \right) = 
+            \begin{cases} 
+                -\infty & \text{if }p=0 \\
+                \max\left\lbrace n\in\N\cup\left\lbrace 0 \right\rbrace : a_n\neq 0 \right\rbrace & \text{otherwise } \\
+            \end{cases}.
+        \end{equation*}
+    \end{definition}
+
+    \clearpage
+    \begin{prop}{}
+        Let $R$ be a ring. Then the set of constant polynomials in $R\left[ x \right]$ is a subring of $R\left[ x \right]$, and is isomorphic to $R$.
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a ring. If $R$ is commutative, then $R\left[ x \right]$ is commutative.
+    \end{prop}
+
+    \begin{definition}{Evaluation}{of a Polynomial at an Element of a Ring}
+        Let $R$ be a ring and let $p\in R\left[ x \right]$ be such that $p = \sum^{n}_{i=0} a_ix^i$ for some $n\in\N\cup\left\lbrace 0 \right\rbrace$. Given any $c\in R$, we define the \emph{evaluation} of $p$ at $c$, denoted as $p\left( c \right)$, to be
+        \begin{equation*}
+            p\left( c \right) = \sum^{n}_{i=0} a_ic^i.
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a ring. If $R$ is commutative, then for every $c\in R$, $\varphi:R\left[ x \right] \to R$ by
+        \begin{equation*}
+            \varphi\left( p \right) = p\left( c \right) 
+        \end{equation*}
+        is a homomorphism.
+    \end{prop}
+
+    \begin{prop}{}
+        Let $\K$ be a field. Then
+        \begin{enumerate}
+            \item $\deg\left( fg \right) = \deg\left( f \right) + \deg\left( g \right)$ for all $f,g\in\K\left[ x \right]$; and
+            \item $\K\left[ x \right] ^{\times}\iso\K^{\times}$.
+        \end{enumerate}
+    \end{prop}
+
+    \section{Group Rings}
+    
+    \begin{definition}{Group Ring}{of a Group with Coefficients in a Ring}
+        Let $G$ be a group and let $R$ be a ring. The \emph{group ring} of $G$ with coefficients in $R$, denoted as $RG$, is the set of formal sums
+        \begin{equation*}
+            \left\lbrace \sum^{}_{g\in G} c_gg: \forall g\in G\left[ c_g\in R \right] \land \exists X\subseteq G\left[ \left| X \right| \in\N\cup\left\lbrace 0 \right\rbrace \land \forall g\in G\setminus X \left[ c_g = 0 \right]  \right]  \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \np We define the operations on $RG$ as follows:
+    \begin{equation*}
+        \sum^{}_{g\in G} a_gg + \sum^{}_{g\in G}b_gg = \sum^{}_{g\in G} \left( a_g+b_g \right) g 
+    \end{equation*}     
+    and
+    \begin{equation*}
+        \left( \sum^{}_{g\in G} a_gg \right) \left( \sum^{}_{g\in G} b_gg \right) = \sum^{}_{g,h\in G} a_gb_hgh = \sum^{}_{k\in G} \left( \sum^{}_{g\in G} a_gb_{g^{-1} k} \right)  k
+    \end{equation*}
+    for all $\sum^{}_{g\in G} a_gg, \sum^{}_{g\in G} b_gg\in RG$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

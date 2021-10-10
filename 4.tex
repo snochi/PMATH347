@@ -1,0 +1,472 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Quotient Groups}
+
+    \section{Quotient Groups}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H\leq G$. Then the relation $R$ between $G /H\times G /H$ and $G /H$ defined by
+        \begin{equation*}
+            \left( \left[ g \right] , \left[ h \right]  \right) R \left[ gh \right] 
+        \end{equation*}
+        is a function if and only if $H$ is normal. Moreover, if $H$ is normal, then $ghH=\left( gH \right) \left( hH \right)$, the setwise product.
+    \end{prop}
+
+    \begin{proof}
+        Suppose that $R$ is function and let $g\in G, h\in H$. Then
+        \begin{equation*}
+            \left( \left[ g \right] , \left[ g^{-1}  \right]  \right) = \left[ e_G \right] .
+        \end{equation*}
+        Moreover,
+        \begin{equation*}
+            \left( \left[ gh \right] , \left[ g^{-1}  \right]  \right) = \left[ ghg^{-1}  \right] .
+        \end{equation*}
+        But $\left[ g \right] = \left[ gh \right]$, so $\left[ ghg^{-1}  \right] = \left[ e \right] $ since $R$ is a function. This means
+        \begin{equation*}
+            ghg^{-1} \sim_H e_G,
+        \end{equation*}
+        meaning $ghg^{-1} \in H$, so $H\trianglelefteq G$. Conversely, suppose that $H$ is normal. Then $h^{-1} Hh\subseteq H$, so
+        \begin{equation*}
+            \left( h^{-1} Hh \right) H \subseteq H.
+        \end{equation*}
+        Since $e\in h^{-1} Hh$, so 
+        \begin{equation*}
+            \left( h^{-1} Hh \right) H = H.
+        \end{equation*}
+        Hence
+        \begin{equation*}
+            \left( gH \right) \left( hH \right) = gh\left( h^{-1} Hh \right) H = ghH.
+        \end{equation*}
+        Now suppose that $S,T,U,U'\in G /H$ are such that
+        \begin{equation*}
+            \left( S,T \right) RU, \left( S,T \right) RU'.
+        \end{equation*}
+        Then
+        \begin{equation*}
+            U = ST = U',
+        \end{equation*}
+        so $R$ is a function.
+    \end{proof}
+
+    \begin{theorem}{Universal Property of Quotients}
+        Let $G,K$ be groups and let $N\trianglelefteq G$. Let $\varphi:G\to K$ be a homomorphism and let $q:G\to G /N$ be the quotient homomorphism. Then there is a homomorphism $\psi:G /N\to K$ such that $\psi\circ q=\varphi$ if and only if $N\subseteq\ker\left( \varphi \right)$. Furthermore, if $\psi$ exists, then it is unique. 
+    \end{theorem}
+
+    \begin{cor}{}
+        Let $G,K$ be groups and let $N\trianglelefteq G$. Then $q^{*} : \hom\left( G /N, K \right) \to \left\lbrace \varphi\in \hom\left( G,K \right) : N\subseteq\ker\left( \varphi \right)  \right\rbrace$ by
+        \begin{equation*}
+            q^{*} \left( \psi \right) = \psi\circ q
+        \end{equation*}
+        for every $\psi\in\hom\left( G /N,K \right)$ is a bijection, where $q$ is the quotient homomorphism.
+    \end{cor}	
+
+    \clearpage
+    \begin{lemma_inside}{}
+        Let $S,T,U$ be sets and let $f:S\to T$ be surjective. Let $g_1,g_2:T\to U$. If $g_1\circ f = g_2\circ f$, then $g_1=g_2$.
+    \end{lemma_inside}
+
+    \begin{proof}
+        Let $t\in T$ be arbitrary. Then $s\in S$ such that $f\left( s \right) = t$. So
+        \begin{equation*}
+            g_1\left( t \right) = g_1\left( f\left( s \right)  \right) = g_2\left( f\left( s \right)  \right) = g_2\left( t \right) ,
+        \end{equation*}
+        implying $g_1=g_2$.
+    \end{proof}
+
+    \begin{proof}[Proof of Theorem 4.2]
+        \begin{itemize}
+            \item ($\implies$) Suppose there exists $\psi:G /N\to K$ such that $\psi\circ q = \varphi$. Then given any $n\in N$, we have
+                \begin{equation*}
+                    \varphi\left( n \right) = \psi\left( q\left( n \right)  \right) = \psi\left( e_{G /N} \right) = e_K,
+                \end{equation*}
+                so $N\subseteq\ker\left( \varphi \right)$. \qqqedsym
+            \item ($\impliedby$) Suppose $N\subseteq\ker\left( \varphi \right)$. Define $\psi: G /N\to K$ by
+                \begin{equation*}
+                    \psi\left( \left[ g \right]  \right) = \varphi\left( g \right)
+                \end{equation*}
+                for every $\left[ g \right] \in G /N$. To show this $\psi$ is well-defined, suppose that $\left[ g \right] = \left[ h \right] $ for some $g,h\in G$. Then $g^{-1} h \in N \subseteq\ker\left( \varphi \right)$, so
+                \begin{equation*}
+                    \varphi\left( g \right) ^{-1} \varphi\left( h \right) = \varphi\left( g^{-1} h \right) = e,
+                \end{equation*}
+                so $\varphi\left( g \right) = \varphi\left( h \right)$. Hence $\psi\left( \left[ g \right]  \right) = \psi\left( \left[ h \right]  \right)$, implying that $\psi$ is well-defined. Clearly
+                \begin{equation*}
+                    \psi\left( q\left( g \right)  \right) = \psi\left( \left[ g \right]  \right) = \varphi\left( g \right) 
+                \end{equation*}
+                for all $g\in G$, so $\psi\circ q = \varphi$. To show that $\psi$ is a homomorphism, observe that
+                \begin{equation*}
+                    \psi\left( \left[ g \right] \left[ h \right]  \right) = \psi\left( \left[ gh \right]  \right) = \varphi\left( gh \right) = \varphi\left( g \right) \varphi\left( h \right) = \psi\left( \left[ g \right]  \right) \psi\left( \left[ h \right]  \right).
+                \end{equation*}
+                Since $q$ is surjective, the uniqueness of $\psi$ follows from Lemma 4.2.2.
+        \end{itemize} 
+    \end{proof}
+
+    \section{The Isomorphism Theorems}
+
+    \begin{theorem}{First Isomorphism Theorem}
+        Let $G,K$ be groups and let $\varphi:G\to K$ be a homomorphism. Then there exists isomorphism $\psi:G /\ker\left( \varphi \right) \to \varphi\left( G \right)$ such that $\varphi = \psi\circ  q$, where $q:G\to G /\ker\left( \varphi \right) $ is the quotient homomorphism.
+    \end{theorem}
+
+    \begin{proof}
+        Clearly $\ker\left( \varphi \right)$ is a subset of itself, so by the universal property of quotients, there exists a homomorphism $\psi:G /\ker\left( \varphi \right) \to \varphi\left( G \right) $\footnote{Formally, the universal property guarantees the existence of $\psi:G /\ker\left( \varphi \right) \to K$ with such properties. However, since $\psi\left( G /\ker\left( \varphi \right)  \right) = \varphi\left( G \right)$ by definition, we can view $\psi$ as a function to $\varphi\left( G \right) $.} such that $\psi\circ q = \varphi$, and in particular $\psi$ is a surjection with $\psi\left( \left[ g \right]  \right) = \varphi\left( g \right)$ for every $g\in G$. Moreover, if $g\in G$ is such that $\psi\left( \left[ g \right]  \right) = e_K$, then $\varphi\left( g \right) = e_K$ so $g\in \ker\left( \varphi \right)$. This means $\left[ g \right] = \left[ e \right]$, implying that $\psi$ is injective. Thus $\psi$ is bijective, so an isomorphism.
+    \end{proof}
+
+    \clearpage
+    \begin{prop}{}
+        Let $G,H$ be groups and let $\varphi:G\to H$ be a homomorphism. Then
+        \begin{enumerate}
+            \item for every $G_1,G_2\leq G$ such that $G_1\leq G_2$, $f\left( G_1 \right) \leq f\left( G_2 \right)$; and
+            \item for every $H_1,H_2\leq H$ such that $H_1\leq H_2$, $\varphi^{-1} \left( H_1 \right) \leq \varphi^{-1} \left( H_2 \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $G,H$ be groups and let $\varphi:G\to K$ be a homomorphism. Then for every $H_1,H_2\leq H$,
+        \begin{equation*}
+            \varphi^{-1} \left( H_1\cap H_2 \right) = \varphi^{-1} \left( H_1 \right) \cap \varphi^{-1} \left( H_2 \right) .
+        \end{equation*}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $G,H$ be groups and let $\varphi:G\to H$ be a surjective homomorphism. Then for every $K\leq H$,
+        \begin{equation*}
+            \varphi\left( \varphi^{-1} \left( K \right)  \right) = K.
+        \end{equation*}
+    \end{prop}
+
+    \np Observe that Proposition 4.4, 4.5, 4.6 have (almost) nothing to do with the group theory; they are direct consequences of the properties of functions.
+
+    \np Given a group $G$, write $\sub\left( G \right)$ to denote the collection of subgroups of $G$. Now, suppose that we have groups $G,H$ and a homomorphism $\varphi:G\to H$. Then $\varphi$ induces a function $\varphi':\sub\left( G \right) \to \sub\left( H \right)$. If this $\varphi'$ is surjective, then we know that there is a left inverse $\varphi^{*} :\sub\left( H \right) \to\sub\left( G \right)$. Moreover, $\varphi^{*} $ is injective. Now we have the following question: what is the image of $\varphi^{*} $ in $\sub\left( G \right)$?
+
+    \begin{prop}{}
+        Let $G,H$ be groups and let $\varphi:G\to H$ be a homomorphism. Then
+        \begin{enumerate}
+            \item for every $K\leq H$, $\ker\left( \varphi \right) \leq \varphi^{-1} \left( K \right)$; and
+            \item for every $K\leq G$ such that $\ker\left( \varphi \right) \leq K$, $\varphi^{-1} \left( \varphi\left( K \right)  \right) = K$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Observe that $\ker\left( \varphi \right) = \varphi^{-1} \left( \left\lbrace e_H \right\rbrace  \right) \leq \varphi^{-1} \left( H \right)$. \qqqedsym
+            \item Clearly $K\subseteq\varphi^{-1} \left( \varphi\left( K \right) \right)$. Conversely, suppose that $y\in\varphi^{-1} \left( \varphi\left( K \right)  \right)$. Then $\varphi\left( y \right) \in \varphi\left( K \right)$, so $\varphi\left( y \right) = \varphi\left( k \right)$ for some $k\in K$. This means $\varphi\left( k^{-1} y \right) = e$, $k^{-1} y\in \ker\left( \varphi \right) \subseteq K$. Thus $y\in K$. \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \begin{theorem}{Correspondence Theorem / Fourth Isomorphism Theorem}
+        Let $G,H$ be groups and let $\varphi:G\to H$ be a surjective homomorphism. Write
+        \begin{equation*}
+            \mF = \left\lbrace K\leq G: \ker\left( \varphi \right) \leq K \right\rbrace .
+        \end{equation*}
+        \begin{enumerate}
+            \item $\varphi$ induces a bijection between $\mF, \sub\left( H \right)$ defined by
+                \begin{equation*}
+                    K\mapsto\varphi\left( K \right) 
+                \end{equation*}
+                for every $K\in\mF$.
+            \item For every $K_1,K_2\in\mF$,
+                \begin{enumerate}
+                    \item $K_1\leq K_2\iff \varphi\left( K_1 \right) \leq\varphi\left( K_2 \right)$;
+                    \item $\varphi\left( K_1\cap K_2 \right) = \varphi\left( K_1 \right) \cap\varphi\left( K_2 \right)$; and
+                    \item $K_1\trianglelefteq G\iff\varphi\left( K_1 \right) \trianglelefteq H$.
+                \end{enumerate}
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Since $\varphi$ is surjective, $\varphi\left( \varphi^{-1} \left( K' \right)  \right) = K'$ for every $K'\leq H$ by Proposition 4.6. Conversely, for every $K\in\mF$, $\varphi^{-1} \left( \varphi\left( K \right)  \right) = K$ by Proposition 4.7. Thus $\varphi$ induces a bijection between $\mF,K$. \qqqedsym
+            \item
+                \begin{enumerate}
+                    \item This follows from the fact that $\varphi,\varphi^{-1} $ on subsets are bijections, so they preserve $\leq$.
+                    \item Observe that
+                        \begin{equation*}
+                            \varphi^{-1} \left( \varphi\left( K_1 \right) \cap\varphi\left( K_2 \right)  \right) = \varphi^{-1} \left( \varphi\left( K_1 \right)  \right) \cap \varphi^{-1} \left( \varphi\left( K_2 \right)  \right) = K_1\cap K_2,
+                        \end{equation*}
+                        since any pullback map preserves intersection. Hence
+                        \begin{equation*}
+                            \varphi\left( K_1\cap K_2 \right) = \varphi\left( \varphi^{-1} \left( \varphi\left( K_1 \right) \cap \varphi\left( K_2 \right)  \right)  \right) = \varphi\left( K_1 \right) \cap \varphi\left( K_2 \right) . 
+                        \end{equation*}
+                \end{enumerate}
+            \item Homework. \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \begin{cor}{Correspondence Theorem for Quotient Groups}
+        Let $G$ be a group and let $N\trianglelefteq G$. Let
+        \begin{equation*}
+            \mF = \left\lbrace K\leq G: N\leq K \right\rbrace .
+        \end{equation*}
+        \begin{enumerate}
+            \item The quotient map $q:G\to G /N$ induces a bijection between $\mF, \sub\left( H \right)$ by
+                \begin{equation*}
+                    K\mapsto q\left( K \right) 
+                \end{equation*}
+                for every $K\in\mF$.
+            \item For every $K_1,K_2\in\mF$,
+                \begin{enumerate}
+                    \item $K_1\leq K_2\iff q\left( K_1 \right) \leq q\left( K_2 \right)$;
+                    \item $q\left( K_1\cap K_2 \right) = q\left( K_1 \right) \cap q\left( K_2 \right)$; and
+                    \item $K_1\trianglelefteq G\iff q\left( K_1 \right) \trianglelefteq G /N$.
+                \end{enumerate}
+        \end{enumerate}
+    \end{cor}	
+
+    \begin{proof}
+        This follows directly from Theorem 4.8 and the fact that the quotient map $q$ is a surjective homomorphism.
+    \end{proof}
+
+    \np Although we introduced Corollary 4.8.1 as a consequence of Theorem 4.8, we may proceed in the reverse direction also. From the first isomorphism theorem, given any surjective homomorphism $\varphi:G\to H$, where $G,H$ are groups, we have $G /\ker\left( \varphi \right) \iso H$. Hence there is a bijection between $\sub\left( H \right)$ and $\sub\left( G /\ker\left( \varphi \right)  \right)$. Thus, when we combine the first isomorphism theorem with Corollary 4.8.1 (and the subgroup correspondence for isomorphisms), we obtain Theorem 4.8.
+
+    \np Let $G$ be a group, $N\trianglelefteq G$, and $K\leq G$ be such that $N\leq K$. Let $q_G:G\to G /N$ be the quotient map. Moreover, it is immediate that $N\trianglelefteq K$, so we also have the quotient map $q_K:K\to K /N$. Since $\ker\left( q_G\circ i_K \right)= N$, where $i_K:K\to G$ is the inclusion map (i.e. $i_K\left( k \right) = k$ for every $k\in K$), the first isomorphism theorem implies the existence of an isormorphism $\psi: K /N\to q_G\circ i_K\left( K \right)$. But $q_G\circ i_K\left( K \right) = q_G\left( K \right)$, so $\psi$ is an isomorphism between $K /N, q_G\left( K \right)$ such that $\psi\circ q_K = q_G\circ i_K$. We summarize this result by the following proposition.
+
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be a group, $N\trianglelefteq G$, and $K\leq G$ be such that $N\leq K$. Let $q:G\to G /N$ be the quotient map. Then $\psi:K /N\to q\left( K \right)$ by
+        \begin{equation*}
+            \psi\left( kN \right) = kN
+        \end{equation*}
+        for every $kN\in K /N$ is an isomorphism.
+    \end{prop}
+
+    \noindent Because of this isomorphism, we have the following notation: we denote the subgroup $q\left( K \right)$ corresponding to $K$ in $G /N$ by $K /N$.
+
+    \begin{theorem}{Third Isomorphism Theorem}
+        Let $G$ be a group and let $N,K\trianglelefteq G$ be such that $N\leq K$. Let
+        \begin{itemize}
+            \item $q_1$ be the quotient map $G\to G /N$;
+            \item $q_2$ be the quotient map $G /N\to \left( G /N \right) /\left( K /N \right) $; and
+            \item $q_1$ be the quotient map $G\to G /K$.
+        \end{itemize} 
+        Then there is an isomorphism $\psi:G/ K\to \left( G /N \right) / \left( K /N \right) $ such that $\psi\circ q_3 = q_2\circ q_1$.
+    \end{theorem}
+
+    \begin{proof}
+        Note that
+        \begin{equation*}
+            \ker\left( q_2\circ q_1 \right) = \left( q_2\circ q_1 \right) ^{-1} \left( \left\lbrace e_{\left( G /N \right) / \left( K /N\right) } \right\rbrace  \right) = q_1^{-1} \left( q_2^{-1} \left( \left\lbrace e_{\left( G /N \right) / \left( K /N\right) } \right\rbrace  \right)  \right) = q_1^{-1} \left( K /N \right) = K
+        \end{equation*}
+        by the correspondence theorem. Moreover, $q_2\circ q_1\left( G \right) = \left( G /N \right) /\left( K /N \right)$, since both $q_1,q_2$ are surjective. Thus by the first isomorphism theorem, there exists an isomorphism $\psi:G /K\to \left( G /N \right) /\left( K /N \right)$ such that $\psi\circ q_3 = q_2\circ q_1$.
+    \end{proof}
+
+    \np When $K$ is not normal, then $G /K$ is not a group, so we cannot hope an analogous result to the third isomorphism theorem. However, we can still discuss about indexes: $\left[ G:K \right], \left[ G /N: K /N\right]$.
+
+    \begin{prop}{}
+        Let $G$ be a group, $N\trianglelefteq G$, and $K\leq G$ be such that $N\leq K$. Then
+        \begin{equation*}
+            \left[ G:K \right] = \left[ G /N:K /N \right] .
+        \end{equation*}
+    \end{prop}
+
+    \noindent We can restate the above in terms of a surjective homomorphism, just as Theorem 4.8 and Corollary 4.8.1; the equivalence of Proposition 4.11, 4.12 is provided by the first isomorphism theorem.
+
+    \begin{prop}{}
+        Let $G,H$ be groups and let $\varphi:G\to H$ be a surjective homomorphism. Then for every $K\leq G$ containing $\ker\left( \varphi \right)$, we have
+        \begin{equation*}
+            \left[ G:K \right] = \left[ H:\varphi\left( K \right)  \right] .
+        \end{equation*}
+    \end{prop}
+
+    \begin{prop}{}
+        Define $f:G /K\to H /\varphi\left( K \right)$ by
+        \begin{equation*}
+            f\left( gK \right) = \varphi\left( g \right) \varphi\left( K \right) 
+        \end{equation*}
+        for every $gK\in G /K$. To show that this $f$ is well-defined, let $g,h\in G$ be such that $gK=hK$. Then $h^{-1} g \in K$, so
+        \begin{equation*}
+            \varphi\left( h \right) ^{-1} \varphi\left( g \right) = \varphi\left( h^{-1} g \right) \in \varphi\left( K \right) ,
+        \end{equation*}
+        implying $\varphi\left( g \right) \varphi\left( K \right) = \varphi\left( h \right) \varphi\left( K \right)$. Hence $f$ is well-defined. Moreover, by the surjectivity of $\varphi$, $f$ is surjective as well. To show that $f$ is injective, let $gK,hK\in G /K$ be such that $f\left( gK \right) = f\left( hK \right)$. This means
+        \begin{equation*}
+            \varphi\left( g \right) \varphi\left( K \right) = \varphi\left( h \right) \varphi\left( K \right) .
+        \end{equation*}
+        Therefore
+        \begin{equation*}
+            \varphi\left( h^{-1} g \right) = \varphi\left( h \right) ^{-1} \varphi\left( g \right) \in \varphi\left( K \right) ,
+        \end{equation*}
+        so
+        \begin{equation*}
+            h^{-1} g\in\varphi^{-1} \left( \varphi\left( K \right)  \right) = K.
+        \end{equation*}
+        Hence $gK=hK$, implying that $f$ is injective. Thus $f$ is a bijection, and the result follows.
+    \end{prop}
+
+    \np We now move on to prove the second isomorphism theorem.
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H,K\leq G$. Then every element of $HK$ can be written as $hk$ for some unique $h\in H, k\in K$ if and only if $H\cap K=\left\lbrace e_G \right\rbrace$.
+    \end{prop}
+
+    \noindent By Proposition 4.14, if $H\cap K = \left\lbrace e_G \right\rbrace$, then $\left| HK \right| = \left| H \right| \left| K \right|$. But what is $\left| HK \right| $ if $H\cap K\neq \left\lbrace e_G \right\rbrace$? We note that
+    \begin{equation*}
+        HK = \bigcup^{}_{h\in H} hK,
+    \end{equation*}
+    a union of left cosets of $K$. So write
+    \begin{equation*}
+        \mF = \left\lbrace hK: h\in H \right\rbrace \subseteq G /K.
+    \end{equation*}
+    Then $\mF$ is a partition of $HK$, so $\left| HK \right| = \left| X \right| \left| K \right|$. This brings us the next question: how large is $X$?
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H,K\leq G$. For every $h_1,h_2\in H$, $h_1K=h_2K$ if and only if $h_1\left( H\cap K \right) = h_2\left( H\cap K \right)$.
+    \end{prop}
+
+    \begin{proof}
+        Observe that
+        \begin{equation*}
+            h_1K = h_2K \iff h_1^{-1} h_2\in K \iff h_1^{-1} h_2\in H\cap K \iff h_1\left( H\cap K \right) = h_2\left( H\cap K \right). \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{cor}{}
+        Consider the setting of Proposition 4.15. Then $\varphi: H /\left( H\cap K \right) \to X$ by
+        \begin{equation*}
+            \varphi\left( hH\cap K \right) = hK
+        \end{equation*}
+        is a bijection.
+    \end{cor}	
+
+    \begin{proof}
+        By Proposition 4.15 $\varphi$ is well-defined and injective. But $\varphi$ is clearly surjective also.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H,K\leq G$. Then
+        \begin{equation*}
+            \left| HK \right| \left| H\cap K \right| = \left| H \right| \left| K \right| .
+        \end{equation*}
+    \end{prop}
+
+    \np We may want to rephrase Proposition 4.16 in terms of indexes, just as Lagrange's theorem. In fact, by rearranging the equation,
+    \begin{equation*}
+        \left[ H:H\cap K \right] = \left| X \right| = \frac{\left| HK \right| }{\left| K \right| }.
+    \end{equation*}
+    However, the problem is $HK$ may not be a group at all; the following proposition tells us when $HK\leq G$.
+
+    \clearpage
+    \begin{prop}{}
+        Let $G$ be a group and let $H,K\leq G$. Then the following are equivalent.
+        \begin{enumerate}
+            \item $HK\leq G$.
+            \item $HK=KH$.
+            \item $KH\subseteq HK$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        Since (b)$\iff$(c) is clear, it suffices to show that (a)$\iff$(b). Suppose that $HK\leq G$ and fix $h\in H, k\in K$. Then $hk\in HK$, so $kh\in HK$ as well. Also $k^{-1} h^{-1} = \left( hk \right) ^{-1} \in HK$, so $k^{-1} h^{-1} = h_0k_0$ for some $h_0\in H, k_0\in K$. Hence
+            \begin{equation*}
+                hk = \left( k^{-1} h^{-1}  \right) ^{-1} = k_0^{-1} h_0^{-1} \in KH.
+            \end{equation*}
+            Hence we showed both inclusions $KH\subseteq HK, HK\subseteq KH$, implying (a)$\implies$(b). Conversely, suppose that $HK=KH$. Since $e_G\in H\cap K$, $e_G\in HK$. Moreover, given any $x,y\in HK$, we have
+            \begin{equation*}
+                x = h_0k_0, y = h_1k_1
+            \end{equation*}
+            for some $h_0,h_1\in H, k_0,k_1\in K$. But we assumed $KH=HK$, so $x^{-1} h_1 = k_0^{-1} h_0^{-1} h_1 = h_2k_2$ for some $h_2\in H, k_2\in K$. Thus
+            \begin{equation*}
+                x^{-1} y = \left( k_0^{-1} h_0^{-1} h_1 \right) k_1 = h_2k_2k_1\in HK,
+            \end{equation*}
+            as desired.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $G$ be a group and let $H,K\leq G$. If $KH\subseteq HK$, then $\left[ H:H\cap K \right] = \left[ HK:K \right]$.
+    \end{cor}	
+
+    \noindent The next question to ask is: when is $KH\subseteq HK$? A sufficient condition would be
+    \begin{equation*}
+        \forall h\in H\exists h'\in H\left[ Kh=h'K \right] .
+    \end{equation*}
+    This means there is an one-to-one correspondence between the left cosets and right cosets of $H$ of the form $kH, Hk$ for some $k\in K$, and surely this is more than enough. Since we know that $Kh = h'K$ implies $h'K=hK$, we can rephrase this as follows: $hKh^{-1} = K$ for every $h\in H$ or $H\subseteq N_G\left( K \right)$.
+
+    \begin{cor}{}
+        Let $G$ be a group and let $H,K\subseteq G$. If $H\subseteq N_G\left( K \right)$, then $HK\leq G$. In particular,
+        \begin{equation*}
+            \left[ H:H\cap K \right] = \left[ HK:K \right] .
+        \end{equation*}
+    \end{cor}	
+
+    \noindent Moreover, we can further investigate what else the condition $H\subseteq N_G\left( K \right)$ implies. We know that
+    \begin{equation*}
+        hKh^{-1} = K, kKk^{-1} = K
+    \end{equation*}
+    for every $h\in H, k\in K$, so $H,K\subseteq N_{HK}\left( K \right)$. But $N_{HK}\left( K \right) \leq HK$ so we have $N_{HK}\left( K \right) = HK$. Hence $K\trianglelefteq HK$. Furthermore, for every $k\in H\cap K, h\in H$, we have
+    \begin{equation*}
+        hkh^{-1} \in H\cap K
+    \end{equation*}
+    since $H\subseteq N_G\left( K \right)$ and $h,k\in H$. Therefore we also conclude that $H\cap K\trianglelefteq H$. But whenever we have a normal subgroup, its index is the order of the quotient group associated with it, which means the equation in Corollary 4.17.2 can be rewritten as
+    \begin{equation*}
+        \left| H / \left( H\cap K \right)  \right| = \left| HK /K \right| .
+    \end{equation*}
+    Since $H / \left( H\cap K \right) , HK /K$ have the same order, we should really ask if there is an isomorphism between them. This is what the second isomorphism theorem is about.
+
+    \clearpage
+    \begin{theorem}{Second Isomorphism Theorem}
+        Let $G$ be a group and let $H,K\leq G$ be such that $H\subseteq N_G\left( K \right)$.
+        \begin{enumerate}
+            \item $HK\leq G$.
+            \item $K\trianglelefteq HK$.
+            \item $H\cap K\trianglelefteq H$.
+            \item Let $i_H:H\to HK$ be the inclusion map and let $q_1:H\to H /\left( H\cap K \right) , q_2: HK\to HK /K$ be the quotient maps. Then there exists an isomorphism $\psi:H /H\cap K\to HK /K$ such that $\psi\circ q_1 = q_2\circ i_H$.
+        \end{enumerate}
+    \end{theorem}
+
+    \begin{proof}
+        We have shown (a), (b), (c) previously. Fix $h\in H, k\in K$. Then $hkK = hK$, so
+        \begin{equation*}
+            HK /K = \left\lbrace gK:g\in HK \right\rbrace = \left\lbrace hK:h\in H \right\rbrace .
+        \end{equation*}
+        Hence
+        \begin{equation*}
+            q_2\circ i_H\left( H \right) = \left\lbrace hK:h\in H \right\rbrace = HK /K
+        \end{equation*}
+        and
+        \begin{equation*}
+            \ker\left( q_2\circ i_H \right) = i_H^{-1} \left( q_2^{-1} \left( \left\lbrace e_{HK /K} \right\rbrace  \right)  \right) = i_H^{-1} \left( K \right) = H\cap K.
+        \end{equation*}
+        Thus the result follows from the first isomorphism theorem.
+    \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    
+
+
+\end{document}

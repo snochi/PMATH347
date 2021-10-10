@@ -1,0 +1,510 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{PIDs and UFDs} 
+
+    \section{Divisors and Greatest Common Divisors}
+    
+    \begin{definition}{Divisor}{of an Element of a Commutative Ring}
+        Let $R$ be a ring and let $x,y\in R$. We say $x$ \emph{divides} $y$, written as $x|y$, if $y=xr$ for some $r\in R$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a commutative ring and let $x,y\in R$. Then $x|y$ if and only if $y\in \left( x \right) $.
+    \end{prop}
+
+    \begin{definition}{Associates}{of a Commutative Ring}
+        Let $R$ be a commutative ring and let $x,y\in R$. We say $x,y$ are \emph{associates}, denoted as $x\sim y$, if $y=ux$ for some unit $u\in R$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a commutative ring and let $x_1,x_2,y_1,y_2\in R$.
+        \begin{enumerate}
+            \item $\sim$ is an equivalence relation.
+            \item If $x_1\sim x_2, y_1\sim y_2$, then $x_1|y_1$ if and only if $x_2|y_2$.
+            \item If $x\sim y$, then $x|y$ and $y|x$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a commutative ring and let $x,y\in R$. Then $x|y$ and $y|x$ if and only if $\left( x \right) = \left( y \right)$.
+    \end{prop}
+
+    \begin{prop}{Characterization of Associates in Integral Domains}
+        Let $R$ be a domain and let $x,y\in R$. Then $x\sim y$ if and only if $x|y$ and $y|x$.
+    \end{prop}
+
+    \begin{proof}
+        The forward direction is provided by (c) of Proposition 11.2. For the reverse direction, suppose
+        \begin{equation*}
+            y = xr, x=yt
+        \end{equation*}
+        for some $r,t\in R$. It suffices to show $r,t$ are units. We may assume $y=0$, since otherwise $x=0$ as well. Now
+        \begin{equation*}
+            y = xr = yrt, 
+        \end{equation*}
+        so
+        \begin{equation*}
+            \left( 1-rt \right) y = 0.
+        \end{equation*}
+        Since $y\neq 0$ and $R$ is a domain, $1-rt=0$. Thus $r,t$ are units, as required.
+    \end{proof}
+
+    \begin{definition}{Common Divisor, Greatest Common Divisor}{of Elements of a Commutative Ring}
+        Let $R$ be a commutative ring and let $a,b\in R$. $d\in R$ is called a \emph{common divisor} of $a,b$ if $d|a, d|b$. We say $d$ is a \emph{greatest common divisor} if for all $d'\in R$ that is a common divisor of $a,b$, $d'|d$.
+    \end{definition}
+
+    \np For arbitrary rings, greatest common divisor of two elements need not be unique. We however write
+    \begin{equation*}
+        d = \gcd\left( x,y \right) 
+    \end{equation*}
+    to mean that $d$ is \textit{a} greatest common divisor of $x,y$.
+
+    \clearpage
+    \begin{prop}{Characterization of Divisors}
+        Let $R$ be a commutative ring and let $a,b,d\in R$. Then the following are equivalent.
+        \begin{enumerate}
+            \item $d$ is a common divisor of $a,b$.
+            \item $d|xa+yb$ for all $x,y\in R$.
+            \item $\left( a,b \right) \subseteq\left( d \right)$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{itemize}
+            \item (1)$\iff$(2) Observe that
+                    \begin{equation*}
+                        d|a\land d|b\iff \forall x,y\in R\left[ d|xa\land d|yb \right] \iff \forall x,y\in R\left[ d|xa+yb \right] .
+                    \end{equation*}
+            \item (2)$\iff$(3) Observe that
+                    \begin{equation*}
+                        \forall x,y\in R\left[ d|xa+yb \right] \iff \forall y\in\left( a,b \right) \left[ d|y \right] \iff \forall y\in\left( a,b \right) \left[ y\in\left( d \right)  \right] . \eqedsym
+                    \end{equation*}
+        \end{itemize} 
+    \end{proof}
+
+    \np Let $R$ be a domain and let $x,y\in R$. If $d,d'\in R$ are greatest common divisors of $x,y$, then $d|d', d'|d$. Hence $d\sim d'$, and we say that greatest common divisors in integral domains are \textit{unique up to units}.
+
+    \begin{prop}{Characterization of the Existence of Greatest Common Divisors}
+        Let $R$ be a commutative ring and let $a,b\in R$. 
+        \begin{enumerate}
+            \item Then $a,b$ have a greatest common divisor if and only if there exists a principal ideal $I\subseteq R$ such that
+                \begin{enumerate}
+                    \item $\left( a,b \right) \subseteq I$; and
+                    \item if $J\subseteq R$ is a principal ideal with $\left( a,b \right) \in J$, then $I\subseteq J$.
+                \end{enumerate}
+            \item If $I$ exists, then it is unique, and
+                \begin{equation*}
+                    I = \left( d \right) \iff d=\gcd\left( a,b \right) 
+                \end{equation*}
+                for all $d\in R$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{cor}{}
+        Let $R$ be a commutative ring and let $a,b\in R$. If $\left( a,b \right)$ is principal, then a greatest common divisor of $a,b$ exists. Consequently, if $d\in R$ is a common divisor of $a,b$ such that $d=xa+yb$ for some $x,y\in R$, then $d$ is a greatest common divisor of $a,b$.
+    \end{cor}	
+
+    \begin{cor}{}
+        Let $R$ be a commutative ring and let $a,b\in R$. If $\left( a \right) , \left( b \right)$ are comaximal, then $1$ is a greatest common divisor of $a,b$.
+    \end{cor}	
+
+    \clearpage
+    \section{Principal Ideal Domains}
+
+    \begin{definition}{Principal Ideal Domain (PID)}{}
+        Let $R$ be an integral domain. We say $R$ is a \emph{principal ideal domain} if every ideal of $R$ is principal.
+    \end{definition}
+    
+    \ex
+    \begin{enumerate}
+        \item $\Z$ is a PID.
+        \item For any field $\K$, $\K\left[ x \right]$ is a PID.
+        \item $\Z\left[ x \right]$ is not a PID, since $\left( 2,x \right)$ is not principal.
+        \item $\K\left[ x,y \right]$ is not a PID for any field $\K$, since $\left( x,y \right)$ is not principal.
+    \end{enumerate}
+
+    \begin{prop}{}
+        Let $R$ be a PID and let $a,b\in R$.
+        \begin{enumerate}
+            \item $a,b$ has a greatest common divisor.
+            \item For any $d\in R$, $d$ is a greatest common divisor of $a,b$ if and only if $d$ is a common divisor of $a,b$ and $d=xa+yb$ for some $x,y\in R$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a PID. Then given any ideal $I\subseteq R$, $I$ is prime if and only if maximal.
+    \end{prop}
+
+    \begin{proof}
+        \begin{itemize}
+            \item ($\implies$) Let $I\subseteq R$ is a nonzero prime ideal and let $J\subseteq R$ be a proper ideal of $R$ containing $I$. Since $R$ is a PID, $I=\left( a \right) , J=\left( b \right)$ for some $a,b\in R$. Hence
+                \begin{equation*}
+                    \left( a \right)  = I\subseteq J = \left( b \right) ,
+                \end{equation*}
+                implying $a=br$ for some $r\in R$. Since $I$ is prime and $br\in I$, $b\in I$ or $r\in I$. Suppose, for the sake of contradiction, $r\in I$. Then $\left( r \right) \subseteq I =\left( a \right)$, and since $a=br\in \left( r \right)$, $\left( a \right) \subseteq \left( r \right)$, so $\left( a \right) = \left( r \right)$. Since $R$ is a domain, $a\sim r$, so $a=ur$ for some unit $u\in R$. So $br=a=ur$, which means $\left( b-u \right) r = 0$. Since $I$ is nonzero, $r\neq 0$, so $b=u$. But this means $J=\left( b \right) = \left( u \right) = R$, a desired contradiction. Hence $b\in I$, implying $J\subseteq I$ as well. This means $I=J$, so $I$ is maximal, as required.
+            \item ($\impliedby$) This direction holds for any arbitrary commutative ring (see Corollary 9.12.1). \qqedsym
+        \end{itemize}
+    \end{proof}
+
+    \begin{cor}{}
+        Let $R$ be a commutative ring such that $R\left[ x \right]$ is a PID. Then $R$ is a field.
+    \end{cor}	
+
+    \begin{proof}
+        Since $R\left[ x \right]$ is a PID, $R\left[ x \right]$ is an integral domain. So as a subring of $R\left[ x \right]$, $R$ is also an integral domain. Since
+        \begin{equation*}
+            R\iso R\left[ x \right] /\left( x \right) ,
+        \end{equation*}
+        $\left( x \right)$ is prime, so by Proposition 11.8, $\left( x \right)$ is maximal. Thus $R$ is a field.
+    \end{proof}
+
+    \begin{definition}{Euclidean Domain}{}
+        Let $R$ be an integral domain. We say $R$ is a \emph{Euclidean domain} if there exists a function $N:R\to\N\cup\left\lbrace 0 \right\rbrace$ such that
+        \begin{enumerate}
+            \item $N\left( 0 \right) = 0$; and
+            \item for all $x,y\in R$ with $x\neq 0$, $y=qx+r$ for some $q,r\in R$ with $r=0$ or $N\left( r \right) < N\left( x \right)$.
+        \end{enumerate}
+        We say $N$ is a \emph{norm} on $R$.
+    \end{definition}
+
+    \begin{prop}{}
+        Every Euclidean domain is a PID.
+    \end{prop}
+
+    \begin{proof}
+        Let $R$ be a Euclidean domain and let $I\subseteq R$ be an ideal in $R$. We may assume $I$ is nontrivial. Let $x\in I$ be such that
+        \begin{equation*}
+            N\left( x \right)  = \min\left\lbrace N\left( y \right) :y\in I\setminus \left\lbrace 0 \right\rbrace \right\rbrace 
+        \end{equation*}
+        Then for every $y\in I$, $y=qx+r$ for some $q,r\in R$ with $r=0$ or $N\left( r \right) < N\left( x \right)$. Since
+        \begin{equation*}
+            r = y-qx\in I,
+        \end{equation*}
+        by the minimality of $N\left( x \right)$, $r=0$. Hence $y=qx$, implying that $I\subseteq \left( x \right)$. But $x\in I$ means $\left( x \right) \subseteq I$, so $I=\left( x \right)$. Thus $R$ is a PID.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $\K$ be a field. Then $\K\left[ x \right]$ is a Euclidean domain.
+    \end{prop}
+
+    \begin{proof}
+        It is a well-known result that $\deg$ is a norm on $\K\left[ x \right]$.
+    \end{proof}
+
+    \begin{cor}{}
+        Let $R$ be a commutative ring. Then the following are equivalent.
+        \begin{enumerate}
+            \item $R\left[ x \right]$ is a Euclidean domain.
+            \item $R\left[ x \right]$ is a PID.
+            \item $R$ is a field.
+        \end{enumerate}
+    \end{cor}	
+
+    \begin{proof}
+        This result immediately follows from Corollary 11.8.1, Proposition 11.9, Proposition 11.10.
+    \end{proof}
+
+    \np Euclidean domains are nice because there is an algorithm called the \textit{Euclidean algorithm} which computes greatest common divisors, runs fast as long as division is fast.
+
+    \section{Primes and Irreducibles}
+    
+    \np Let $p\in\Z\setminus \left\lbrace -1,0,1 \right\rbrace $. Recall that prime numbers in $\Z$ have two equivalent definitions.
+    \begin{enumerate}
+        \item $p$ is prime if for every $a,b\in\Z$, $p|ab$ implies $p|a$ or $p|b$.
+        \item $p$ is prime if $p=ab$ implies $a$ is a unit or $b$ is a unit.
+    \end{enumerate}
+    In an arbitrary ring, prime ideals generalize definition (a). But we also want prime \textit{elements}, rather than prime ideals. We also want to generalize definition (b).
+
+    \begin{definition}{Prime, Irreducible, Reducible}{Elements of an Integral Domain}
+        Let $R$ be an integral domain and let $p\in R$ be nonzero and nonunit.
+        \begin{enumerate}
+            \item $p$ is called \emph{prime} if for every $a,b\in R$, if $p|ab$, then $p|a$ or $p|b$.
+            \item $p$ is called \emph{irreducible} if for every $a,b\in R$, if $p=ab$, then one of $a,b$ is a unit.
+            \item $p$ is called \emph{reducible} if not irreducible.
+        \end{enumerate}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $p\in R$.
+        \begin{enumerate}
+            \item $p$ is prime if and only if $p$ is nonzero and $\left( p \right)$ is prime.
+            \item Given any $q\in R$ such that $p,q$ are associates, $p$ is prime (resp. irreducible) if and only if $q$ is prime (resp. irreducible).
+            \item If $p$ is prime, then $p$ is irreducible.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a PID and let $p\in R$. Then $p$ is irreducible if and only if prime.
+    \end{prop}
+
+    \begin{proof}
+        The reverse direction is provided by (c) of Proposition 11.11. For the forward direction, suppose $p$ is irreducible and let $I\subseteq R$ be an ideal containing $\left( p \right)$. Since $R$ is a PID, there exists $q\in R$ such that $I=\left( q \right)$. But $p\in I$, so $p=kq$ for some $k\in R$. Since $p$ is irreducible, at least one of $k,q$ is a unit. If $q$ is a unit, then $I=R$. On the other hand, if $k$ is a unit, then $p,q$ are associates, so $\left( p \right) = \left( q \right)$. Hence $\left( p \right)$ is maximal, implying that $\left( p \right)$ is prime. Hence $p$ is prime by (a) of Proposition 11.11.
+    \end{proof}
+
+    \begin{definition}{Complete Factorization into Irreducibles}{}
+        Let $R$ be an integral domain and let $r\in R$.
+        \begin{enumerate}
+            \item We say $r$ has a \emph{complete factorization into irreducibles} if $r=r_1\cdots r_k$ for some $k\in\N$ and irreducible $r_1,\ldots,r_k\in R$.
+            \item We say $R$ has \emph{complete factorizations into irreducibles} if every nonzero element of $R$ has a complete factorization.\footnote{In fact, we only have to require nonzero nonunits to have a complete factorization into irreducibles, since units can be factorized into irreducibles in a trivial way.}
+        \end{enumerate}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $r\in R$ be an irreducible that can be written as a product of primes. Then $r$ is a prime.
+    \end{prop}
+
+    \begin{proof}
+        Write
+        \begin{equation*}
+            r = p_1\cdots p_k
+        \end{equation*}
+        for some primes $p_1,\ldots,p_k\in R$, where $k\in\N$. For the sake of contradiction, assume $k\geq 2$. Then $\left( p_1\cdots p_{k-1} \right)$ or $p_k$ is a unit, since $r$ is irreducible. Since primes cannot be units, $p_k$ is not a unit. But if $p_1\cdots p_{k-1}$ is a unit, then $p_i|1$ for all $i\in\left\lbrace 1,\ldots,k-1 \right\rbrace$, so $p_i$ is a unit for all $i\in\left\lbrace 1,\ldots,k-1 \right\rbrace$. Thus we have a contradiction, implying that $k=1$ (i.e. $r$ is prime).
+    \end{proof}
+
+    \np[Complete Factorization into Irreducibles]Let $R$ be an integral domain and let $r\in R$ be nonzero and nonunit. We desire to show that $r$ can be factored into a product of irreducibles. To do so, we propose the following algorithm.
+    \begin{enumerate}
+        \item If $r$ is irreducible, then we are done.
+        \item Otherwise, $r=r_1r_2$ for some nonunits $r_1,r_2\in R$ (of course, $r_1,r_2$ are nonzero).
+        \item Start over at (a) and try to write $r_1,r_2$ as a product of irreducibles.
+    \end{enumerate}
+    To show that this algorithm works, it suffices to show that it terminates.
+
+    \begin{prop}{}
+        Let $R$ be a domain and let $r\in R$ be nonzero. Write $r=r_1r_2$ for some $r_1,r_2\in R$. Then $\left( r \right) = \left( r_2 \right)$ if and only if $r_1$ is a unit.
+    \end{prop}
+
+    \begin{proof}
+        If $r_1$ is a unit, then $r,r_2$ are associates, so $\left( r \right) = \left( r_2 \right)$. Conversely, if $\left( r \right) = \left( r_2 \right)$, then $r=ur_2$ for some unit $u\in R$, so
+        \begin{equation*}
+            0 = r-r = r_1r_2-ur_2 = \left( r_1-u \right) r_2.
+        \end{equation*}
+        Since $r,r_2$ are nonzero, $r_1=u$ by cancellation, so $r_1$ is a unit.
+    \end{proof}
+
+    \noindent By Proposition 11.14, given any reducible $r\in R$ such that $r=r_1r_2$ for some nonunits $r_1,r_2\in R$, $\left( r \right)$ is a proper subset of $\left( r_1 \right) , \left( r_2 \right)$. As a result, if the algorithm does not terminate, then we have an infinite strictly increasing sequence of principal ideals
+    \begin{equation*}
+        \left( r \right) \subset \left( r_{i_2} \right) \subset \left( r_{i_3} \right) \subset \cdots
+    \end{equation*}
+    in $R$. Hence to make our algorithm work, we have to ensure that $R$ does not admit such sequence.
+
+    \begin{definition}{Ascending Chain Condition for Principal Ideals}{for an Integral Domain}
+        Let $R$ be an integral domain. We say $R$ satisfies the \emph{ascending chain condition for principal ideals} if there does not exist an infinite strictly increasing sequence
+        \begin{equation*}
+            I_1\subset I_2\subset \cdots
+        \end{equation*}
+        of principal ideals $I_1,I_2,\ldots\subseteq R$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be a domain. If $R$ satisfies the ascending chain condition for principal ideals, then $R$ has complete factorizations into irreducibles.
+    \end{prop}
+
+    \begin{prop}{}
+        Every PID satisfies the ascending chain condition for principal ideals.
+    \end{prop}
+
+    \begin{proof}
+        Let $R$ be a PID and let $I_1,I_2,\ldots\subseteq R$ be principal ideals such that
+        \begin{equation*}
+            I_1\subseteq I_2\subseteq\cdots.
+        \end{equation*}
+        Then it suffices to show that there exists $k\in\N$ such that $I_k = I_n$ for all $n\in\N, n\geq k$. We observe that
+        \begin{equation*}
+            I = \bigcup^{\infty}_{i=1} I_i
+        \end{equation*}
+        is an ideal, and since $R$ is a PID, $I=\left( x \right)$ for some $x\in R$. This means $x\in I$, so $x\in I_k$ for some $k\in\N$. Then $\left( x \right) \subseteq I_k$, so
+        \begin{equation*}
+            I_k \subseteq I_n \subseteq I = \left( x \right) \subseteq I_k
+        \end{equation*}
+        for all $n\geq k$, which means $I_k=I_n$ for all $n\geq k$, as required.
+    \end{proof}
+
+    \section{Unique Factorizations}
+
+    \np[Unique Factorizations]In $\Z$, factorizations are unique \textit{up to multiplying $1,-1$}. For instance,
+    \begin{equation*}
+        -12 = -1\cdot2^2\cdot3 = \left( -1 \right) ^3\cdot\left( -2 \right) ^2\cdot 3.
+    \end{equation*}
+    Similarly, for an arbitrary integral domain $R$, we say a complete factorization of $r\in R$ is \textit{unique} to mean that, given two complete factorizations
+    \begin{equation*}
+        r = a_1\cdots a_n = b_1\cdots b_m
+    \end{equation*}
+    for some $n,m\in\N$ and irreducibles $a_1,\ldots,a_n,b_1,\ldots,b_m\in R$, $n=m$ and there is a permutation $\sigma\in S_n$ such that $a_i\sim b_{\sigma\left( i \right) }$ for all $i\in\left\lbrace 1,\ldots,n \right\rbrace$. That is, factorizations are unique \textit{up to multiplying units of $R$}.
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $r_1,\ldots,r_n\in R$ be irreducible, where $n\in\N$. Then $r_1\cdots r_n$ is not a unit.
+    \end{prop}
+
+    \begin{proof}
+        A proof is outlined in the proof of Proposition 11.13.
+    \end{proof}
+    
+    \begin{prop}{}
+        Let $R$ be an integral domain. If every irreducible in $R$ is prime, then complete factorizations are unique when exist.
+    \end{prop}
+
+    \begin{definition}{Unique Factorization Domain}{}
+        Let $R$ be an integral domain. We say $R$ is a \emph{unique factorization domain} (or \emph{UFD}) if $R$ has complete factorizations into irreducibles and complete factorizations are unique when exist.
+    \end{definition}
+
+    \begin{prop}{}
+        Every PID is a UFD.
+    \end{prop}
+
+    \begin{proof}
+        We know that
+        \begin{enumerate}
+            \item every PID has the ascending chain condition for principal ideals, so has complete factorizations (Proposition 11.15, 11.16); and
+            \item every irreducible in any PID is prime, so every PID has unique complete factorizations when they exist (Proposition 11.12, 11.18). \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \begin{theorem}{Characterization of UFDs}
+        Let $R$ be a domain. Then $R$ is a UFD if and only if $R$ satisfies the ascending chain condition for principal ideals and every irreducible in $R$ is prime.
+    \end{theorem}
+
+    \begin{lemma_inside}{}
+        Let $R$ be a UFD and let $a,b\in R$ be nonzero nonunits. If $a|b$, then the number of factors in the prime factorization of $a$ is at most the number of factors in the prime factorization of $b$, and equality holds if and only if $\left( a \right) = \left( b \right)$.
+    \end{lemma_inside}
+
+    \begin{proof}
+        Assume $a|b$, so $ca=b$ for some $c\in R$. We may write
+        \begin{equation*}
+            a = p_1\cdots p_m, b=q_1\cdots q_n, c = ug_1\cdots g_l
+        \end{equation*}
+        for some $m,n\in\N, l\in\N\cup\left\lbrace 0 \right\rbrace$, irreducibles $p_1,\ldots,p_m,q_1,\ldots,q_n,g_1,\ldots,g_l\in R$, and a unit $u\in R$. Then
+        \begin{equation*}
+            g_1\cdots g_lup_1\cdots p_m = q_1\cdots q_n,
+        \end{equation*}
+        so $m\leq m+l = n$. In particular, 
+        \begin{equation*}
+            \left( a \right) = \left( b \right) \iff c\in R^\times \iff l=0 \iff m=n. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{proof}[Proof of Theorem 11.20]
+        The reverse direction is clear. For the forward direction, let $R$ be a UFD. We verify the following claims.
+        \begin{itemize}
+            \item \textit{Claim 1. Every irreducible in $R$ is prime.}
+
+                \begin{subproof}
+                    Let $r\in R$ be irreducible and assume $kr = ab$ for some $k,a,b\in R$, where it suffices to show that $r|a$ or $r|b$. We may assume $a,b$ are nonzero and nonunit. So we may write
+                    \begin{equation*}
+                        a = a_1\cdots a_n, b=b_1\cdots b_m
+                    \end{equation*}
+                    for some $n,m\in\N$ and irreducibles $a_1,\ldots,a_n,b_1,\ldots,b_m\in R$. Also write
+                    \begin{equation*}
+                        k = uk_1\cdots k_l
+                    \end{equation*}
+                    for some $l\in\N$, irreducibles $k_1,\ldots,k_l\in R$, and a unit $u\in R$. Then we have
+                    \begin{equation*}
+                        uk_1\cdots k_lr = a_1\cdots a_nb_1\cdots b_m.
+                    \end{equation*}
+                    Since $R$ is a UFD, it follows that $r\sim a_i$ for some $i\in\left\lbrace 1,\ldots,n \right\rbrace$ or $r\sim b_j$ for some $j\in\left\lbrace 1,\ldots,m \right\rbrace$. Thus $r$ divides $a$ or $b$.
+                \end{subproof}
+
+            \item \textit{Claim 2. $R$ satisfies the ascending chain condition for principal ideals.}
+
+                \begin{subproof}
+                    Let $x_1,x_2,\ldots\in R$ be such that
+                    \begin{equation*}
+                        \left( x_1 \right) \subseteq \left( x_2 \right) \subseteq\cdots,
+                    \end{equation*}
+                    where it suffices to show that there exist $k\in\N$ such that $\left( x_k \right) = \left( x_n \right)$ for all $n\in\N, n\geq k$. Without loss of generality assume $x_i$ is nonzero and nonunit for all $i\in\N$. For every $i\in\N$, let $f_i\in\N$ be the nubmer of factors in prime factorization of $x_i$. Since $x_{i+1}|x_i$, by Lemma 11.20.1, $f_i\geq f_{i+1}$ for all $i\in\N$. This means the sequence $\left( f_{i} \right)^{\infty}_{i=1}$ is nonincreasing. But $\left( f_{i} \right)^{\infty}_{i=1}$ is bounded below by 1, so there exists $k\in\N$ such that $f_k=f_n$ for all $n\geq k$ by the well-ordering principle. By Lemma 11.20.1, this is equivalent to saying that $\left( x_k \right) = \left( x_n \right)$ for all $n\geq k$. \qqedsym
+                \end{subproof}
+        \end{itemize} 
+    \end{proof}
+
+    \begin{cor}{}
+        Every irreducible in a UFD is prime.
+    \end{cor}	
+
+    \clearpage
+    \begin{prop}{}
+        Let $R$ be a UFD. Then $R\left[ x \right]$ is a UFD.
+    \end{prop}
+
+    \np Let $R$ be a UFD and suppose that we are given nonzero $x\in R$. Then
+    \begin{equation*}
+        x = ug_1\cdots g_n
+    \end{equation*}
+    for some $n\in\N\cup\left\lbrace 0 \right\rbrace$, a unit $u\in R$, and irreducibles $g_1,\ldots,g_n\in R$. But this representation is \textit{inefficient} when there exist distinct $i,j\in\left\lbrace 1,\ldots,n \right\rbrace$ such that $g_i\sim g_j$. For, $g_i=g_jv$ for some unit $u'\in R$, which means
+    \begin{equation*}
+        x = ug_1\cdots g_n = uu'g_1\cdots g_{i-1}g_{i+1}\cdots g_j^{2} \cdots g_n.
+    \end{equation*}
+    Continuing this process, we can eventually write
+    \begin{equation*}
+        x = vh_1^{a_1}\cdots h_m^{a_m}
+    \end{equation*}
+    for some $m\in\N\cup\left\lbrace 0 \right\rbrace$, unit $v\in R$, and irreducibles $h_1,\ldots,h_m\in R$, such that $h_i, h_j$ are not associates for all distinct $i,j\in\left\lbrace 1,\ldots,m \right\rbrace$.
+
+    \begin{prop}{}
+        Let $R$ be a and let $x\in R$ be nonzero. Let $y\in R$.
+        \begin{enumerate}
+            \item There exists $n\in\N\cup\left\lbrace 0 \right\rbrace $, a unit $u\in R$, and irreducibles $g_1,\ldots,g_n\in R$ with $g_i,g_j$ are not associates for all distinct $i,j\in\left\lbrace 1,\ldots,n \right\rbrace$ such that
+                \begin{equation*}
+                    x = ug_1^{a_1}\cdots g_n^{a_n}.
+                \end{equation*}
+            \item $y|x$ if and only if
+                \begin{equation*}
+                    y = vg_1^{b_1}\cdots g_n^{b_n}
+                \end{equation*}
+                for some unit $v\in R$ and $b_1,\ldots,b_n\in\N\cup\left\lbrace 0 \right\rbrace$ such that $b_i\leq a_i$ for all $i\in\left\lbrace 1,\ldots,n \right\rbrace$. 
+            \item If $x=y$, then $u=v$ and $a_i=b_i$ for all $i\in\left\lbrace 1,\ldots,n \right\rbrace$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a UFD and let $u,v\in R$ be units. Let $n\in\N\cup\left\lbrace 0 \right\rbrace$ and let $g_1,\ldots,g_n\in R$ be primes such that $g_i,g_j$ are not associates for all distinct $i,j\in\left\lbrace 1,\ldots,n \right\rbrace$. Then for every $a_1,\ldots,a_n,b_1,\ldots,b_n\in\N\cup\left\lbrace 0 \right\rbrace$,
+        \begin{equation*}
+            g_1^{\min\left( a_1,b_1 \right) }\cdots g_n^{\min\left( a_n,b_n \right) }
+        \end{equation*}
+        is a greatest common divisor of $ug_1^{a_1}\cdots g_n^{a_n}, vg_1^{b_1}\cdots g_n^{b_n}$.
+    \end{prop}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Polynomial Rings} 
+
+    \section{Irreducible Polynomials}
+    
+    \np We desire to show that $R\left[ x \right]$ is a UFD for every UFD $R$. The first step is to study irreducible polynomials. We first consider the case where $R=\K$ for some field $\K$.
+
+    \begin{prop}{}
+        Let $\K$ be a field and let $f\in\K\left[ x \right]$. Then $f$ is irreducible if and only if $\deg\left( f \right)\geq 1$ and $f\neq gh$ for all $g,h\in\K\left[ x \right]$ with $\deg\left( g \right) ,\deg\left( h \right) < \deg\left( f \right)$.
+    \end{prop}
+
+    \begin{definition}{Root}{of a Polynomial}
+        Let $R$ be an integral domain and let $f\in R\left[ x \right]$. We say $r\in R$ is a \emph{root} of $f$ (in $R$) if $\ev_r\left( f \right) = 0$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $f\in R\left[ x \right]$ be such that $\deg\left( f \right) \geq 2$. If $f$ has a root in $R$, then $f$ is reducible.
+    \end{prop}
+
+    \begin{proof}
+        Let $c\in R$ be a root of $f$. Then $f = \left( x-c \right) g$ for some $g\in R\left[ x \right]$. Since $\deg\left( f \right) \geq 2$, $\deg\left( g \right) \geq 1$. So $x-c, g$ are nonunits, implying that $f$ is reducible.
+    \end{proof}
+
+    \noindent Recall the following theorem.
+
+    \begin{theorem}{Fundamental Theorem of Algebra}
+        Every nonconstant polynomial in $\CC\left[ x \right]$ has a root in $\CC$.
+    \end{theorem}
+
+    \begin{cor}{}
+        The irreducible polynomials over $\CC$ are precisely the polynomials of degree $1$.
+    \end{cor}	
+
+    \begin{cor}{}
+        Let $f\in\R\left[ x \right]$. Then $f$ is irreducible if and only if $\deg\left( f \right) = 1$ or $\deg\left( f \right) =2 $ and $f$ does not have a root in $\R$.
+    \end{cor}	
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $p\in R\left[ x \right]$ be constant. Then $p$ is irreducible in $R\left[ x \right]$ if and only if $p$ is irreucible in $R\left[ x \right]$.
+    \end{prop}
+
+    \begin{proof}
+        This follows immediately from the fact that $R\left[ x \right] ^\times = R^\times$.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $p\in R\left[ x \right] $ be constant. Then $p$ is prime in $R\left[ x \right]$ if and only if $p$ is prime in $R$.
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be an integral domain and let $ax+b\in R\left[ x \right]$. Then $ax+b$ is irreducible if and only if a greatest common divisor of $a,b$ is $1$.
+    \end{prop}
+
+    \begin{proof}
+        Observe that
+        \begin{equation*}
+            ax+b\text{ is irreducible}\iff\text{only common divisor of $a,b$ are units}. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{definition}{Primitive}{Polynomial}
+        Let $R$ be a UFD and let $f\in R\left[ x \right]$. We say $f$ is \emph{primitive} if there does not exist irreducible $r\in R$ such that $r|f$.
+    \end{definition}
+
+    \np Equivalently, given $a_0,\ldots,a_n\in R$ where $n\in\N$ and $R$ is a UFD, $\sum^{n}_{i=0} a_ix^i$ is primitive if $1$ is a greatest common divisor of $a_0,\ldots,a_n$.
+
+    \begin{prop}{}
+        Let $R$ be a UFD and let $f\in R\left[ x \right]$ be nonzero. Then there exists $d\in R$ such that $d|f$ and that $\frac{f}{d}$ is primitive.
+    \end{prop}
+
+    \begin{prop}{}
+        Let $R$ be a UFD and let $f\in R\left[ x \right]$. If $f$ is irreducible and $\deg\left( f \right) \geq 1$, then $f$ is primitive.
+    \end{prop}
+
+    \begin{proof}
+        Suppose $p|f$ for some prime $p\in R$ (so $p$ is prime in $R\left[ x \right]$ as well). Then $f=p\cdot \frac{f}{p}$ where $p,\frac{f}{p}$ are nonunits, so $f$ is reducible.
+    \end{proof}
+
+    \begin{prop}{}
+        Let $R$ be a UFD and let $f\in R\left[ x \right]$ be primitive with $\deg\left( f \right) \geq 1$. Then $f$ is reducible if and only if $f=gh$ for some $g,h\in R\left[ x \right]$ with $\deg\left( g \right) , \deg\left( h \right) < \deg\left( f \right)$.
+    \end{prop}
+
+    \begin{theorem}{Gauss' Lemma}
+        Let $R$ be a UFD with field of fractions $\K$. If $f\in R\left[ x \right]$ and $f=gh$ for some $g,h\in\K\left[ x \right]$, then there exists a unit $u\in\K$ such that $ug, u^{-1} h\in R\left[ x \right]$.
+    \end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

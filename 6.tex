@@ -1,0 +1,339 @@
+\documentclass[pmath347]{subfiles}
+
+%% ========================================================
+%% document
+
+\begin{document}
+
+    \chap{Classification of Groups} 
+
+    \section{Classification of Groups}
+    
+    \begin{prop}{}
+        For every group $G$ such that $\left| G \right| = p^{2}$ for some prime $p\in\N$, exactly one of the following holds.
+        \begin{enumerate}
+            \item $G$ is cyclic.
+            \item $G\iso \left( \Z /p\Z \right) ^{2} $.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        Clearly (a), (b) exclude each other. Now suppose that $G$ is not cyclic, and fix $a\in G\setminus \left\lbrace e_G \right\rbrace$. Since $G$ is not cyclic and $a$ is not the identity, $\left| a \right| = p$. So fix $b\in G\setminus \left< a \right>$, where we know $\left| b \right| = p$ as well. Now denote
+        \begin{equation*}
+            H = \left< a \right> , K = \left< b \right> .  
+        \end{equation*}
+        Since $H\cap K<K$, $\left| H\cap K \right| = 1$, so $H\cap K = \left\lbrace e_G \right\rbrace$. Moreover,
+        \begin{equation*}
+            \left| HK \right| = \frac{\left| H \right| \left| K \right| }{\left| H\cap K \right| } = p^{2} ,
+        \end{equation*}
+        so $HK=G$. Also, $\left[ G:H \right] = \left[ G:K \right] = p$, the smallest prime dividing $\left| G \right|$, so $H,K\normalsub G$. Hence $G$ is an internal direct product of $H, K$, implying that
+        \begin{equation*}
+            G\iso H\times K\iso \left( \Z /p\Z \right) ^{2} .\eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \np We can generalize an argument that appeared in the proof of Proposition 6.1.
+
+    \begin{prop}{}
+        Let $G$ be a group and let $H,K\normalsub G$ be such that $\gcd\left( \left| H \right| , \left| K \right|  \right) = 1, \left| H \right| \left| K \right| = \left| G \right|$. Then $G\iso H\times K$.
+    \end{prop}
+
+    \begin{proof}
+        Since $\left| H\cap K \right|$ divides both $\left| H \right| , \left| K \right|$, $\left| H\cap K \right| = 1$. So $H\cap K = \left\lbrace e_G \right\rbrace$. Moreover,
+        \begin{equation*}
+            \left| HK \right| = \frac{\left| H \right| \left| K \right| }{\left| H\cap K \right| } = \left| G \right| ,
+        \end{equation*}
+        so $HK=G$. Thus it follows that $G\iso H\times K$.
+    \end{proof}
+
+    \section{Classification of Finite Abelian Groups}
+    
+    \begin{prop}{}
+        Let $G$ be an abelian group and for every $m\in\N$, write $G^{\left( m \right) }$ to denote
+        \begin{equation*}
+            G^{\left( m \right)} = \left\lbrace g\in G:g^m=e_G \right\rbrace .
+        \end{equation*}
+        Then $G^{\left( m \right) }\leq G$ for all $m\in\N$.
+    \end{prop}
+
+    \begin{proof}
+        Clearly $e_G\in G^{\left( m \right) }$ for every $m\in\N$. Moreover, given any $g,h\in G^{\left( m \right) }$,
+        \begin{equation*}
+            \left( g^{-1} h \right) ^m = g^{-m}h^m = e_G. \eqedsym
+        \end{equation*}
+    \end{proof}
+
+    \begin{definition}{$m$-torsion Subgroup}{of an Abelian Group}
+        Let $G$ be an abelian group. For every $m\in\N$, the \emph{$m$-tortion subgroup} of $G$, denoted as $G^{\left( m \right) }$, is defined as
+        \begin{equation*}
+            G^{\left( m \right) } = \left\lbrace g\in G: g^m=e_G \right\rbrace .
+        \end{equation*}
+    \end{definition}
+
+    \begin{prop}{}
+        Let $G$ be a finite abelian group with $\left| G \right| = mn$ for some $m,n\in\N$ such that $\gcd\left( m,n \right) = 1$. Then
+        \begin{enumerate}
+            \item $\varphi:G\to G^{\left( m \right) }\times G^{\left( n \right) }$ defined by
+                \begin{equation*}
+                    \varphi\left( g \right) = \left( g^n, g^m \right) 
+                \end{equation*}
+                for every $g\in G$ is an isomorphism; and
+            \item $\left| G^{\left( m \right) } \right| = m, \left| G^{\left( n \right) } \right| = n$.
+        \end{enumerate}
+    \end{prop}
+
+    \begin{proof}
+        \begin{enumerate}
+            \item Let $g\in G$. Then $g^{mn} = e_G$, so $g^n \in G^{\left( m \right) }$ and $g^m\in G^{\left( n \right) }$ so $\varphi$ is well-defined. Moreover, since $n,m$ are coprime, there exist $a,b\in\Z$ such that
+                \begin{equation*}
+                    an+bm = 1
+                \end{equation*}
+                by Bezout's lemma. Given any $h\in G$, if $\varphi\left( h \right) =e_G$, then $h^n = h^m = e_G$, implying that
+                \begin{equation*}
+                    h = h^{an+bm} = e_G,
+                \end{equation*}
+                so $\varphi$ is injective. Furthermore, suppose $g\in G^{\left( m \right) }, h\in G^{\left( n \right)}$ are given. Then
+                \begin{equation*}
+                    g^{an} = g^{an+bm} = g
+                \end{equation*}
+                and
+                \begin{equation*}
+                    h^{bm} = h^{an+bm} = h
+                \end{equation*}
+                so
+                \begin{equation*}
+                    \varphi\left( g^ah^b \right) = \left( g^{an}h^{bm}, g^{am}h^{bm} \right) = \left( g,h \right) ,
+                \end{equation*}
+                implying that $\varphi$ is surjective. Lastly, given any $g,h\in G$,
+                \begin{equation*}
+                    \varphi\left( gh \right) = \left( g^nh^n, g^mh^m \right) = \left( g^n,g^m \right) \left( h^n,h^m \right) = \varphi\left( g \right) \varphi\left( h \right) ,
+                \end{equation*}
+                so $\varphi$ is a homomorphism. Thus $\varphi$ is an isomorphism, as required. \qqqedsym
+
+            \item Since $G\iso G^{\left( m \right)}\times G^{\left( n \right) }$,
+                \begin{equation*}
+                    \left| G \right| = \left| G^{\left( m \right) } \right| \left| G^{\left( n \right) } \right| .
+                \end{equation*}
+                Let
+                \begin{equation*}
+                    \left| G \right| = \prod^{k}_{j=1} p_j^{a_j}
+                \end{equation*}
+                be the prime factorization of $\left| G \right|$, where $p_1,\ldots,p_k\in\N$ are distinct primes and $a_1,\ldots,a^k\in\N$. Since $\left| G \right| = mn$ and $m,n$ are coprime,
+                \begin{equation*}
+                    n = \prod^{k}_{j=1} p_j^{b_j}, m = \prod^{k}_{j=1} p_j^{c_j}
+                \end{equation*}
+                for some $b_1,\ldots,b_k,c_1,\ldots,c_k\in\N$ such that $a_j = b_j + c_j$ and exactly one of $b_j, c_j$ is nonzero for every $j\in\left\lbrace 1,\ldots,k \right\rbrace$. Fix $j\in\left\lbrace 1,\ldots,k \right\rbrace$ and suppose $b_j=a_j$. If we assume $p_j$ divides $\left| G^{\left( n \right) } \right|$ for the sake of contradiction, then by Cauchy's theorem $G^{\left( n \right) }$ has an element $a$ of order $p_j$. But
+                \begin{equation*}
+                    p_j|m \implies a\in G^{\left( m \right) } \implies a\in\ker\left( \varphi \right) \implies a=e_G,
+                \end{equation*}
+                which is a contradiction. Hence $p_j$ divides $\left| G^{\left( m \right) } \right|$, and in conclusion $m$ divides $\left| G^{\left( m \right) } \right| $ and $n$ divides $\left| G^{\left( n \right) } \right| $. Thus $\left| G^{\left( m \right) } \right| = m, \left| G^{\left( n \right) } \right| = n$. \qqedsym
+        \end{enumerate}
+    \end{proof}
+
+    \begin{cor}{}
+        Let $G$ be a finite abelian group with
+        \begin{equation*}
+            \left| G \right| = \prod^{k}_{j=1} p_j^{a_j}
+        \end{equation*}
+        for some distinct primes $p_1,\ldots,p_k\in\N$ and $a_1,\ldots,a_k\in\N$. Then
+        \begin{equation*}
+            G\iso G_1\times\cdots\times G_k,
+        \end{equation*}
+        where $\left| G_j \right| = p_j^{a_j}$ for all $j\in\left\lbrace 1,\ldots,k \right\rbrace$.
+    \end{cor}	
+
+    \begin{theorem}{Classification of Finite Abelian Groups}
+        Let $G$ be a finite abelian group. Then
+        \begin{equation*}
+            G\iso \left( \Z /a_1\Z \right) \times\cdots\times \left( \Z /a_k\Z \right) 
+        \end{equation*}
+        for some unique prime powers $a_1,\ldots,a_k\in\N$, up to reordering.
+    \end{theorem}
+
+    \begin{proof}
+        TL;DR.
+    \end{proof}
+
+    \section{Free Groups and Finite Generated Groups}
+
+    \np[Free Groups]Given an arbitrary set $S$, we may want to \textit{generate} a group from it.
+
+    \begin{definition}{Word}{over a Set}
+        Let $S$ be a set. A \emph{word} over $S$ is a formal expression of the form
+        \begin{equation*}
+            s_1^{a_1}\cdots s_k^{a_k}
+        \end{equation*}
+        for some $k\in\N\cup\left\lbrace 0 \right\rbrace, s_1,\ldots,s_k\in S$\footnote{Note that we are not assuming that $s_1,\ldots,s_k$ are distinct.} and $a_1,\ldots,a_k\in\Z$. When $k=0$, we obtain the \emph{empty word}, denoted as $\varep$. Given two words
+        \begin{equation*}
+            w_1 = s_1^{a_1}\cdots s_k^{a_k}, w_2 = t_1^{b_1}\cdots t_l^{b_l}
+        \end{equation*}
+        for some $k,l\in\N\cup\left\lbrace 0 \right\rbrace, s_1,\ldots,s_k,t_1,\ldots,t_l\in S, a_1,\ldots,a_k,b_1,\ldots,b_l\in\Z$, we define the \emph{concatenation} of $w_1, w_2$, denoted as $w_1w_2$, by
+        \begin{equation*}
+            w_1w_2 = s^{a_1}\cdots s_k^{a_k}t_1^{b_1}\cdots t_l^{b_l}.
+        \end{equation*}
+    \end{definition}
+    
+    \noindent A word like $s_1s_2^{2} s_2^{-3}s_3$ for some $s_1,s_2,s_3\in S$ is clearly a word over $S$, but it should also be equal to $s_1s_2^{-1} s_3$.
+
+    \begin{definition}{Reduced}{Word}
+        Let $S$ be a set and let
+        \begin{equation*}
+            w = s_1^{a_1}\cdots s_k^{a_k}
+        \end{equation*}
+        be a word over $S$, where $k\in\N\cup\left\lbrace 0 \right\rbrace, s_1,\ldots,s_k\in S, a_1,\ldots,a_k\in\Z$. We say $w$ is \emph{reduced} if $s_j\neq s_{j+1}$ for every $j\in\left\lbrace 1,\ldots,k-1 \right\rbrace$ and $a_j\neq 0$ for every $j\in\left\lbrace 1,\ldots,k \right\rbrace$. 
+    \end{definition}
+
+    \begin{definition}{Equivalent}{Words}
+        Let $w,v$ be words over a set $S$. We say $w,v$ are \emph{equivalent} if $w$ can be changed to $v$ by
+        \begin{enumerate}
+            \item inserting or deleting $s^0$; 
+            \item replacing $s^{a+b}$ with $s^as^b$; or
+            \item replacing $s^as^b$ with $s^{a+b}$
+            \end{enumerate}
+        for some $s\in S, a,b\in\Z$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $S$ be a set. Then every word over $S$ is equivalent to a unique reduced word.
+    \end{prop}
+
+    \begin{definition}{Free Group}{Generated by a Set}
+        Let $S$ be a set. The \emph{free group} generated by $S$, denoted as $\mF\left( S \right)$, is the set of reduced words over $S$, with operation
+        \begin{equation*}
+            w_1\cdot w_2 = r
+        \end{equation*}
+        for every $w_1,w_2\in\mF\left( S \right)$, where $r$ is the reduced word equivalent to the concatenation $w_1w_2$.
+    \end{definition}
+
+    \begin{prop}{}
+        Let $S$ be a set. Then $\mF\left( S \right)$ is a group with identity $\varep$.
+    \end{prop}
+
+    \begin{theorem}{Universal Property of Free Groups}
+        Let $S$ be a set and let $G$ be a group. Then for every $\varphi:S\to G$, there exists a unique group homomorphism $\tilde{\varphi}:\mF\left( S \right) \to G$ such that
+        \begin{equation*}
+            \tilde{\varphi} \left( s \right) = \varphi\left( s \right) 
+        \end{equation*}
+        for every $s\in S$.
+    \end{theorem}
+
+    \np[Group Presentations]Recall the following definition.
+
+    \begin{recall}{Normal Subgroup}{Generated by a Set}
+        Let $G$ be a group and let $S\subseteq G$. Then the \emph{normal subgroup} generated by $S$, denoted as $\left< S \right>$, is the intersection
+        \begin{equation*}
+            \left< S \right> = \bigcap^{}_{N\normalsub G: S\subseteq N}N.  
+        \end{equation*}
+    \end{recall}
+
+    \noindent We know that $\left< S \right> \normalsub G$, as its name suggests.  
+
+    \begin{definition}{Group Presentation}{}
+        Let $S$ be a set and let $R\subseteq\mF\left( S \right)$. The \emph{group presentation} $\left< S:R \right>$ denotes the group $\mF\left( S \right) /K$, where $K = \left< R \right>$.  
+    \end{definition}
+
+    \noindent The idea of group presentations is to pick generators (i.e. elements of $S$) first and then pick elements of $\mF\left( S \right)$ to set to the identity. For convenience, we use the following conventions for group presentations.
+    \begin{enumerate}
+        \item If $k\in\N\cup\left\lbrace 0 \right\rbrace , s_1,\ldots,s_k\in S, a_1,\ldots,a_k\in\Z$, then
+            \begin{equation*}
+                \left[ s_1 \right] ^{a_1}\cdots\left[ s_k \right] ^{a_k}\in\left< S:R \right>  
+            \end{equation*}
+            is simply denoted as
+            \begin{equation*}
+                s_1^{a_1}\cdots s_k^{a_k}.
+            \end{equation*}
+        \item We can write $w_1=w_2$ for some $w_1,w_2\mF\left( S \right)$ instead of writing $w_1w_2^{-1}$. We can drop the curly braces on sets also. For instance,
+            \begin{equation*}
+                \left< s,r: s^n=r^{2} =e, rs=s^{-1} r \right>  
+            \end{equation*}
+            means
+            \begin{equation*}
+                \left< \left\lbrace s,r \right\rbrace : \left\lbrace s^n,r^{2} ,rsr^{-1} s \right\rbrace  \right>  .
+            \end{equation*}
+    \end{enumerate}
+
+    \begin{definition}{Presentation}{of a Group}
+        Let $G$ be a group. If
+        \begin{equation*}
+            G\iso\left< S:R \right>  
+        \end{equation*}
+        for some set $S$ and $R\subseteq\mF\left( S \right)$, then $S:R$ is called a \emph{presentation} of $G$.
+    \end{definition}
+
+    \noindent Presentation of a group needs not be unique. Moreover, every group $G$ has a presentation:
+    \begin{equation*}
+        G\iso \left< G: g\cdot h =gh, e_G=\varep \right> . 
+    \end{equation*}
+
+    \begin{definition}{Finitely Presentable}{Group}
+        Let $S$ be a set and let $R\subseteq\mF\left( S \right)$. If both $S,R$ are finite, then the presentation $\left< S:R \right>$ is called \emph{finite}. Moreover, a group $G$ is said to be \emph{finitely presentable} if $G$ is isomorphic to some finite presentation.
+    \end{definition}
+
+    \begin{theorem}{Universal Property of Finitely Presented Groups}
+        Let $G = \left< S:R \right>$ for some set $S$ and $R\subseteq\mF\left( S \right)$ and let $H$ be a group. If $\varphi:S\to H$ is a function such that
+        \begin{equation*}
+            \varphi\left( s_1 \right) ^{a_1}\cdots\varphi\left( s_k \right) ^{a_k} = e_H
+        \end{equation*}
+        for every $s_1^{a_1}\cdots s_k^{a_k}\in R$, where $k\in\N, s_1,\ldots,s_k\in S, a_1,\ldots,a_k\in\Z$, then there is a unique homomorphism $\tilde{\varphi}:G\to H$ such that
+        \begin{equation*}
+            \tilde{\varphi} \left( s \right) = \varphi\left( s \right) 
+        \end{equation*}
+        for all $s\in S$.
+    \end{theorem}
+
+    \begin{proof}
+        Let $\psi:\mF\left( S \right) \to H$ be the homomorphism such that
+        \begin{equation*}
+            \psi\left( s \right) = \varphi\left( s \right) 
+        \end{equation*}
+        for every $s\in S$, which exists and is unique by Theorem 6.8. Let $K = \left< R \right> \normalsub\mF\left( S \right)$. For any $r=s_1^{a_1}\cdots s_k^{a_k}\in R$, where $k\in\N\cup\left\lbrace 0 \right\rbrace , s_1,\ldots,s_k\in S, a_1,\ldots,a_k\in\Z$, observe that
+        \begin{equation*}
+            \varphi\left( s_1 \right) ^{a_1}\cdots\varphi\left( s_k \right) ^{a_k} = \psi\left( r \right) = e_H,
+        \end{equation*}
+        so $r\in\ker\left( \psi \right)$. This implies $R\subseteq\ker\left( \varphi \right)$ so $K\subseteq\ker\left( \varphi \right)$ as well. Let $q:\mF\left( S \right) \to \mF\left( S \right) /K$ be the quotient map. By the univalsal property of quotients, there exists a homomorphism $\tilde{\varphi} :\mF\left( S \right) /K\to H$ such that $\psi = \tilde{\varphi} \circ q$. But this means
+        \begin{equation*}
+            \tilde{\varphi} \left( s \right) = \psi\left( s \right) = \varphi\left( s \right) 
+        \end{equation*}
+        for every $s\in S$, as required.
+    \end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
