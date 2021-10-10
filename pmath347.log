@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  10 OCT 2021 00:28
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2021.3.9)  10 OCT 2021 00:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1429,7 +1429,31 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 . Std/BI/OT:script=latn;language=DFLT;"
 . - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
 .................................................
-\g__fontspec_family_ITCAvantGardeGothicStd_int=\count315
+\g__fontspec_family_ITCKabelStdBold_int=\count315
+.................................................
+. fontspec info: "no-font-shape"
+. 
+. Could not resolve font "ITC Kabel Std Bold/I" (it probably doesn't exist).
+.................................................
+.................................................
+. fontspec info: "defining-font"
+. 
+. Font family 'ITCKabelStdBold(0)' created for font 'ITC Kabel Std Bold' with
+. options [].
+.  
+.  This font family consists of the following NFSS series/shapes:
+.  
+. - 'normal' (m/n) with NFSS spec.: <->"ITC Kabel Std
+. Bold/OT:script=latn;language=DFLT;"
+. - 'small caps'  (m/sc) with NFSS spec.: 
+. - 'bold' (bx/n) with NFSS spec.: <->"ITC Kabel Std
+. Bold/B/OT:script=latn;language=DFLT;"
+. - 'bold small caps'  (bx/sc) with NFSS spec.: 
+. - 'bold italic' (bx/it) with NFSS spec.: <->"ITC Kabel Std
+. Bold/BI/OT:script=latn;language=DFLT;"
+. - 'bold italic small caps'  (bx/itsc) with NFSS spec.: 
+.................................................
+\g__fontspec_family_ITCAvantGardeGothicStd_int=\count316
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1488,12 +1512,12 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
 . \fontdimen 4\font =0\fontdimen 4\font \fontdimen 7\font =0\fontdimen 2\font
 . \tex_hyphenchar:D \font =-1\scan_stop: 
 .................................................
-LaTeX Info: Redefining \ttfamily on input line 102.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 102.
+LaTeX Info: Redefining \ttfamily on input line 103.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 103.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-\g__fontspec_family_MinionPro_int=\count316
+\g__fontspec_family_MinionPro_int=\count317
 .................................................
 . fontspec info: "defining-font"
 . 
@@ -1520,17 +1544,17 @@ File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 . - 'bold italic small caps'  (bx/itsc) with NFSS spec.: <->"Minion Pro Bold
 . Italic/OT:script=latn;language=DFLT;+smcp;mapping=tex-text;"
 .................................................
-LaTeX Info: Redefining \rmfamily on input line 103.
-\c@defncounter=\count317
-\c@parcounter=\count318
-LaTeX Info: Redefining \emph on input line 274.
+LaTeX Info: Redefining \rmfamily on input line 104.
+\c@defncounter=\count318
+\c@parcounter=\count319
+LaTeX Info: Redefining \emph on input line 277.
 \symXcmex=\mathgroup11
-\c@stcounter=\count319
-\c@corcounter=\count320
-\c@axcounter=\count321
-\c@algocounter=\count322
-\c@indentdepth=\count323
-\c@linenumber=\count324
+\c@stcounter=\count320
+\c@corcounter=\count321
+\c@axcounter=\count322
+\c@algocounter=\count323
+\c@indentdepth=\count324
+\c@linenumber=\count325
 ) (/usr/share/texlive/texmf-dist/tex/latex/subfiles/subfiles.sty
 Package: subfiles 2012/05/23 Federico Garcia
  (/usr/share/texlive/texmf-dist/tex/latex/tools/verbatim.sty
@@ -1613,7 +1637,7 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count325
+\c@section@level=\count326
 )
 LaTeX Info: Redefining \ref on input line 30.
 LaTeX Info: Redefining \pageref on input line 30.
@@ -1629,7 +1653,7 @@ Package marginnote Info: \pdfoutput not 0 or unimportant and
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count326
+\c@lstlisting=\count327
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: xetex
 * paper: <default>
@@ -5572,12 +5596,12 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 48.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 48.
  ) 
 Here is how much of TeX's memory you used:
- 27804 strings out of 494945
- 493862 string characters out of 6177498
- 647796 words of memory out of 5000000
- 31245 multiletter control sequences out of 15000+600000
- 571662 words of font info for 183 fonts, out of 8000000 for 9000
+ 27831 strings out of 494945
+ 494631 string characters out of 6177498
+ 648071 words of memory out of 5000000
+ 31261 multiletter control sequences out of 15000+600000
+ 571694 words of font info for 187 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 46i,12n,67p,10524b,749s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,12n,67p,10524b,753s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on pmath347.pdf (109 pages).
